@@ -76,8 +76,8 @@ $  ./pickomino.out
 
 ### Iteration 1
 
-- **Démarrer une partie** : Le joueur peut entrer les paramètres de la partie et la lancer.
-- **Jouer une partie** : Une ou plusieurs parties peuvent être jouées dans leurs totalités.
+- **Démarrer une partie** : Le joueur peut entrer les paramètres de la partie (nombre de joueurs, ...) et la lancer.
+- **Jouer des parties** : Possibilité pour le joueur de jouer une ou plusieurs parties.
 
 ### Iteration 2
 
@@ -86,10 +86,9 @@ $  ./pickomino.out
 
 ### Iteration 3
 
+- **Jouer en réseau** : Jouer une partie en réseau.
 - **Voir l'historique** : Visualiser un historique des parties jouées.
 - **Voir le classement** : Visualiser un classement des joueurs.
--  **Jouer en réseau** : Jouer une partie en réseau.
-
 
 ##  Changelog
 
