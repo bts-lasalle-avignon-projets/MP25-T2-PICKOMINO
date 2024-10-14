@@ -5,6 +5,6 @@ struct Joueur
 {
     int pilePickomino[16];
     int sommet;
-}
+};
 
 #endif
