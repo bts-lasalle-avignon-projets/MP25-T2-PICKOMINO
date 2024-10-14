@@ -1,11 +1,16 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-struct Plateau 
+#include "Donnees.h"
+
+struct Plateau
 {
-    int desRetenues[8];
-    int JoueurActuel;
-    int total;
+    int       desRetenus[NB_DES];
+    int       JoueurActuel;
+    int       totalDes;
+    Pickomino brochette[NB_PICKOMINO];
 };
+
+void assignerBrochette(Pickomino brochette[NB_PICKOMINO]);
 
 #endif
