@@ -11,6 +11,26 @@
 #define VALEUR_PICKOMINO_MIN 21
 #define VALEUR_PICKOMINO_MAX 36
 
-#include "Plateau.h"
+enum Face
+{
+    UN = 1,
+    DEUX,
+    TROIS,
+    QUATRE,
+    CINQ,
+    VER = 6
+};
+
+struct Pickomino
+{
+    int valeur;
+    int nombreDeVers;
+    enum Etat
+    {
+        VISIBLE,
+        RETOURNE,
+        PRIS
+    } etat;
+};
 
 #endif

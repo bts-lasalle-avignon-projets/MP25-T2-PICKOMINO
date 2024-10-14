@@ -1,10 +1,9 @@
 #include "Plateau.h"
 
-void assignerBrochette()
+void assignerBrochette(Pickomino brochette[NB_PICKOMINO])
 {
-    int       j = 1;
-    int       k = 0;
-    Pickomino brochette[NB_PICKOMINO];
+    int j = 1;
+    int k = 0;
 
     for(int i = VALEUR_PICKOMINO_MIN; i <= VALEUR_PICKOMINO_MAX; ++i)
     {

@@ -2,7 +2,6 @@
 #include "Donnees.h"
 #include "Affichage.h"
 
-/*void jouerPickomino()
+void jouerPickomino()
 {
-
-}*/
+}
