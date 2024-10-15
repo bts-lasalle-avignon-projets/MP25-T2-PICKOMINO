@@ -47,7 +47,7 @@ void afficherDes()
 
 }
 */
-void afficherBrochette(Pickomino brochette[NB_PICKOMINO])
+void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO])
 {
     std::string ligneValeur       = "";
     std::string ligneNombreDeVers = "";

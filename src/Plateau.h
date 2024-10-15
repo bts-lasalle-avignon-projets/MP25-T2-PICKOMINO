@@ -11,6 +11,6 @@ struct Plateau
     Pickomino brochette[NB_PICKOMINO];
 };
 
-void assignerBrochette(Pickomino brochette[NB_PICKOMINO]);
+void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINO]);
 
 #endif

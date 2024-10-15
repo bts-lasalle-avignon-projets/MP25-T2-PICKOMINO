@@ -19,6 +19,6 @@ void afficherVainqueur();
 void afficherPileJoueurEnCours()
 void afficherDes()
 */
-void afficherBrochette(Pickomino brochette[NB_PICKOMINO]);
+void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO]);
 
 #endif

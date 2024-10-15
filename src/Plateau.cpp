@@ -1,6 +1,6 @@
 #include "Plateau.h"
 
-void assignerBrochette(Pickomino brochette[NB_PICKOMINO])
+void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINO])
 {
     int j = 1;
     int k = 0;
