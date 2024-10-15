@@ -1,8 +1,13 @@
 #include "Affichage.h"
 #include "Plateau.h"
 
+// Affichage des dialogues
 
-//Affichage des dialogues
+void afficherMessage(std::string message)
+{
+    std::cout << message << std::endl;
+}
+
 /*
 void afficherInstructions()
 {
@@ -11,7 +16,7 @@ void afficherInstructions()
 
 void afficherOptionsDeJeu()
 {
-    
+
 }
 
 void afficherTourJoueur(Joueur joueur)
@@ -30,7 +35,7 @@ void afficherVainqueur()
 }
 */
 
-//Affichage du plateau
+// Affichage du plateau
 /*
 void afficherPileJoueurEnCours()
 {
@@ -42,16 +47,26 @@ void afficherDes()
 
 }
 */
-void afficherBrochette(Pickomino brochette[NB_PICKOMINO]){
-    for (int i = 0; i < NB_PICKOMINO; ++i)
+void afficherBrochette(Pickomino brochette[NB_PICKOMINO])
+{
+    std::string ligneValeur       = "";
+    std::string ligneNombreDeVers = "";
+
+    for(int i = 0; i < NB_PICKOMINO; ++i)
     {
-        if (brochette[i].etat == 0)
+        if(brochette[i].etat == Pickomino::VISIBLE)
         {
-            std::cout << brochette[i].valeur 
-                      << brochette[i].nombreDeVers
-                      << std::endl;
+            ligneValeur += std::to_string(brochette[i].valeur) + " ";
+
+            ligneNombreDeVers += std::to_string(brochette[i].nombreDeVers) + "  ";
         }
-        else if (brochette[i].etat == 1)
-            std::cout << 'X';
+        else if(brochette[i].etat == Pickomino::RETOURNE)
+        {
+            ligneValeur += "X  ";
+            ligneNombreDeVers += "X  ";
+        }
     }
+
+    std::cout << ligneValeur << std::endl;
+    std::cout << ligneNombreDeVers << std::endl;
 }

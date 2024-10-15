@@ -5,6 +5,8 @@
 
 #include <iostream>
 
+void afficherMessage(std::string message);
+
 /*
 void afficherInstructions();
 void afficherOptionsDeJeu();
