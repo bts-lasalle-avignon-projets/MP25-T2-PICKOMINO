@@ -1,5 +1,4 @@
 #include "Affichage.h"
-#include "Plateau.h"
 
 // Affichage des dialogues
 
@@ -47,6 +46,14 @@ void afficherDes()
 
 }
 */
+void afficherJoueurs(Joueur (&joueurs)[NB_JOUEURS_MAX], int nbJoueurs)
+{
+    for(int i = 0; i < nbJoueurs; ++i)
+    {
+        std::cout << "Joueur numéro " << joueurs[i].numero << " :" << joueurs[i].nom << std::endl;
+    }
+}
+
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO])
 {
     std::string ligneValeur       = "";

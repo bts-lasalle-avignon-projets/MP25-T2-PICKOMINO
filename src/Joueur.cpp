@@ -1,16 +1,8 @@
 #include "Joueur.h"
 
-void creerJoueurs(int nbJoueurs)
-{
-    std::string nomJoueur;
-    for(int i = 0; i < nbJoueurs; ++i)
-    {
-        nomJoueur = "Joueur" + std::to_string(nbJoueurs);
-        Joueur nomJoueur;
-    }
-}
+Joueur joueurs[NB_JOUEURS_MAX];
 
-void assignerJoueur(Joueur joueur, std::string nom, int numero)
+void assignerJoueur(Joueur& joueur, std::string nom, int numero)
 {
     joueur.nom    = nom;
     joueur.numero = numero;

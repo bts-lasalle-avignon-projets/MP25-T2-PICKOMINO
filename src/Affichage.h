@@ -2,6 +2,8 @@
 #define AFFICHAGE_H
 
 #include "Donnees.h"
+#include "Plateau.h"
+#include "Joueur.h"
 
 #include <iostream>
 
@@ -20,5 +22,6 @@ void afficherPileJoueurEnCours()
 void afficherDes()
 */
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO]);
+void afficherJoueurs(Joueur (&joueurs)[NB_JOUEURS_MAX], int nbJoueurs);
 
 #endif

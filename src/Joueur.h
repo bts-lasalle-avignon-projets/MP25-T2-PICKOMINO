@@ -13,7 +13,9 @@ struct Joueur
     int         sommet;
 };
 
-void assignerJoueur(Joueur joueur, std::string nom, int numero);
+extern Joueur joueurs[NB_JOUEURS_MAX];
+
+void assignerJoueur(Joueur& joueur, std::string nom, int numero);
 void prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINO], int valeur);
 void picorer(Joueur& attaquant, Joueur& cible);
 
