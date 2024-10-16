@@ -6,7 +6,7 @@
 struct Plateau
 {
     int       desRetenus[NB_DES];
-    int       JoueurActuel;
+    int       joueurActuel;
     int       totalDes;
     Pickomino brochette[NB_PICKOMINO];
 };
