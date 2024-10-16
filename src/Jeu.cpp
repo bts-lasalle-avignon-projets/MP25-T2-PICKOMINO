@@ -1,12 +1,26 @@
 #include "Jeu.h"
-#include "Plateau.h"
 #include "Affichage.h"
+#include "Plateau.h"
+#include "Joueur.h"
+#include <iostream>
 
 void jouerPickomino()
 {
     Jeu jeu;
 
     initialiserJeu(jeu);
+}
+
+void assignerJoueurs(Jeu jeu, int nbJoueurs)
+{
+    std::string nomJoueur = "";
+
+    for(int i = 0; i < nbJoueurs; ++i)
+    {
+        afficherMessage("Inscrivez le nom du joueur");
+        std::cin >> nomJoueur;
+        assignerJoueur(jeu.joueurs[i], nomJoueur, i);
+    }
 }
 
 void initialiserJeu(Jeu& jeu)
