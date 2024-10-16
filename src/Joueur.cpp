@@ -1,5 +1,15 @@
 #include "Joueur.h"
 
+void creerJoueurs(int nbJoueurs)
+{
+    std::string nomJoueur;
+    for(int i = 0; i < nbJoueurs; ++i)
+    {
+        nomJoueur = "Joueur" + std::to_string(nbJoueurs);
+        Joueur nomJoueur;
+    }
+}
+
 void assignerJoueur(Joueur joueur, std::string nom, int numero)
 {
     joueur.nom    = nom;
