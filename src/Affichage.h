@@ -1,11 +1,11 @@
 #ifndef AFFICHAGE_H
 #define AFFICHAGE_H
 
+#include <string>
+
 #include "Donnees.h"
 
-#include <iostream>
-
-void afficherMessage(std::string message);
+// Affichage des dialogues
 
 /*
 void afficherInstructions();
@@ -15,10 +15,16 @@ void afficherScores();
 void afficherVainqueur();
 */
 
+// Affichage de jeu
+
 /*
 void afficherPileJoueurEnCours()
 void afficherDes()
 */
-void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO]);
+void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
+
+// Utilitaires
+
+void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 
 #endif

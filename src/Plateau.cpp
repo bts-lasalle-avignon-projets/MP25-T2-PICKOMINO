@@ -1,6 +1,6 @@
 #include "Plateau.h"
 
-void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINO])
+void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINOS])
 {
     int j = 1;
     int k = 0;
@@ -17,7 +17,7 @@ void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINO])
     }
 }
 
-void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINO], int valeur)
+void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
 {
     if(valeur >= VALEUR_PICKOMINO_MIN && valeur <= VALEUR_PICKOMINO_MAX)
         brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::RETOURNE;
