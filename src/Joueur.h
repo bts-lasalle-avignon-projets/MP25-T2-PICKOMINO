@@ -9,12 +9,12 @@ struct Joueur
 {
     std::string nom;
     int         numero;
-    int         pile[NB_PICKOMINO];
+    Pickomino   pile[NB_PICKOMINOS];
     int         sommet;
 };
 
-void assignerJoueur(Joueur joueur, std::string nom, int numero);
-void prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINO], int valeur);
-void picorer(Joueur& attaquant, Joueur& cible);
+void assignerJoueur(Joueur& joueur, std::string nom, int numero);
+bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
+bool picorer(Joueur& joueur, int& valeur);
 
 #endif

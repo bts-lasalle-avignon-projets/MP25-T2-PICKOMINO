@@ -1,12 +1,8 @@
 #include "Affichage.h"
-#include "Plateau.h"
+
+#include <iostream>
 
 // Affichage des dialogues
-
-void afficherMessage(std::string message)
-{
-    std::cout << message << std::endl;
-}
 
 /*
 void afficherInstructions()
@@ -35,7 +31,8 @@ void afficherVainqueur()
 }
 */
 
-// Affichage du plateau
+// Affichage de jeu
+
 /*
 void afficherPileJoueurEnCours()
 {
@@ -47,17 +44,18 @@ void afficherDes()
 
 }
 */
-void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO])
+void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
-    std::string ligneValeur       = "";
-    std::string ligneNombreDeVers = "";
+    std::string ligneValeur;
+    std::string ligneNombreDeVers;
 
-    for(int i = 0; i < NB_PICKOMINO; ++i)
+    // afficherMessage("Brochette :");
+
+    for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
         if(brochette[i].etat == Pickomino::VISIBLE)
         {
             ligneValeur += std::to_string(brochette[i].valeur) + " ";
-
             ligneNombreDeVers += std::to_string(brochette[i].nombreDeVers) + "  ";
         }
         else if(brochette[i].etat == Pickomino::RETOURNE)
@@ -69,4 +67,13 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINO])
 
     std::cout << ligneValeur << std::endl;
     std::cout << ligneNombreDeVers << std::endl;
+}
+
+// Utilitaires
+
+void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
+{
+    std::cout << message;
+    if(nouvelleLigne)
+        std::cout << std::endl;
 }

@@ -1,35 +1,31 @@
 #include "Joueur.h"
 
-void creerJoueurs(int nbJoueurs)
-{
-    std::string nomJoueur;
-    for(int i = 0; i < nbJoueurs; ++i)
-    {
-        nomJoueur = "Joueur" + std::to_string(nbJoueurs);
-        Joueur nomJoueur;
-    }
-}
-
-void assignerJoueur(Joueur joueur, std::string nom, int numero)
+void assignerJoueur(Joueur& joueur, std::string nom, int numero)
 {
     joueur.nom    = nom;
     joueur.numero = numero;
-    joueur.sommet = -1;
-
-    for(int i = 0; i <= NB_PICKOMINO; ++i)
-        joueur.pile[i] = 0;
+    joueur.sommet = 0;
 }
 
-void prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINO], int valeur)
+bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
 {
     brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::PRIS;
+    if(joueur.sommet == NB_PICKOMINOS)
+    {
+        return false;
+    }
+    joueur.pile[joueur.sommet] = brochette[valeur - VALEUR_PICKOMINO_MIN];
     joueur.sommet++;
-    joueur.pile[joueur.sommet] = valeur;
+    return true;
 }
 
-void picorer(Joueur& attaquant, Joueur& cible)
+bool picorer(Joueur& joueur, int& valeur)
 {
-    attaquant.sommet++;
-    attaquant.pile[attaquant.sommet] = cible.pile[cible.sommet];
-    cible.sommet--;
+    if(joueur.sommet == 0)
+    {
+        return false;
+    }
+    valeur = joueur.pile[joueur.sommet - 1].valeur;
+    --joueur.sommet;
+    return true;
 }

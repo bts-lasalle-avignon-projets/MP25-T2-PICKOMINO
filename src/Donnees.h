@@ -7,7 +7,7 @@
 #define NB_DES   8
 #define NB_FACES 6
 
-#define NB_PICKOMINO         16
+#define NB_PICKOMINOS        16
 #define VALEUR_PICKOMINO_MIN 21
 #define VALEUR_PICKOMINO_MAX 36
 
