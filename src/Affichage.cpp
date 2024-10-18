@@ -44,6 +44,15 @@ void afficherDes()
 
 }
 */
+
+void afficherJoueurs(Jeu& jeu)
+{
+    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+    {
+        std::cout << "Joueur" << jeu.joueurs[i].numero << " : " << jeu.joueurs[i].nom << std::endl;
+    }
+}
+
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;

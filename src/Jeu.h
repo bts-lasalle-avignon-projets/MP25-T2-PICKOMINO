@@ -5,7 +5,7 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
-#define SIMULATION_NB_JOUEURS 0 // Deux joueurs
+#define SIMULATION_NB_JOUEURS 2 // Deux joueurs
 
 struct Jeu
 {
@@ -17,6 +17,6 @@ struct Jeu
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
-void assignerJoueurs(int nbJoueurs);
+void nommerJoueur(Jeu jeu, int nbJoueurs);
 
 #endif

@@ -11,18 +11,6 @@ void jouerPickomino()
     initialiserJeu(jeu);
 }
 
-void assignerJoueurs(Jeu jeu, int nbJoueurs)
-{
-    std::string nomJoueur = "";
-
-    for(int i = 0; i < nbJoueurs; ++i)
-    {
-        afficherMessage("Inscrivez le nom du joueur");
-        std::cin >> nomJoueur;
-        assignerJoueur(jeu.joueurs[i], nomJoueur, i);
-    }
-}
-
 void initialiserJeu(Jeu& jeu)
 {
 #if SIMULATION_NB_JOUEURS > 0
@@ -34,6 +22,7 @@ void initialiserJeu(Jeu& jeu)
     // Initialiser le plateau de jeu
     assignerBrochette(jeu.plateau.brochette);
     afficherBrochette(jeu.plateau.brochette);
+    afficherJoueurs(jeu);
 #endif // SIMULATION_NB_JOUEURS
 }
 
@@ -41,6 +30,11 @@ void creerJoueurs(Jeu& jeu)
 {
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
     {
+        std::string nomJoueur = "";
+
         assignerJoueur(jeu.joueurs[i], "Joueur" + std::to_string(i + 1), i + 1);
+        afficherMessage("Inscrivez le nom du joueur " + std::to_string(i + 1));
+        std::cin >> nomJoueur;
+        jeu.joueurs[i].nom = nomJoueur;
     }
 }

@@ -6,6 +6,7 @@
 #include "Donnees.h"
 #include "Plateau.h"
 #include "Joueur.h"
+#include "Jeu.h"
 
 // Affichage des dialogues
 
@@ -29,6 +30,6 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
 
 void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
-void afficherJoueurs(Joueur (&joueurs)[NB_JOUEURS_MAX], int nbJoueurs);
+void afficherJoueurs(Jeu& jeu);
 
 #endif
