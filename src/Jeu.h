@@ -5,7 +5,7 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
-#define SIMULATION_NB_JOUEURS 2 // Deux joueurs
+#define SIMULATION
 
 struct Jeu
 {

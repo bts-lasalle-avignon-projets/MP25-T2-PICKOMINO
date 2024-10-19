@@ -1,4 +1,4 @@
-#include "Affichage.h"
+#include "Ihm.h"
 
 #include <iostream>
 
@@ -45,14 +45,6 @@ void afficherDes()
 }
 */
 
-void afficherJoueurs(Jeu& jeu)
-{
-    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
-    {
-        std::cout << "Joueur" << jeu.joueurs[i].numero << " : " << jeu.joueurs[i].nom << std::endl;
-    }
-}
-
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
@@ -76,6 +68,41 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 
     std::cout << ligneValeur << std::endl;
     std::cout << ligneNombreDeVers << std::endl;
+}
+
+void afficherJoueurs(Jeu& jeu)
+{
+    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+    {
+        std::cout << "Joueur " << jeu.joueurs[i].numero << " : " << jeu.joueurs[i].nom << std::endl;
+    }
+}
+
+// Saisies
+
+unsigned int saisirNbJoueurs()
+{
+    unsigned int nbJoueurs = 0;
+
+    do
+    {
+        afficherMessage("Entrez le nombre de joueurs : ", false);
+        std::cin >> nbJoueurs;
+    } while(nbJoueurs < NB_JOUEURS_MIN || nbJoueurs > NB_JOUEURS_MAX);
+
+    return nbJoueurs;
+}
+
+std::string saisirNomJoueur()
+{
+    std::string nomJoueur;
+
+    do
+    {
+        std::cin >> nomJoueur;
+    } while(nomJoueur.empty());
+
+    return nomJoueur;
 }
 
 // Utilitaires
