@@ -1,5 +1,5 @@
-#ifndef AFFICHAGE_H
-#define AFFICHAGE_H
+#ifndef IHM_H
+#define IHM_H
 
 #include <string>
 
@@ -25,11 +25,15 @@ void afficherPileJoueurEnCours()
 void afficherDes()
 */
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
+void afficherJoueurs(Jeu& jeu);
+
+// Saisies
+
+unsigned int saisirNbJoueurs();
+std::string  saisirNomJoueur();
 
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne = true);
-void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
-void afficherJoueurs(Jeu& jeu);
 
-#endif
+#endif // IHM_H

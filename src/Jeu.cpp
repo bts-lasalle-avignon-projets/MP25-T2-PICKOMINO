@@ -1,8 +1,8 @@
 #include "Jeu.h"
-#include "Affichage.h"
+#include "Ihm.h"
 #include "Plateau.h"
 #include "Joueur.h"
-#include <iostream>
+#include <string>
 
 void jouerPickomino()
 {
@@ -13,28 +13,25 @@ void jouerPickomino()
 
 void initialiserJeu(Jeu& jeu)
 {
-#if SIMULATION_NB_JOUEURS > 0
-    jeu.nbJoueurs = SIMULATION_NB_JOUEURS;
-
-    // Initialiser les joueurs pour la partie
+#ifdef SIMULATION
+    // Créer les joueurs pour la partie
     creerJoueurs(jeu);
+    afficherJoueurs(jeu);
 
     // Initialiser le plateau de jeu
     assignerBrochette(jeu.plateau.brochette);
     afficherBrochette(jeu.plateau.brochette);
-    afficherJoueurs(jeu);
-#endif // SIMULATION_NB_JOUEURS
+#endif // SIMULATION
 }
 
 void creerJoueurs(Jeu& jeu)
 {
+    jeu.nbJoueurs = saisirNbJoueurs();
+
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
     {
-        std::string nomJoueur = "";
-
-        assignerJoueur(jeu.joueurs[i], "Joueur" + std::to_string(i + 1), i + 1);
-        afficherMessage("Inscrivez le nom du joueur " + std::to_string(i + 1));
-        std::cin >> nomJoueur;
-        jeu.joueurs[i].nom = nomJoueur;
+        afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
+        std::string nomJoueur = saisirNomJoueur();
+        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1);
     }
 }
