@@ -78,6 +78,41 @@ void afficherJoueurs(Jeu& jeu)
     }
 }
 
+void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
+{
+    std::cout << "Nombre de dés restants : " << nombreDes << " : ";
+    for(int i = 0; i < nombreDes; ++i)
+    {
+        if(desLances[i] == 6)
+        {
+            std::cout << "[V] ";
+        }
+        else
+        {
+            std::cout << "[" << desLances[i] << "] ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
+{
+    int nombreDesRetenus = NB_DES - nombreDes;
+    std::cout << "\nDés retenus : ";
+    for(int i = 0; i < nombreDesRetenus; ++i)
+    {
+        if(desRetenus[i] == 6)
+        {
+            std::cout << "[V] ";
+        }
+        else
+        {
+            std::cout << "[" << desRetenus[i] << "] ";
+        }
+    }
+    std::cout << std::endl;
+}
+
 void afficherScoreFinalTour(int& score)
 {
     std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
