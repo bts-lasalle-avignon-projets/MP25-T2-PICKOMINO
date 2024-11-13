@@ -104,3 +104,19 @@ int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
     }
     return scoreTotal;
 }
+
+bool lancerPossible(int& nombreDes)
+{
+    if(nombreDes == 0)
+    {
+        return false;
+    }
+    else if(nombreDes > 0)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}

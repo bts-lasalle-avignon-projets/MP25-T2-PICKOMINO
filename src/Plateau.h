@@ -17,5 +17,7 @@ void lancerDes(int& nombreDes, int (&desLances)[NB_DES]);
 void reinitialiserPlateau(int (&desLances)[NB_DES]);
 bool estChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES]);
 int  calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES]);
+void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES]);
+bool lancerPossible(int& nombreDes);
 
 #endif

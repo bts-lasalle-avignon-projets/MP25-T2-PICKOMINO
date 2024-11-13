@@ -147,7 +147,7 @@ std::string saisirNomJoueur()
 
 bool choisirRelancer(int& nombreDes)
 {
-    std::cout << "Il vous reste " << NB_DES - nombreDes << " dès restants." << std::endl;
+    std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
     std::cout << "Voulez-vous relancer des dés? (O/N) ";
     std::string choix;
     std::cin >> choix;
