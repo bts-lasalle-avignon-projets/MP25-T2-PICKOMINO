@@ -78,6 +78,46 @@ void afficherJoueurs(Jeu& jeu)
     }
 }
 
+void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
+{
+    std::cout << "Nombre de dés restants : " << nombreDes << " : ";
+    for(int i = 0; i < nombreDes; ++i)
+    {
+        if(desLances[i] == 6)
+        {
+            std::cout << "[V] ";
+        }
+        else
+        {
+            std::cout << "[" << desLances[i] << "] ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
+{
+    int nombreDesRetenus = NB_DES - nombreDes;
+    std::cout << "\nDés retenus : ";
+    for(int i = 0; i < nombreDesRetenus; ++i)
+    {
+        if(desRetenus[i] == 6)
+        {
+            std::cout << "[V] ";
+        }
+        else
+        {
+            std::cout << "[" << desRetenus[i] << "] ";
+        }
+    }
+    std::cout << std::endl;
+}
+
+void afficherScoreFinalTour(int& score)
+{
+    std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
+}
+
 // Saisies
 
 unsigned int saisirNbJoueurs()
@@ -103,6 +143,23 @@ std::string saisirNomJoueur()
     } while(nomJoueur.empty());
 
     return nomJoueur;
+}
+
+bool choisirRelancer(int& nombreDes)
+{
+    std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
+    std::cout << "Voulez-vous relancer des dés? (O/N) ";
+    std::string choix;
+    std::cin >> choix;
+    if(choix == "O" || choix == "o")
+        return true;
+    else if(choix == "N" || choix == "n")
+        return false;
+    else
+    {
+        std::cout << "Veuillez saisir O ou N." << std::endl;
+        return choisirRelancer(nombreDes);
+    }
 }
 
 // Utilitaires
