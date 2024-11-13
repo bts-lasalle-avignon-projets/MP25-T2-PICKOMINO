@@ -36,7 +36,7 @@ void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
 
         for(int i = 0; i < nombreDes; i++)
         {
-            desLances[j] = rand() % 6 + 1;
+            desLances[j] = rand() % NB_FACES + UN;
             j++;
         }
     }
@@ -55,7 +55,7 @@ int valeurARetenir()
     std::string valeur;
     std::cin >> valeur;
     if(valeur == "V" || valeur == "v")
-        return (6);
+        return (VER);
     return (std::stoi(valeur));
 }
 
@@ -97,15 +97,15 @@ int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
     int scoreTotal = 0;
     for(int i = 0; i < NB_DES - nombreDes; i++)
     {
-        if(desRetenus[i] == 6)
-            scoreTotal += 5;
+        if(desRetenus[i] == VER)
+            scoreTotal += CINQ;
         else
             scoreTotal += desRetenus[i];
     }
     return scoreTotal;
 }
 
-bool lancerPossible(int& nombreDes)
+bool lancerPossible(const int& nombreDes)
 {
     if(nombreDes == 0)
     {

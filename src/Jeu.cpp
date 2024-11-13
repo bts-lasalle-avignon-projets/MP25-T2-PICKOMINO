@@ -2,7 +2,7 @@
 #include "Ihm.h"
 #include "Plateau.h"
 #include "Joueur.h"
-#include <string>
+#include <iostream>
 
 void jouerPickomino()
 {
@@ -21,6 +21,9 @@ void initialiserJeu(Jeu& jeu)
     // Initialiser le plateau de jeu
     assignerBrochette(jeu.plateau.brochette);
     afficherBrochette(jeu.plateau.brochette);
+
+    jouerTour(jeu);
+
 #endif // SIMULATION
 }
 
@@ -33,5 +36,36 @@ void creerJoueurs(Jeu& jeu)
         afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
         std::string nomJoueur = saisirNomJoueur();
         assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1);
+    }
+}
+
+void jouerTour(Jeu& jeu)
+{
+    int nombreDes          = NB_DES;
+    int desLances[NB_DES]  = { 0 };
+    int desRetenus[NB_DES] = { 0 };
+    int scoreTour          = 0;
+
+    while(lancerPossible(nombreDes))
+    {
+        lancerDes(nombreDes, desLances);
+        afficherDesLances(nombreDes, desLances);
+
+        std::cout
+          << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers"
+          << std::endl;
+        retenirDes(nombreDes, desLances, desRetenus);
+
+        afficherDesRetenus(nombreDes, desRetenus);
+
+        scoreTour = calculerScoreTour(nombreDes, desRetenus);
+        afficherScoreFinalTour(scoreTour);
+
+        if(!choisirRelancer(nombreDes))
+        {
+            std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
+                      << std::endl;
+            break;
+        }
     }
 }

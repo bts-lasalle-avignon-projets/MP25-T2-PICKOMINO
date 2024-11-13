@@ -17,5 +17,6 @@ struct Jeu
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
+void jouerTour(Jeu& jeu);
 
 #endif
