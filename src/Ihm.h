@@ -26,11 +26,13 @@ void afficherDes()
 */
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
 void afficherJoueurs(Jeu& jeu);
+void afficherScoreFinalTour(int& score);
 
 // Saisies
 
 unsigned int saisirNbJoueurs();
 std::string  saisirNomJoueur();
+bool         choisirRelancer(int& nombreDes);
 
 // Utilitaires
 
