@@ -41,29 +41,26 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu)
 {
-    int nombreDes          = NB_DES;
-    int desLances[NB_DES]  = { 0 };
-    int desRetenus[NB_DES] = { 0 };
-    int scoreTour          = 0;
+    int scoreTour = 0;
 
-    while(lancerPossible(nombreDes))
+    while(lancerPossible(jeu.plateau.nombreDes))
     {
-        lancerDes(nombreDes, desLances);
-        afficherDesLances(nombreDes, desLances);
+        lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
+        afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
 
         std::cout
           << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)"
           << std::endl;
-        retenirDes(nombreDes, desLances, desRetenus);
+        retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);
 
-        afficherDesRetenus(nombreDes, desRetenus);
+        afficherDesRetenus(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
 
-        scoreTour = calculerScoreTour(nombreDes, desRetenus);
+        scoreTour = calculerScoreTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
         afficherScore(scoreTour);
 
-        if(!choisirRelancer(nombreDes) || nombreDes < 0)
+        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
         {
-            scoreTour = calculerScoreFinalTour(nombreDes, desRetenus);
+            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
             std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
                       << std::endl;
             break;
