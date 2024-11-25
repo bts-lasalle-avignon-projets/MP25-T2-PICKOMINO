@@ -48,9 +48,8 @@ void jouerTour(Jeu& jeu)
         lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
         afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
 
-        std::cout
-          << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)"
-          << std::endl;
+        afficherMessage(
+          "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
         retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);
 
         afficherDesRetenus(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
@@ -61,8 +60,8 @@ void jouerTour(Jeu& jeu)
         if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
         {
             scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-            std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
-                      << std::endl;
+            afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
+                            std::to_string(scoreTour) + " points !");
             break;
         }
     }

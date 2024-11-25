@@ -20,11 +20,6 @@ void afficherTourJoueur(Joueur joueur)
 
 }
 
-void afficherScores()
-{
-
-}
-
 void afficherVainqueur()
 {
 
@@ -33,24 +28,10 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
-/*
-void afficherPileJoueurEnCours()
-{
-
-}
-
-void afficherDes()
-{
-
-}
-*/
-
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
-
-    // afficherMessage("Brochette :");
 
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
