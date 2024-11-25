@@ -148,18 +148,22 @@ std::string saisirNomJoueur()
 bool choisirRelancer(int& nombreDes)
 {
     std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
-    std::cout << "Voulez-vous relancer des dés? (O/N) ";
-    std::string choix;
-    std::cin >> choix;
-    if(choix == "O" || choix == "o")
-        return true;
-    else if(choix == "N" || choix == "n")
-        return false;
-    else
+    if(nombreDes > 0)
     {
-        std::cout << "Veuillez saisir O ou N." << std::endl;
-        return choisirRelancer(nombreDes);
+        std::cout << "Voulez-vous relancer des dés? (O/N) ";
+        std::string choix;
+        std::cin >> choix;
+        if(choix == "O" || choix == "o")
+            return true;
+        else if(choix == "N" || choix == "n")
+            return false;
+        else
+        {
+            std::cout << "Veuillez saisir O ou N." << std::endl;
+            return choisirRelancer(nombreDes);
+        }
     }
+    return false;
 }
 
 // Utilitaires
