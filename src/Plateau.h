@@ -14,6 +14,7 @@ struct Plateau
 
 void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
 void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINOS]);
+bool verifierPresencePickomino(Plateau& plateau);
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES]);
 void reinitialiserPlateau(int (&desLances)[NB_DES]);
 int  calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES]);

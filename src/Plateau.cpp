@@ -27,6 +27,17 @@ void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
         brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::RETOURNE;
 }
 
+bool verifierPresencePickomino(Plateau& plateau)
+{
+    bool presencePickomino = false;
+    for(int i = 0; i < NB_PICKOMINOS; i++)
+    {
+        if(plateau.brochette[i].etat == Pickomino::VISIBLE)
+            presencePickomino = true;
+    }
+    return presencePickomino;
+}
+
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
 {
     reinitialiserPlateau(desLances);
