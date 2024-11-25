@@ -114,6 +114,19 @@ int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
     return scoreTotal;
 }
 
+int calculerScoreFinalTour(int& nombreDes, int (&desRetenus)[NB_DES])
+{
+    int scoreTotalTour = 0;
+    if(verifierPresenceVers(nombreDes, desRetenus))
+    {
+        scoreTotalTour = calculerScoreTour(nombreDes, desRetenus);
+    }
+    else
+        scoreTotalTour = 0;
+
+    return scoreTotalTour;
+}
+
 bool lancerPossible(const int& nombreDes)
 {
     if(nombreDes == 0)
@@ -129,6 +142,16 @@ bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES]
     for(int i = 0; i < NB_DES; i++)
     {
         if(desLances[i] == valeurARetenir)
+            return true;
+    }
+    return false;
+}
+
+bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES])
+{
+    for(int i = 0; i < NB_DES; i++)
+    {
+        if(desRetenus[i] == VER)
             return true;
     }
     return false;

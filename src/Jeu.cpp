@@ -59,10 +59,11 @@ void jouerTour(Jeu& jeu)
         afficherDesRetenus(nombreDes, desRetenus);
 
         scoreTour = calculerScoreTour(nombreDes, desRetenus);
-        afficherScoreFinalTour(scoreTour);
+        afficherScore(scoreTour);
 
         if(!choisirRelancer(nombreDes) || nombreDes < 0)
         {
+            scoreTour = calculerScoreFinalTour(nombreDes, desRetenus);
             std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
                       << std::endl;
             break;

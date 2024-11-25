@@ -113,7 +113,7 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
     std::cout << std::endl;
 }
 
-void afficherScoreFinalTour(int& score)
+void afficherScore(int& score)
 {
     std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
 }
