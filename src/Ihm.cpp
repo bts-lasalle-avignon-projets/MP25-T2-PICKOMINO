@@ -32,7 +32,8 @@ bool afficherPileJoueurEnCours(Joueur& joueur)
 {
     std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
               << " pickomino(s) !" << std::endl;
-    for(int i = joueur.sommet; i > 0; i--)
+
+    for(int i = joueur.sommet - 1; i >= 0; i--)
     {
         std::cout << joueur.pile[i].valeur << std::endl;
     }
@@ -140,22 +141,18 @@ std::string saisirNomJoueur()
 bool choisirRelancer(int& nombreDes)
 {
     std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
-    if(nombreDes > 0)
+    std::cout << "Voulez-vous relancer des dés? (O/N) ";
+    std::string choix;
+    std::cin >> choix;
+    if(choix == "O" || choix == "o")
+        return true;
+    else if(choix == "N" || choix == "n")
+        return false;
+    else
     {
-        std::cout << "Voulez-vous relancer des dés? (O/N) ";
-        std::string choix;
-        std::cin >> choix;
-        if(choix == "O" || choix == "o")
-            return true;
-        else if(choix == "N" || choix == "n")
-            return false;
-        else
-        {
-            std::cout << "Veuillez saisir O ou N." << std::endl;
-            return choisirRelancer(nombreDes);
-        }
+        std::cout << "Veuillez saisir O ou N." << std::endl;
+        return choisirRelancer(nombreDes);
     }
-    return false;
 }
 
 // Utilitaires
