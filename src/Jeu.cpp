@@ -52,7 +52,7 @@ void jouerTour(Jeu& jeu)
         afficherDesLances(nombreDes, desLances);
 
         std::cout
-          << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers"
+          << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)"
           << std::endl;
         retenirDes(nombreDes, desLances, desRetenus);
 
@@ -61,7 +61,7 @@ void jouerTour(Jeu& jeu)
         scoreTour = calculerScoreTour(nombreDes, desRetenus);
         afficherScoreFinalTour(scoreTour);
 
-        if(!choisirRelancer(nombreDes))
+        if(!choisirRelancer(nombreDes) || nombreDes < 0)
         {
             std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
                       << std::endl;

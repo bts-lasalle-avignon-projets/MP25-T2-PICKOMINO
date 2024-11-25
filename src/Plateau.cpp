@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include <string>
 
 void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINOS])
 {
@@ -50,13 +51,21 @@ void reinitialiserPlateau(int (&desLances)[NB_DES])
     }
 }
 
-int valeurARetenir()
+int valeurARetenir(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES])
 {
     std::string valeur;
     std::cin >> valeur;
-    if(valeur == "V" || valeur == "v")
-        return (VER);
-    return (std::stoi(valeur));
+
+    int valeurDesARetenir = transformerStringInt(valeur);
+
+    if(!estChoisie(nombreDes, valeurDesARetenir, desRetenus))
+    {
+        if(verifierValeurExistante(valeurDesARetenir, desLances))
+            return valeurDesARetenir;
+    }
+
+    std::cout << "Valeur impossible à choisir, choisissez une autre valeur :" << std::endl;
+    return valeurARetenir(nombreDes, desLances, desRetenus);
 }
 
 void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES])
@@ -64,24 +73,24 @@ void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_D
     int valeurDesARetenir;
     int sommet = NB_DES - nombreDes;
 
-    valeurDesARetenir = valeurARetenir();
+    valeurDesARetenir = valeurARetenir(nombreDes, desLances, desRetenus);
 
-    if(!estChoisie(nombreDes, valeurDesARetenir, desRetenus))
+    for(int i = 0; i < NB_DES; i++)
     {
-        for(int i = 0; i < NB_DES; i++)
+        if(desLances[i] == valeurDesARetenir)
         {
-            if(desLances[i] == valeurDesARetenir && nombreDes > 0)
-            {
-                desRetenus[sommet] = desLances[i];
-                sommet++;
-                nombreDes--;
-            }
+            desRetenus[sommet] = desLances[i];
+            sommet++;
+            nombreDes--;
         }
     }
 }
 
 bool estChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES])
 {
+    if(valeurARetenir < 0 || valeurARetenir > 6)
+        return true;
+
     for(int i = 0; i < NB_DES - nombreDes; i++)
     {
         if(desRetenus[i] == valeurARetenir)
@@ -108,15 +117,27 @@ int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
 bool lancerPossible(const int& nombreDes)
 {
     if(nombreDes == 0)
-    {
         return false;
-    }
     else if(nombreDes > 0)
-    {
         return true;
-    }
     else
-    {
         return false;
+}
+
+bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES])
+{
+    for(int i = 0; i < NB_DES; i++)
+    {
+        if(desLances[i] == valeurARetenir)
+            return true;
     }
+    return false;
+}
+
+int transformerStringInt(std::string valeur)
+{
+    if(valeur == "V" || valeur == "v")
+        return VER;
+    else
+        return std::stoi(valeur);
 }
