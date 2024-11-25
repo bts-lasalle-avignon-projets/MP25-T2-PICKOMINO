@@ -6,30 +6,28 @@
 
 void jouerPickomino()
 {
-    Jeu jeu;
-
-    initialiserJeu(jeu);
-}
-
-void initialiserJeu(Jeu& jeu)
-{
 #ifdef SIMULATION
-    // Créer les joueurs pour la partie
-    creerJoueurs(jeu);
-    afficherJoueurs(jeu);
 
-    // Initialiser le plateau de jeu
-    assignerBrochette(jeu.plateau.brochette);
-    afficherBrochette(jeu.plateau.brochette);
-    while(1)
+    Jeu jeu;
+    initialiserJeu(jeu);
+
+    while(verifierPresencePickomino(jeu.plateau))
     {
         for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
         {
             jouerTour(jeu, i);
         }
     }
+#endif
+}
 
-#endif // SIMULATION
+void initialiserJeu(Jeu& jeu)
+{
+    creerJoueurs(jeu);
+    afficherJoueurs(jeu);
+
+    assignerBrochette(jeu.plateau.brochette);
+    afficherBrochette(jeu.plateau.brochette);
 }
 
 void creerJoueurs(Jeu& jeu)
