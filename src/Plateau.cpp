@@ -164,3 +164,9 @@ int transformerStringInt(std::string valeur)
     else
         return std::stoi(valeur);
 }
+
+bool verifierDesLances(int& nombreDes,
+                       const int (&deslances)[NB_DES],
+                       const int (&desRetenus)[NB_DES])
+{
+}

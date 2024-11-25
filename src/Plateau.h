@@ -24,5 +24,8 @@ bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES]
 int  transformerStringInt(std::string valeur);
 bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 int  calculerScoreFinalTour(int& nombreDes, int (&desRetenus)[NB_DES]);
+bool verifierDesLances(int& nombreDes,
+                       const int (&deslances)[NB_DES],
+                       const int (&desRetenus)[NB_DES]);
 
 #endif
