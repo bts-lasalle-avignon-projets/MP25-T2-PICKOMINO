@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Install clang tidy
-      run: sudo apt-get update && sudo apt install clang-tidy
+      run: sudo apt-get update && sudo apt install -y clang-tidy
 
     - name: Make - Check 
       run: make check
