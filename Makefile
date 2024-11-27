@@ -30,3 +30,6 @@ clean:
 
 cleanall:
 	$(RM) $(DOSSIER_SRC)/*.o $(DOSSIER_SRC)/*.*~ $(TARGET)
+
+format:
+	clang-format -style=file --dry-run --Werror $(SRC) $(HEADERS)
