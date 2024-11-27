@@ -1,4 +1,5 @@
 [![C/C++ Make](https://github.com/bts-lasalle-avignon-projets/MP25-T2-PICKOMINO/actions/workflows/makefile.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/MP25-T2-PICKOMINO/actions/workflows/makefile.yml)
+[![C/C++ Format](https://github.com/bts-lasalle-avignon-projets/MP25-T2-PICKOMINO/actions/workflows/format.yml/badge.svg)](https://github.com/bts-lasalle-avignon-projets/MP25-T2-PICKOMINO/actions/workflows/format.yml)
 
 # Mini-projet : Pickomino
 
