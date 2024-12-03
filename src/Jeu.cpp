@@ -48,6 +48,13 @@ void jouerTour(Jeu& jeu)
         lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
         afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
 
+        // Vérification si toutes les valeurs des dés lancés sont déjà retenues
+        if (verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus)) {
+            afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
+            scoreTour = 0;
+            break;
+        }
+
         afficherMessage(
           "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
         retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);

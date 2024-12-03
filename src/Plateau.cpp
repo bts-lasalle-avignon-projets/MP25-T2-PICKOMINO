@@ -166,7 +166,21 @@ int transformerStringInt(std::string valeur)
 }
 
 bool verifierDesLances(int& nombreDes,
-                       const int (&deslances)[NB_DES],
-                       const int (&desRetenus)[NB_DES])
-{
+                       const int (&desLances)[NB_DES],
+                       const int (&desRetenus)[NB_DES]) {
+    for (int i = 0; i < nombreDes; ++i) {
+        bool trouve = false;
+        for (int j = 0; j < NB_DES; ++j) {
+            if (desLances[i] == desRetenus[j]) {
+                trouve = true;
+                break;  // Passe au prochain dé lancé dès qu'une correspondance est trouvée
+            }
+        }
+        // Si un dé lancé n'a pas été trouvé dans les dés retenus, retourne false
+        if (!trouve) {
+            return false;
+        }
+    }
+    // Toutes les valeurs des dés lancés existent dans les dés retenus
+    return true;
 }
