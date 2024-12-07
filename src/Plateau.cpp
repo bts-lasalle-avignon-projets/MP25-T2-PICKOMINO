@@ -165,16 +165,23 @@ int transformerStringInt(std::string valeur)
         return std::stoi(valeur);
 }
 
-bool verifierDesLances(int& nombreDes, const int (&desLances)[NB_DES], const int (&desRetenus)[NB_DES]) {
-    for (int i = 0; i < nombreDes; ++i) {
+bool verifierDesLances(int& nombreDes,
+                       const int (&desLances)[NB_DES],
+                       const int (&desRetenus)[NB_DES])
+{
+    for(int i = 0; i < nombreDes; ++i)
+    {
         bool valeurDejaRetenue = false;
-        for (int j = 0; j < NB_DES; ++j) {
-            if (desLances[i] == desRetenus[j]) {
+        for(int j = 0; j < NB_DES; ++j)
+        {
+            if(desLances[i] == desRetenus[j])
+            {
                 valeurDejaRetenue = true;
                 break;
             }
         }
-        if (!valeurDejaRetenue) {
+        if(!valeurDejaRetenue)
+        {
             return false;
         }
     }

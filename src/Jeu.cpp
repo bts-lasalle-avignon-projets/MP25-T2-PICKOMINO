@@ -48,7 +48,8 @@ void jouerTour(Jeu& jeu)
         lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
         afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
 
-        if (verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus)) {
+        if(verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus))
+        {
             afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
             scoreTour = 0;
             break;
