@@ -170,7 +170,7 @@ bool verifierDesLances(int& nombreDes, const int (&desLances)[NB_DES], const int
         bool valeurDejaRetenue = false;
         for (int j = 0; j < NB_DES; ++j) {
             if (desLances[i] == desRetenus[j]) {
-                trouve = true;
+                valeurDejaRetenue = true;
                 break;
             }
         }
