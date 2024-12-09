@@ -8,19 +8,8 @@ void jouerPickomino()
 {
 #ifdef SIMULATION
 
-#ifdef SIMULATION
-
     Jeu jeu;
     initialiserJeu(jeu);
-
-    while(verifierPresencePickomino(jeu.plateau))
-    {
-        for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
-        {
-            jouerTour(jeu, i);
-        }
-    }
-#endif
 
     while(verifierPresencePickomino(jeu.plateau))
     {
@@ -55,37 +44,30 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu, int nbJoueur)
 {
-    int scoreTour = 0;
+    int nombreDes          = NB_DES;
+    int desLances[NB_DES]  = { 0 };
+    int desRetenus[NB_DES] = { 0 };
+    int scoreTour          = 0;
 
-    while(lancerPossible(jeu.plateau.nombreDes))
+    while(lancerPossible(nombreDes))
     {
-        lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
-        afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
+        lancerDes(nombreDes, desLances);
+        afficherDesLances(nombreDes, desLances);
 
-        if(verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus))
+        std::cout << "Quels dés souhaitez-vous retenir ?" << std::endl;
+        retenirDes(nombreDes, desLances, desRetenus);
+
+        afficherDesRetenus(nombreDes, desRetenus);
+
+        scoreTour = calculerScoreTour(nombreDes, desRetenus);
+        afficherScoreFinalTour(scoreTour);
+
+        if(!choisirRelancer(nombreDes) || nombreDes < 0)
         {
-            afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
-            scoreTour = 0;
-            break;
-        }
-
-        afficherMessage(
-          "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
-        retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);
-
-        afficherDesRetenus(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-
-        scoreTour = calculerScoreTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-        afficherScore(scoreTour);
-
-        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
-        {
-            // prendrePickomino(jeu.joueurs[nbJoueur], jeu.plateau.brochette, scoreTour);
+            std::cout << "Votre score est de " << scoreTour << " points." << std::endl;
+            prendrePickomino(jeu.joueurs[nbJoueur], jeu.plateau.brochette, scoreTour);
             afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
             afficherBrochette(jeu.plateau.brochette);
-            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-            afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
-                            std::to_string(scoreTour) + " points !");
             break;
         }
     }

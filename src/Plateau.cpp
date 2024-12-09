@@ -67,7 +67,7 @@ int valeurARetenir(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[N
     std::string valeur;
     std::cin >> valeur;
 
-    int valeurDesARetenir = stringToInt(valeur);
+    int valeurDesARetenir = transformerStringInt(valeur);
 
     if(!estChoisie(nombreDes, valeurDesARetenir, desRetenus))
     {
@@ -125,19 +125,6 @@ int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
     return scoreTotal;
 }
 
-int calculerScoreFinalTour(int& nombreDes, int (&desRetenus)[NB_DES])
-{
-    int scoreTotalTour = 0;
-    if(verifierPresenceVers(nombreDes, desRetenus))
-    {
-        scoreTotalTour = calculerScoreTour(nombreDes, desRetenus);
-    }
-    else
-        scoreTotalTour = 0;
-
-    return scoreTotalTour;
-}
-
 bool lancerPossible(const int& nombreDes)
 {
     if(nombreDes == 0)
@@ -158,43 +145,10 @@ bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES]
     return false;
 }
 
-bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES])
-{
-    for(int i = 0; i < NB_DES; i++)
-    {
-        if(desRetenus[i] == VER)
-            return true;
-    }
-    return false;
-}
-
-int stringToInt(std::string valeur)
+int transformerStringInt(std::string valeur)
 {
     if(valeur == "V" || valeur == "v")
         return VER;
     else
         return std::stoi(valeur);
-}
-
-bool verifierDesLances(int& nombreDes,
-                       const int (&desLances)[NB_DES],
-                       const int (&desRetenus)[NB_DES])
-{
-    for(int i = 0; i < nombreDes; ++i)
-    {
-        bool valeurDejaRetenue = false;
-        for(int j = 0; j < NB_DES; ++j)
-        {
-            if(desLances[i] == desRetenus[j])
-            {
-                valeurDejaRetenue = true;
-                break;
-            }
-        }
-        if(!valeurDejaRetenue)
-        {
-            return false;
-        }
-    }
-    return true;
 }

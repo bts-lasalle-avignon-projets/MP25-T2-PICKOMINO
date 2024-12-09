@@ -7,31 +7,42 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero)
     joueur.numero = numero;
     joueur.sommet = 0;
 }
-/*
-bool prendrePickomino(Jeu& jeu, int numJoueur, int valeur)
+
+bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int& valeur)
 {
-    if(jeu.plateau.brochette[valeur - VALEUR_PICKOMINO_MIN].etat == Pickomino::VISIBLE)
+    if(brochette[valeur - VALEUR_PICKOMINO_MIN].etat == Pickomino::VISIBLE)
     {
-        jeu.joueurs[numJoueur].pile[jeu.joueurs[numJoueur].sommet] =
-          jeu.plateau.brochette[valeur - VALEUR_PICKOMINO_MIN];
-        jeu.plateau.brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::PRIS;
-        jeu.joueurs[numJoueur].sommet++;
+        joueur.pile[joueur.sommet]                    = brochette[valeur - VALEUR_PICKOMINO_MIN];
+        brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::PRIS;
+        joueur.sommet++;
         return true;
     }
-    else if(jeu.plateau.brochette[valeur - VALEUR_PICKOMINO_MIN].etat == Pickomino::PRIS)
-    {
-        for(unsigned int i = 0; i < jeu.nbJoueurs;)
-            for(int i = valeur; i >= VALEUR_PICKOMINO_MIN; i--)
-            {
-                if(brochette[i - VALEUR_PICKOMINO_MIN].etat == Pickomino::RETOURNE)
-                {
-                    afficherMessage("Vous ne pouvez prendre aucun pickomino :(");
-                    return false;
-                }
-            }
-    }
+    return false;
 }
-*/
+
+/*   else if(brochette[valeur - VALEUR_PICKOMINO_MIN].etat == Pickomino::PRIS)
+   {
+       for(unsigned int i = 0; i < nbJoueurs; i++)
+           for(int i = valeur; i >= VALEUR_PICKOMINO_MIN; i--)
+           {
+               if(brochette[i - VALEUR_PICKOMINO_MIN].etat == Pickomino::RETOURNE)
+               {
+                   afficherMessage("Vous ne pouvez prendre aucun pickomino", true);
+                   return false;
+               }
+           }
+   }*/
+
+// bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
+// {
+//     brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::PRIS;
+//     if(joueur.sommet == NB_PICKOMINOS)
+//         return false;
+//     joueur.pile[joueur.sommet] = brochette[valeur - VALEUR_PICKOMINO_MIN];
+//     joueur.sommet++;
+//     return true;
+// }
+
 bool picorer(Joueur& joueur, int& valeur)
 {
     if(joueur.sommet == 0)

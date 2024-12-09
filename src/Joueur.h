@@ -13,7 +13,7 @@ struct Joueur
 };
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero);
-bool prendrePickomino(Jeu& jeu, int numJoueur, int valeur);
+bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int& valeur);
 bool picorer(Joueur& joueur, int& valeur);
 
 #endif

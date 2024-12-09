@@ -20,6 +20,11 @@ void afficherTourJoueur(Joueur joueur)
 
 }
 
+void afficherScores()
+{
+
+}
+
 void afficherVainqueur()
 {
 
@@ -28,7 +33,7 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
-bool afficherPileJoueurEnCours(Joueur& joueur) bool afficherPileJoueurEnCours(Joueur& joueur)
+bool afficherPileJoueurEnCours(Joueur& joueur)
 {
     std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
               << " pickomino(s) !" << std::endl;
@@ -39,21 +44,11 @@ bool afficherPileJoueurEnCours(Joueur& joueur) bool afficherPileJoueurEnCours(Jo
     }
     return true;
 }
-std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
-          << " pickomino(s) !" << std::endl;
-
-for(int i = joueur.sommet - 1; i >= 0; i--)
-{
-    std::cout << joueur.pile[i].valeur << std::endl;
-}
-return true;
-}
 
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
-
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
         if(brochette[i].etat == Pickomino::VISIBLE)
@@ -69,7 +64,6 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     }
 
     std::cout << ligneValeur << std::endl;
-    std::cout << ligneNombreDeVers << std::endl << std::endl;
     std::cout << ligneNombreDeVers << std::endl << std::endl;
 }
 
@@ -116,9 +110,9 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
     std::cout << std::endl;
 }
 
-void afficherScore(int& score)
+void afficherScoreFinalTour(int& score)
 {
-    std::cout << "La somme des valeurs des dés vous donne : " << score << "." << std::endl;
+    std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
 }
 
 // Saisies
@@ -151,18 +145,6 @@ std::string saisirNomJoueur()
 bool choisirRelancer(int& nombreDes)
 {
     std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
-    std::cout << "Voulez-vous relancer des dés? (O/N) ";
-    std::string choix;
-    std::cin >> choix;
-    if(choix == "O" || choix == "o")
-        return true;
-    else if(choix == "N" || choix == "n")
-        return false;
-    else
-    {
-        std::cout << "Veuillez saisir O ou N." << std::endl;
-        return choisirRelancer(nombreDes);
-    }
     std::cout << "Voulez-vous relancer des dés? (O/N) ";
     std::string choix;
     std::cin >> choix;

@@ -28,7 +28,7 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
 void afficherJoueurs(Jeu& jeu);
 void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES]);
 void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES]);
-void afficherScore(int& score);
+void afficherScoreFinalTour(int& score);
 bool afficherPileJoueurEnCours(Joueur& joueur);
 
 // Saisies
