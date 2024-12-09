@@ -8,8 +8,19 @@ void jouerPickomino()
 {
 #ifdef SIMULATION
 
+#ifdef SIMULATION
+
     Jeu jeu;
     initialiserJeu(jeu);
+
+    while(verifierPresencePickomino(jeu.plateau))
+    {
+        for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            jouerTour(jeu, i);
+        }
+    }
+#endif
 
     while(verifierPresencePickomino(jeu.plateau))
     {
