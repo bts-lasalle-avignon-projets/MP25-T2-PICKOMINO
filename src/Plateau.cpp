@@ -43,11 +43,11 @@ void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
     }
 }
 
-void reinitialiserPlateau(int (&desLances)[NB_DES])
+void reinitialiserPlateau(int (&tableauDes)[NB_DES])
 {
     for(int i = 0; i < NB_DES; i++)
     {
-        desLances[i] = 0;
+        tableauDes[i] = 0;
     }
 }
 

@@ -41,7 +41,8 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu)
 {
-    int scoreTour = 0;
+    int scoreTour;
+    initialiserTour(jeu, scoreTour);
 
     while(lancerPossible(jeu.plateau.nombreDes))
     {
@@ -67,9 +68,18 @@ void jouerTour(Jeu& jeu)
         if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
         {
             scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-            afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
-                            std::to_string(scoreTour) + " points !");
+            afficherMessage("Votre score est de : " + std::to_string(scoreTour) + " points !");
             break;
         }
     }
+}
+
+void initialiserTour(Jeu& jeu, int& scoreTour)
+{
+    scoreTour = 0;
+    reinitialiserPlateau(jeu.plateau.desRetenus);
+    afficherSeparation();
+    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.joueurs->numero) + " : " +
+                      jeu.joueurs->nom,
+                    true);
 }

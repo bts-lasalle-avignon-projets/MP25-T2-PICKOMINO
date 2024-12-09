@@ -18,5 +18,6 @@ void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
 void jouerTour(Jeu& jeu);
+void initialiserTour(Jeu& jeu, int& scoreTour);
 
 #endif

@@ -39,5 +39,6 @@ bool         choisirRelancer(int& nombreDes);
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne = true);
+void afficherSeparation();
 
 #endif // IHM_H
