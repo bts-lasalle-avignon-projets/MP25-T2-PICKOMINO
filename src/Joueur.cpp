@@ -6,7 +6,7 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero)
     joueur.numero = numero;
     joueur.sommet = 0;
 }
-
+/*
 bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
 {
     brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::PRIS;
@@ -18,7 +18,7 @@ bool prendrePickomino(Joueur& joueur, Pickomino (&brochette)[NB_PICKOMINOS], int
     joueur.sommet++;
     return true;
 }
-
+*/
 bool picorer(Joueur& joueur, int& valeur)
 {
     if(joueur.sommet == 0)

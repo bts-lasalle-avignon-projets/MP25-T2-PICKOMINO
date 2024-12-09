@@ -21,8 +21,13 @@ void initialiserJeu(Jeu& jeu)
     // Initialiser le plateau de jeu
     assignerBrochette(jeu.plateau.brochette);
     afficherBrochette(jeu.plateau.brochette);
-
-    jouerTour(jeu);
+    while(1)
+    {
+        for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
+        {
+            jouerTour(jeu, i);
+        }
+    }
 
 #endif // SIMULATION
 }
@@ -39,7 +44,7 @@ void creerJoueurs(Jeu& jeu)
     }
 }
 
-void jouerTour(Jeu& jeu)
+void jouerTour(Jeu& jeu, int nbJoueur)
 {
     int scoreTour = 0;
 
@@ -66,6 +71,9 @@ void jouerTour(Jeu& jeu)
 
         if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
         {
+            // prendrePickomino(jeu.joueurs[nbJoueur], jeu.plateau.brochette, scoreTour);
+            afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
+            afficherBrochette(jeu.plateau.brochette);
             scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
             afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
                             std::to_string(scoreTour) + " points !");
