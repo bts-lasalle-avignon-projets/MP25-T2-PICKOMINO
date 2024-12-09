@@ -6,10 +6,11 @@
 
 struct Plateau
 {
-    int       desRetenus[NB_DES];
-    int       joueurActuel;
-    int       totalDes;
     Pickomino brochette[NB_PICKOMINOS];
+    int       joueurActuel;
+    int       desLances[NB_DES];
+    int       desRetenus[NB_DES];
+    int       nombreDes = NB_DES;
 };
 
 void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
@@ -21,6 +22,11 @@ void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_D
 bool lancerPossible(const int& nombreDes);
 bool estChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES]);
 bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES]);
-int  transformerStringInt(std::string valeur);
+int  stringToInt(std::string valeur);
+bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES]);
+int  calculerScoreFinalTour(int& nombreDes, int (&desRetenus)[NB_DES]);
+bool verifierDesLances(int& nombreDes,
+                       const int (&deslances)[NB_DES],
+                       const int (&desRetenus)[NB_DES]);
 
 #endif

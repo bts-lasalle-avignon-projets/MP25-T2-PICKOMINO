@@ -20,11 +20,6 @@ void afficherTourJoueur(Joueur joueur)
 
 }
 
-void afficherScores()
-{
-
-}
-
 void afficherVainqueur()
 {
 
@@ -33,24 +28,10 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
-/*
-void afficherPileJoueurEnCours()
-{
-
-}
-
-void afficherDes()
-{
-
-}
-*/
-
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
-
-    // afficherMessage("Brochette :");
 
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
@@ -113,9 +94,9 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
     std::cout << std::endl;
 }
 
-void afficherScoreFinalTour(int& score)
+void afficherScore(int& score)
 {
-    std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
+    std::cout << "La somme des valeurs des dés vous donne : " << score << "." << std::endl;
 }
 
 // Saisies

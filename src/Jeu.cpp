@@ -41,30 +41,34 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu)
 {
-    int nombreDes          = NB_DES;
-    int desLances[NB_DES]  = { 0 };
-    int desRetenus[NB_DES] = { 0 };
-    int scoreTour          = 0;
+    int scoreTour = 0;
 
-    while(lancerPossible(nombreDes))
+    while(lancerPossible(jeu.plateau.nombreDes))
     {
-        lancerDes(nombreDes, desLances);
-        afficherDesLances(nombreDes, desLances);
+        lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
+        afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
 
-        std::cout
-          << "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)"
-          << std::endl;
-        retenirDes(nombreDes, desLances, desRetenus);
-
-        afficherDesRetenus(nombreDes, desRetenus);
-
-        scoreTour = calculerScoreTour(nombreDes, desRetenus);
-        afficherScoreFinalTour(scoreTour);
-
-        if(!choisirRelancer(nombreDes) || nombreDes < 0)
+        if(verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus))
         {
-            std::cout << "Merci d'avoir joué ! Votre score final est de " << scoreTour << " points."
-                      << std::endl;
+            afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
+            scoreTour = 0;
+            break;
+        }
+
+        afficherMessage(
+          "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
+        retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);
+
+        afficherDesRetenus(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
+
+        scoreTour = calculerScoreTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
+        afficherScore(scoreTour);
+
+        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
+        {
+            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
+            afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
+                            std::to_string(scoreTour) + " points !");
             break;
         }
     }
