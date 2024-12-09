@@ -22,7 +22,7 @@ void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_D
 bool lancerPossible(const int& nombreDes);
 bool estChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES]);
 bool verifierValeurExistante(const int& valeurARetenir, int (&desLances)[NB_DES]);
-int  transformerStringInt(std::string valeur);
+int  stringToInt(std::string valeur);
 bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 int  calculerScoreFinalTour(int& nombreDes, int (&desRetenus)[NB_DES]);
 bool verifierDesLances(int& nombreDes,

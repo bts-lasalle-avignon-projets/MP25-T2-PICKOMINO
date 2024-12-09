@@ -96,7 +96,7 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
 
 void afficherScore(int& score)
 {
-    std::cout << "La somme des valeurs des dès vous donne : " << score << "." << std::endl;
+    std::cout << "La somme des valeurs des dés vous donne : " << score << "." << std::endl;
 }
 
 // Saisies

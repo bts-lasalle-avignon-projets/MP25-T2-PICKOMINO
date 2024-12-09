@@ -56,7 +56,7 @@ int valeurARetenir(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[N
     std::string valeur;
     std::cin >> valeur;
 
-    int valeurDesARetenir = transformerStringInt(valeur);
+    int valeurDesARetenir = stringToInt(valeur);
 
     if(!estChoisie(nombreDes, valeurDesARetenir, desRetenus))
     {
@@ -157,7 +157,7 @@ bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES])
     return false;
 }
 
-int transformerStringInt(std::string valeur)
+int stringToInt(std::string valeur)
 {
     if(valeur == "V" || valeur == "v")
         return VER;
