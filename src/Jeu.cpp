@@ -65,10 +65,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         if(!choisirRelancer(nombreDes) || nombreDes < 0)
         {
             std::cout << "Votre score est de " << scoreTour << " points." << std::endl;
-            prendrePickomino(jeu.joueurs[nbJoueur],
-                             jeu.plateau.brochette,
-                             scoreTour,
-                             jeu.nbJoueurs);
+            prendrePickomino(jeu, scoreTour);
             afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
             afficherBrochette(jeu.plateau.brochette);
             break;

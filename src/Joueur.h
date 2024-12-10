@@ -4,6 +4,8 @@
 #include "Donnees.h"
 #include <string>
 
+struct Jeu;
+
 struct Joueur
 {
     std::string nom;
@@ -13,10 +15,7 @@ struct Joueur
 };
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero);
-bool prendrePickomino(Joueur& joueur,
-                      Pickomino (&brochette)[NB_PICKOMINOS],
-                      int& valeur,
-                      int  nbJoueurs);
+bool prendrePickomino(Jeu& jeu, int& valeurPickomino);
 bool picorer(Joueur& joueur, int& valeur);
 
 #endif
