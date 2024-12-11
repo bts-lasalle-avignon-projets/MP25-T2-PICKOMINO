@@ -87,7 +87,7 @@ void initialiserTour(Jeu& jeu, int& scoreTour)
     jeu.plateau.nombreDes = NB_DES;
     reinitialiserPlateau(jeu.plateau.desRetenus);
     afficherSeparation();
-    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel) + " : " +
-                      jeu.joueurs->nom,
+    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) + " : " +
+                      jeu.joueurs[jeu.plateau.joueurActuel].nom,
                     true);
 }
