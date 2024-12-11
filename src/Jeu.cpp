@@ -53,7 +53,9 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         lancerDes(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
         afficherDesLances(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
 
-        if(verifierDesLances(jeu.plateau.nombreDesRestant, jeu.plateau.desLances, jeu.plateau.desRetenus))
+        if(verifierDesLances(jeu.plateau.nombreDesRestant,
+                             jeu.plateau.desLances,
+                             jeu.plateau.desRetenus))
         {
             afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
             scoreTour = 0;
@@ -71,8 +73,8 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
         if(!choisirRelancer(jeu.plateau.nombreDesRestant) || jeu.plateau.nombreDesRestant <= 0)
         {
-            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-            scoreTour = 31;
+            scoreTour =
+              calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
             afficherMessage("Votre score est de : " + std::to_string(scoreTour) + " points !");
             prendrePickomino(jeu, scoreTour);
             afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
@@ -92,7 +94,8 @@ void debuterTour(Jeu& jeu, int& scoreTour)
                     true);
 }
 
-void initialiserPlateau(Jeu& jeu) {
+void initialiserPlateau(Jeu& jeu)
+{
     jeu.plateau.nombreDesRestant = NB_DES;
     initialiserBrochette(jeu.plateau.brochette);
     initialiserTableauDes(jeu.plateau.desRetenus);

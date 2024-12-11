@@ -18,6 +18,6 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero);
 bool prendrePickominoBrochette(Jeu& jeu, int& valeurPickomino);
 bool prendrePickomino(Jeu& jeu, int& scoreJoueur);
 bool estAuSommet(Joueur& joueur, int valeurPickomino);
-bool picorer(Jeu& jeu, Joueur cible, int& valeurPickomino);
+bool picorer(Jeu& jeu, Joueur& cible, int& valeurPickomino);
 
 #endif

@@ -1,6 +1,5 @@
 #include "Joueur.h"
 #include "Ihm.h"
-#include <iostream>
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero)
 {
@@ -21,11 +20,11 @@ bool prendrePickomino(Jeu& jeu, int& scoreJoueur)
         {
             if(jeu.plateau.joueurActuel == i)
                 i++;
-            if(estAuSommet(jeu.joueurs[i], scoreJoueur)) {
+            if(estAuSommet(jeu.joueurs[i], scoreJoueur))
+            {
                 picorer(jeu, jeu.joueurs[i], scoreJoueur);
                 return true;
             }
-                
         }
     }
     return true;
@@ -48,12 +47,12 @@ bool prendrePickominoBrochette(Jeu& jeu, int& valeurPickomino)
     return true;
 }
 
-bool picorer(Jeu& jeu, Joueur cible, int& valeurPickomino)
+bool picorer(Jeu& jeu, Joueur& cible, int& valeurPickomino)
 {
-    jeu.joueurs[jeu.plateau.joueurActuel].pile[jeu.joueurs[jeu.plateau.joueurActuel].sommet].valeur = valeurPickomino;
+    jeu.joueurs[jeu.plateau.joueurActuel]
+      .pile[jeu.joueurs[jeu.plateau.joueurActuel].sommet]
+      .valeur = valeurPickomino;
     jeu.joueurs[jeu.plateau.joueurActuel].sommet++;
-    std::cout << "AVANT : " << cible.sommet << std::endl;
     cible.sommet--;
-    std::cout << "APRES : " << cible.sommet << std::endl;
     return true;
 }
