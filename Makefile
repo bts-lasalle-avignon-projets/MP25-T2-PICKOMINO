@@ -32,7 +32,7 @@ cleanall:
 	$(RM) $(DOSSIER_SRC)/*.o $(DOSSIER_SRC)/*.*~ $(TARGET)
 
 format:
-	clang-format -style=file --dry-run --Werror $(SRC) $(HEADERS)
+	clang-format -i $(SRC) $(HEADERS)
 
 check:
 	clang-tidy $(SRC) --quiet -- -std=c++11 -I $(DOSSIER_INCLUDE)

@@ -27,7 +27,7 @@ void initialiserJeu(Jeu& jeu)
     creerJoueurs(jeu);
     afficherJoueurs(jeu);
 
-    assignerBrochette(jeu.plateau.brochette);
+    initialiserPlateau(jeu);
     afficherBrochette(jeu.plateau.brochette);
 }
 
@@ -45,14 +45,15 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu, int nbJoueur)
 {
-    int scoreTour = 0;
+    int scoreTour;
+    debuterTour(jeu, scoreTour);
 
-    while(lancerPossible(jeu.plateau.nombreDes))
+    while(lancerPossible(jeu.plateau.nombreDesRestant))
     {
-        lancerDes(jeu.plateau.nombreDes, jeu.plateau.desLances);
-        afficherDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances);
+        lancerDes(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
+        afficherDesLances(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
 
-        if(verifierDesLances(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus))
+        if(verifierDesLances(jeu.plateau.nombreDesRestant, jeu.plateau.desLances, jeu.plateau.desRetenus))
         {
             afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
             scoreTour = 0;
@@ -61,22 +62,38 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
         afficherMessage(
           "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
-        retenirDes(jeu.plateau.nombreDes, jeu.plateau.desLances, jeu.plateau.desRetenus);
+        retenirDes(jeu.plateau.nombreDesRestant, jeu.plateau.desLances, jeu.plateau.desRetenus);
 
-        afficherDesRetenus(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
+        afficherDesRetenus(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
 
-        scoreTour = calculerScoreTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
+        scoreTour = calculerScoreTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
         afficherScore(scoreTour);
 
-        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes <= 0)
+        if(!choisirRelancer(jeu.plateau.nombreDesRestant) || jeu.plateau.nombreDesRestant <= 0)
         {
-            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
-            afficherMessage("Merci d'avoir joué ! Votre score final est de : " +
-                            std::to_string(scoreTour) + " points !");
+            scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
+            scoreTour = 31;
+            afficherMessage("Votre score est de : " + std::to_string(scoreTour) + " points !");
             prendrePickomino(jeu, scoreTour);
             afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
             afficherBrochette(jeu.plateau.brochette);
             break;
         }
     }
+}
+
+void debuterTour(Jeu& jeu, int& scoreTour)
+{
+    jeu.plateau.nombreDesRestant = NB_DES;
+    initialiserTableauDes(jeu.plateau.desRetenus);
+    afficherSeparation();
+    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
+                      " : " + jeu.joueurs[jeu.plateau.joueurActuel].nom,
+                    true);
+}
+
+void initialiserPlateau(Jeu& jeu) {
+    jeu.plateau.nombreDesRestant = NB_DES;
+    initialiserBrochette(jeu.plateau.brochette);
+    initialiserTableauDes(jeu.plateau.desRetenus);
 }

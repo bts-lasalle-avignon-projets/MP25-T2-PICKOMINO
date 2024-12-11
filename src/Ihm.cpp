@@ -171,3 +171,7 @@ void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
     if(nouvelleLigne)
         std::cout << std::endl;
 }
+void afficherSeparation()
+{
+    std::cout << "\n==============================" << std::endl;
+}

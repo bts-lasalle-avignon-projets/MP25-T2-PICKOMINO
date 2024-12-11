@@ -8,16 +8,16 @@ struct Plateau
 {
     Pickomino    brochette[NB_PICKOMINOS];
     unsigned int joueurActuel;
-    int          desLances[NB_DES]  = { 0 };
-    int          desRetenus[NB_DES] = { 0 };
-    int          nombreDes          = NB_DES;
+    int          desLances[NB_DES];
+    int          desRetenus[NB_DES];
+    int          nombreDesRestant;
 };
 
 void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
-void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINOS]);
+void initialiserBrochette(Pickomino (&brochette)[NB_PICKOMINOS]);
 bool verifierPresencePickomino(Plateau& plateau);
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES]);
-void reinitialiserPlateau(int (&desLances)[NB_DES]);
+void initialiserTableauDes(int (&tableauDes)[NB_DES]);
 int  calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES]);
 void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES]);
 bool lancerPossible(const int& nombreDes);
