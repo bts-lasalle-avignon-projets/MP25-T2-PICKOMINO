@@ -20,6 +20,11 @@ void afficherTourJoueur(Joueur joueur)
 
 }
 
+void afficherScores()
+{
+
+}
+
 void afficherVainqueur()
 {
 
@@ -28,11 +33,22 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
+bool afficherPileJoueurEnCours(Joueur& joueur)
+{
+    std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
+              << " pickomino(s) !" << std::endl;
+
+    for(int i = joueur.sommet - 1; i >= 0; i--)
+    {
+        std::cout << joueur.pile[i].valeur << std::endl;
+    }
+    return true;
+}
+
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
-
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
         if(brochette[i].etat == Pickomino::VISIBLE)
@@ -48,7 +64,7 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     }
 
     std::cout << ligneValeur << std::endl;
-    std::cout << ligneNombreDeVers << std::endl;
+    std::cout << ligneNombreDeVers << std::endl << std::endl;
 }
 
 void afficherJoueurs(Jeu& jeu)
