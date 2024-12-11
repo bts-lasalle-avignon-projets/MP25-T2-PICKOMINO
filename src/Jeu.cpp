@@ -13,9 +13,10 @@ void jouerPickomino()
 
     while(verifierPresencePickomino(jeu.plateau))
     {
-        for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
+        for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
+            jeu.plateau.joueurActuel++)
         {
-            jouerTour(jeu, i);
+            jouerTour(jeu, jeu.plateau.joueurActuel);
         }
     }
 #endif
@@ -44,7 +45,7 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu, int nbJoueur)
 {
-    int scoreTour          = 0;
+    int scoreTour = 0;
 
     while(lancerPossible(jeu.plateau.nombreDes))
     {
@@ -67,7 +68,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         scoreTour = calculerScoreTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
         afficherScore(scoreTour);
 
-        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes < 0)
+        if(!choisirRelancer(jeu.plateau.nombreDes) || jeu.plateau.nombreDes <= 0)
         {
             scoreTour = calculerScoreFinalTour(jeu.plateau.nombreDes, jeu.plateau.desRetenus);
             afficherMessage("Merci d'avoir joué ! Votre score final est de : " +

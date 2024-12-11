@@ -15,7 +15,9 @@ struct Joueur
 };
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero);
-bool prendrePickomino(Jeu& jeu, int& valeurPickomino);
-bool picorer(Joueur& joueur, int& valeur);
+bool prendrePickominoBrochette(Jeu& jeu, int& valeurPickomino);
+void prendrePickomino(Jeu& jeu, int& scoreJoueur);
+bool estAuSommet(Joueur& joueur, int valeurPickomino);
+bool picorer(Jeu& jeu, Joueur cible, int& valeurPickomino);
 
 #endif
