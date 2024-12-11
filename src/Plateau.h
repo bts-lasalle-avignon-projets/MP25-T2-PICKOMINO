@@ -8,9 +8,9 @@ struct Plateau
 {
     Pickomino    brochette[NB_PICKOMINOS];
     unsigned int joueurActuel;
-    int          desLances[NB_DES]  = { 0 };
-    int          desRetenus[NB_DES] = { 0 };
-    int          nombreDes          = NB_DES;
+    int          desLances[NB_DES];
+    int          desRetenus[NB_DES];
+    int          nombreDes;
 };
 
 void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
