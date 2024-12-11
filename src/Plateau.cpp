@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-void assignerBrochette(Pickomino (&brochette)[NB_PICKOMINOS])
+void initialiserBrochette(Pickomino (&brochette)[NB_PICKOMINOS])
 {
     int j = 1;
     int k = 0;
@@ -40,7 +40,7 @@ bool verifierPresencePickomino(Plateau& plateau)
 
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
 {
-    reinitialiserPlateau(desLances);
+    initialiserTableauDes(desLances);
     if(nombreDes > 0)
     {
         int j = 0;
@@ -54,7 +54,7 @@ void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
     }
 }
 
-void reinitialiserPlateau(int (&tableauDes)[NB_DES])
+void initialiserTableauDes(int (&tableauDes)[NB_DES])
 {
     for(int i = 0; i < NB_DES; i++)
     {
