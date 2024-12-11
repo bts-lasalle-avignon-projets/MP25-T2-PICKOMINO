@@ -76,10 +76,11 @@ void jouerTour(Jeu& jeu)
 
 void initialiserTour(Jeu& jeu, int& scoreTour)
 {
-    scoreTour = 0;
+    scoreTour             = 0;
+    jeu.plateau.nombreDes = NB_DES;
     reinitialiserPlateau(jeu.plateau.desRetenus);
     afficherSeparation();
-    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.joueurs->numero) + " : " +
+    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel) + " : " +
                       jeu.joueurs->nom,
                     true);
 }
