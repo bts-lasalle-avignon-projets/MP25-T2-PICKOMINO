@@ -21,7 +21,8 @@ bool prendrePickomino(Jeu& jeu, int scoreJoueur)
         prendrePickomino(jeu, scoreJoueur);
         return true;
     }
-    if(jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::VISIBLE)
+    if(scoreJoueur >= VALEUR_PICKOMINO_MIN && scoreJoueur <= VALEUR_PICKOMINO_MAX &&
+       jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::VISIBLE)
     {
         prendrePickominoBrochette(jeu, scoreJoueur);
         return true;
@@ -42,6 +43,43 @@ bool prendrePickomino(Jeu& jeu, int scoreJoueur)
     scoreJoueur--;
     prendrePickomino(jeu, scoreJoueur);
     return true;
+}
+
+void perdreTour(Jeu& jeu)
+{
+    rendrePickomino(jeu);
+    retournerDernierPickomino(jeu.plateau.brochette);
+}
+
+void rendrePickomino(Jeu& jeu)
+{
+    if(jeu.joueurs[jeu.plateau.joueurActuel].sommet > 0)
+    {
+        jeu.plateau
+          .brochette[jeu.joueurs[jeu.plateau.joueurActuel]
+                       .pile[jeu.joueurs[jeu.plateau.joueurActuel].sommet - 1]
+                       .valeur -
+                     VALEUR_PICKOMINO_MIN]
+          .etat = Pickomino::VISIBLE;
+        jeu.joueurs[jeu.plateau.joueurActuel].sommet--;
+    }
+}
+
+void retournerDernierPickomino(Pickomino (&brochette)[NB_PICKOMINOS])
+{
+    for(int i = NB_PICKOMINOS; i >= 0; i--)
+    {
+        if(brochette[i - 1].etat == Pickomino::VISIBLE)
+        {
+            retournerPickomino(brochette[i - 1]);
+            return;
+        }
+    }
+}
+
+void retournerPickomino(Pickomino& pickomino)
+{
+    pickomino.etat = Pickomino::RETOURNE;
 }
 
 bool aDejaPickomino(Joueur& joueur, int valeurPickomino)

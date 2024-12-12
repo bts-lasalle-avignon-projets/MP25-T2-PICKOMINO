@@ -85,6 +85,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         if(lancerNul)
         {
             afficherMessage("Lancer nul !");
+            perdreTour(jeu);
             tourFini = true;
         }
 
