@@ -20,10 +20,6 @@ void afficherVainqueur();
 
 // Affichage de jeu
 
-/*
-void afficherPileJoueurEnCours()
-void afficherDes()
-*/
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
 void afficherJoueurs(Jeu& jeu);
 void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES]);
@@ -36,10 +32,12 @@ bool afficherPileJoueurEnCours(Joueur& joueur);
 unsigned int saisirNbJoueurs();
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
+int          saisirValeurARetenir();
 
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 void afficherSeparation();
+int  convertirValeur(std::string valeur);
 
 #endif // IHM_H

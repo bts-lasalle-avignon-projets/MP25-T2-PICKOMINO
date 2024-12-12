@@ -1,4 +1,5 @@
 #include "Plateau.h"
+#include "Ihm.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
@@ -27,15 +28,14 @@ void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
         brochette[valeur - VALEUR_PICKOMINO_MIN].etat = Pickomino::RETOURNE;
 }
 
-bool verifierPresencePickomino(Plateau& plateau)
+bool verifierPresencePickomino(const Plateau& plateau)
 {
-    bool presencePickomino = false;
     for(int i = 0; i < NB_PICKOMINOS; i++)
     {
         if(plateau.brochette[i].etat == Pickomino::VISIBLE)
-            presencePickomino = true;
+            return true;
     }
-    return presencePickomino;
+    return false;
 }
 
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES])
@@ -62,46 +62,41 @@ void initialiserTableauDes(int (&tableauDes)[NB_DES])
     }
 }
 
-int valeurARetenir(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES])
+void retenirDes(Plateau& plateau)
 {
-    std::string valeur;
-    std::cin >> valeur;
+    int  valeurDesARetenir;
+    int  sommet       = NB_DES - plateau.nombreDesRestant;
+    bool saisieValide = false;
 
-    int valeurDesARetenir = stringToInt(valeur);
-
-    if(!estChoisie(nombreDes, valeurDesARetenir, desRetenus))
+    do
     {
-        if(verifierValeurExistante(valeurDesARetenir, desLances))
-            return valeurDesARetenir;
-    }
-
-    std::cout << "Valeur impossible à choisir, choisissez une autre valeur :" << std::endl;
-    return valeurARetenir(nombreDes, desLances, desRetenus);
-}
-
-void retenirDes(int& nombreDes, int (&desLances)[NB_DES], int (&desRetenus)[NB_DES])
-{
-    int valeurDesARetenir;
-    int sommet = NB_DES - nombreDes;
-
-    valeurDesARetenir = valeurARetenir(nombreDes, desLances, desRetenus);
+        afficherMessage(
+          "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
+        valeurDesARetenir = saisirValeurARetenir();
+        if(!estDejaChoisie(plateau.nombreDesRestant, valeurDesARetenir, plateau.desRetenus) &&
+           verifierValeurExistante(valeurDesARetenir, plateau.desLances))
+        {
+            saisieValide = true;
+        }
+        else
+        {
+            afficherMessage("Valeur impossible à retenir !", true);
+        }
+    } while(!saisieValide);
 
     for(int i = 0; i < NB_DES; i++)
     {
-        if(desLances[i] == valeurDesARetenir)
+        if(plateau.desLances[i] == valeurDesARetenir)
         {
-            desRetenus[sommet] = desLances[i];
+            plateau.desRetenus[sommet] = plateau.desLances[i];
             sommet++;
-            nombreDes--;
+            plateau.nombreDesRestant--;
         }
     }
 }
 
-bool estChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES])
+bool estDejaChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRetenus)[NB_DES])
 {
-    if(valeurARetenir < 0 || valeurARetenir > 6)
-        return true;
-
     for(int i = 0; i < NB_DES - nombreDes; i++)
     {
         if(desRetenus[i] == valeurARetenir)
@@ -166,14 +161,6 @@ bool verifierPresenceVers(const int& nombreDes, const int (&desRetenus)[NB_DES])
             return true;
     }
     return false;
-}
-
-int stringToInt(std::string valeur)
-{
-    if(valeur == "V" || valeur == "v")
-        return VER;
-    else
-        return std::stoi(valeur);
 }
 
 bool verifierDesLances(int& nombreDes,

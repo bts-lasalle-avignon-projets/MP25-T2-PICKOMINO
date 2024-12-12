@@ -33,22 +33,12 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
-bool afficherPileJoueurEnCours(Joueur& joueur)
-{
-    std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
-              << " pickomino(s) !" << std::endl;
-
-    for(int i = joueur.sommet - 1; i >= 0; i--)
-    {
-        std::cout << joueur.pile[i].valeur << std::endl;
-    }
-    return true;
-}
-
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
+
+    std::cout << "Brochette : " << std::endl;
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
         if(brochette[i].etat == Pickomino::VISIBLE)
@@ -64,7 +54,7 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     }
 
     std::cout << ligneValeur << std::endl;
-    std::cout << ligneNombreDeVers << std::endl << std::endl;
+    std::cout << ligneNombreDeVers << std::endl;
 }
 
 void afficherJoueurs(Jeu& jeu)
@@ -77,7 +67,7 @@ void afficherJoueurs(Jeu& jeu)
 
 void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
 {
-    std::cout << "Nombre de dés restants : " << nombreDes << " : ";
+    std::cout << "Lancer des " << nombreDes << " dé" << (nombreDes > 1 ? "s" : "") << " : ";
     for(int i = 0; i < nombreDes; ++i)
     {
         if(desLances[i] == 6)
@@ -112,7 +102,19 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
 
 void afficherScore(int& score)
 {
-    std::cout << "La somme des valeurs des dés vous donne : " << score << "." << std::endl;
+    std::cout << "La somme des valeurs des dés vous donne : " << score << std::endl;
+}
+
+bool afficherPileJoueurEnCours(Joueur& joueur)
+{
+    std::cout << "Votre pile de pickomino" << (joueur.sommet > 1 ? "s : " : " : ");
+    for(int i = joueur.sommet - 1; i >= 0; i--)
+    {
+        std::cout << joueur.pile[i].valeur << std::endl;
+    }
+    if(joueur.sommet == 0)
+        std::cout << "vide" << std::endl;
+    return true;
 }
 
 // Saisies
@@ -144,10 +146,10 @@ std::string saisirNomJoueur()
 
 bool choisirRelancer(int& nombreDes)
 {
-    std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
+    std::cout << "Il vous reste " << nombreDes << " dés" << std::endl;
     if(nombreDes > 0)
     {
-        std::cout << "Voulez-vous relancer des dés? (O/N) ";
+        std::cout << "Voulez-vous relancer les dés (O/N) ? ";
         std::string choix;
         std::cin >> choix;
         if(choix == "O" || choix == "o")
@@ -163,6 +165,28 @@ bool choisirRelancer(int& nombreDes)
     return false;
 }
 
+int saisirValeurARetenir()
+{
+    std::string valeur;
+    bool        saisieValide = false;
+
+    do
+    {
+        std::cin >> valeur;
+        if(valeur == "V" || valeur == "v")
+            saisieValide = true;
+        else
+            saisieValide =
+              (convertirValeur(valeur) >= Face::UN && convertirValeur(valeur) <= Face::CINQ);
+        if(!saisieValide)
+            std::cout << "Valeur invalide !" << std::endl;
+    } while(!saisieValide);
+
+    int valeurDesARetenir = convertirValeur(valeur);
+
+    return valeurDesARetenir;
+}
+
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
@@ -174,4 +198,12 @@ void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
 void afficherSeparation()
 {
     std::cout << "\n==============================" << std::endl;
+}
+
+int convertirValeur(std::string valeur)
+{
+    if(valeur == "V" || valeur == "v")
+        return Face::VER;
+    else
+        return std::stoi(valeur);
 }

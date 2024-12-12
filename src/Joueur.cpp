@@ -8,12 +8,24 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero)
     joueur.sommet = 0;
 }
 
-bool prendrePickomino(Jeu& jeu, int& scoreJoueur)
+bool prendrePickomino(Jeu& jeu, int scoreJoueur)
 {
     if(scoreJoueur < VALEUR_PICKOMINO_MIN || scoreJoueur > VALEUR_PICKOMINO_MAX)
+    {
+        afficherMessage("Vous ne pouvez prendre aucun pickomino !", true);
         return false;
+    }
+    if(aDejaPickomino(jeu.joueurs[jeu.plateau.joueurActuel], scoreJoueur))
+    {
+        scoreJoueur--;
+        prendrePickomino(jeu, scoreJoueur);
+        return true;
+    }
     if(jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::VISIBLE)
+    {
         prendrePickominoBrochette(jeu, scoreJoueur);
+        return true;
+    }
     else if(jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::PRIS)
     {
         for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
@@ -27,7 +39,19 @@ bool prendrePickomino(Jeu& jeu, int& scoreJoueur)
             }
         }
     }
+    scoreJoueur--;
+    prendrePickomino(jeu, scoreJoueur);
     return true;
+}
+
+bool aDejaPickomino(Joueur& joueur, int valeurPickomino)
+{
+    for(int i = joueur.sommet - 1; i >= 0; i--)
+    {
+        if(joueur.pile[i].valeur == valeurPickomino)
+            return true;
+    }
+    return false;
 }
 
 bool estAuSommet(Joueur& joueur, int valeurPickomino)
@@ -38,7 +62,7 @@ bool estAuSommet(Joueur& joueur, int valeurPickomino)
         return false;
 }
 
-bool prendrePickominoBrochette(Jeu& jeu, int& valeurPickomino)
+bool prendrePickominoBrochette(Jeu& jeu, int valeurPickomino)
 {
     jeu.joueurs[jeu.plateau.joueurActuel].pile[jeu.joueurs[jeu.plateau.joueurActuel].sommet] =
       jeu.plateau.brochette[valeurPickomino - VALEUR_PICKOMINO_MIN];
@@ -47,7 +71,7 @@ bool prendrePickominoBrochette(Jeu& jeu, int& valeurPickomino)
     return true;
 }
 
-bool picorer(Jeu& jeu, Joueur& cible, int& valeurPickomino)
+bool picorer(Jeu& jeu, Joueur& cible, int valeurPickomino)
 {
     jeu.joueurs[jeu.plateau.joueurActuel]
       .pile[jeu.joueurs[jeu.plateau.joueurActuel].sommet]
