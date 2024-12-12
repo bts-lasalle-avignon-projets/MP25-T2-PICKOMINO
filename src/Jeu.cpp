@@ -79,11 +79,11 @@ void jouerTour(Jeu& jeu, int nbJoueur)
                   calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
                 afficherMessage("Votre score est de " + std::to_string(scoreTour) + " points !");
                 lancerNul = !prendrePickomino(jeu, scoreTour);
+                tourFini  = true;
             }
         }
         if(lancerNul)
         {
-            // @todo Gérer un lancer nul
             afficherMessage("Lancer nul !");
             tourFini = true;
         }

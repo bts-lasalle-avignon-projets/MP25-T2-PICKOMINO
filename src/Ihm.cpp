@@ -107,7 +107,7 @@ void afficherScore(int& score)
 
 bool afficherPileJoueurEnCours(Joueur& joueur)
 {
-    std::cout << "Votre pile de pickomino" << (joueur.sommet > 1 ? "s : " : " : ");
+    std::cout << "Votre pile de pickomino" << (joueur.sommet > 1 ? "s : " : " : ") << std::endl;
     for(int i = joueur.sommet - 1; i >= 0; i--)
     {
         std::cout << joueur.pile[i].valeur << std::endl;
