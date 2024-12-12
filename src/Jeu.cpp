@@ -2,16 +2,13 @@
 #include "Ihm.h"
 #include "Plateau.h"
 #include "Joueur.h"
-#include <iostream>
 
 void jouerPickomino()
 {
-#ifdef SIMULATION
-
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))
+    for(int i = 0; i < 1; i++)
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -19,7 +16,7 @@ void jouerPickomino()
             jouerTour(jeu, jeu.plateau.joueurActuel);
         }
     }
-#endif
+    terminerPartie(jeu);
 }
 
 void initialiserJeu(Jeu& jeu)
@@ -119,4 +116,67 @@ void initialiserPlateau(Jeu& jeu, bool initialisationBrochette /*= false*/)
 bool estPartieFinie(const Jeu& jeu)
 {
     return !verifierPresencePickomino(jeu.plateau);
+}
+
+void terminerPartie(Jeu& jeu)
+{
+    calculerVers(jeu);
+    int indexVainqueur = determinerVainqueur(jeu);
+    afficherScores(jeu);
+    afficherVainqueur(jeu, indexVainqueur);
+}
+
+int determinerVainqueur(Jeu& jeu)
+{
+    int scoreMax           = 0;
+    int indexVainqueur     = -1;
+    int maxValeurPickomino = 0;
+
+    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+    {
+        if(jeu.joueurs[i].score > scoreMax)
+        {
+            scoreMax           = jeu.joueurs[i].score;
+            indexVainqueur     = i;
+            maxValeurPickomino = trouverMaxValeurPickomino(jeu.joueurs[i]);
+        }
+        else if(jeu.joueurs[i].score == scoreMax)
+        {
+            int valeurMaxCourante = trouverMaxValeurPickomino(jeu.joueurs[i]);
+            if(valeurMaxCourante > maxValeurPickomino)
+            {
+                indexVainqueur     = i;
+                maxValeurPickomino = valeurMaxCourante;
+            }
+        }
+    }
+
+    return indexVainqueur;
+}
+
+int trouverMaxValeurPickomino(const Joueur& joueur)
+{
+    int maxValeur = 0;
+
+    for(int j = joueur.sommet - 1; j >= 0; --j)
+    {
+        if(joueur.pile[j].valeur > maxValeur)
+        {
+            maxValeur = joueur.pile[j].valeur;
+        }
+    }
+
+    return maxValeur;
+}
+
+void calculerVers(Jeu& jeu)
+{
+    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+    {
+        jeu.joueurs[i].score = 0;
+        for(int j = jeu.joueurs[i].sommet - 1; j >= 0; j--)
+        {
+            jeu.joueurs[i].score += jeu.joueurs[i].pile[j].nombreDeVers;
+        }
+    }
 }

@@ -12,6 +12,7 @@ struct Joueur
     int         numero;
     Pickomino   pile[NB_PICKOMINOS];
     int         sommet;
+    int         score;
 };
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero);
