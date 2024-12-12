@@ -11,7 +11,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(verifierPresencePickomino(jeu.plateau))
+    while(!estPartieFinie(jeu))
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -25,9 +25,10 @@ void jouerPickomino()
 void initialiserJeu(Jeu& jeu)
 {
     creerJoueurs(jeu);
-    afficherJoueurs(jeu);
+    // afficherJoueurs(jeu);
 
-    initialiserPlateau(jeu);
+    initialiserPlateau(jeu, true);
+    afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
 }
 
@@ -57,7 +58,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
                              jeu.plateau.desLances,
                              jeu.plateau.desRetenus))
         {
-            afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues. Fin du tour.");
+            afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues !");
             scoreTour = 0;
             break;
         }
@@ -75,9 +76,10 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         {
             scoreTour =
               calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-            afficherMessage("Votre score est de : " + std::to_string(scoreTour) + " points !");
+            afficherMessage("Votre score est de " + std::to_string(scoreTour) + " points !");
             prendrePickomino(jeu, scoreTour);
             afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
+            afficherSeparation();
             afficherBrochette(jeu.plateau.brochette);
             break;
         }
@@ -86,17 +88,22 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
-    jeu.plateau.nombreDesRestant = NB_DES;
-    initialiserTableauDes(jeu.plateau.desRetenus);
+    initialiserPlateau(jeu);
     afficherSeparation();
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
                       " : " + jeu.joueurs[jeu.plateau.joueurActuel].nom,
                     true);
 }
 
-void initialiserPlateau(Jeu& jeu)
+void initialiserPlateau(Jeu& jeu, bool initialisationBrochette /*= false*/)
 {
     jeu.plateau.nombreDesRestant = NB_DES;
-    initialiserBrochette(jeu.plateau.brochette);
+    if(initialisationBrochette)
+        initialiserBrochette(jeu.plateau.brochette);
     initialiserTableauDes(jeu.plateau.desRetenus);
+}
+
+bool estPartieFinie(const Jeu& jeu)
+{
+    return !verifierPresencePickomino(jeu.plateau);
 }

@@ -33,22 +33,12 @@ void afficherVainqueur()
 
 // Affichage de jeu
 
-bool afficherPileJoueurEnCours(Joueur& joueur)
-{
-    std::cout << "La pile de : " << joueur.nom << " est énorme ! Elle comporte " << joueur.sommet
-              << " pickomino(s) !" << std::endl;
-
-    for(int i = joueur.sommet - 1; i >= 0; i--)
-    {
-        std::cout << joueur.pile[i].valeur << std::endl;
-    }
-    return true;
-}
-
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
     std::string ligneValeur;
     std::string ligneNombreDeVers;
+
+    std::cout << "Brochette : " << std::endl;
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
         if(brochette[i].etat == Pickomino::VISIBLE)
@@ -64,7 +54,7 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     }
 
     std::cout << ligneValeur << std::endl;
-    std::cout << ligneNombreDeVers << std::endl << std::endl;
+    std::cout << ligneNombreDeVers << std::endl;
 }
 
 void afficherJoueurs(Jeu& jeu)
@@ -112,7 +102,17 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
 
 void afficherScore(int& score)
 {
-    std::cout << "La somme des valeurs des dés vous donne : " << score << "." << std::endl;
+    std::cout << "La somme des valeurs des dés vous donne : " << score << std::endl;
+}
+
+bool afficherPileJoueurEnCours(Joueur& joueur)
+{
+    std::cout << "Votre pile de pickomino" << (joueur.sommet > 1 ? "s : " : " : ");
+    for(int i = joueur.sommet - 1; i >= 0; i--)
+    {
+        std::cout << joueur.pile[i].valeur << std::endl;
+    }
+    return true;
 }
 
 // Saisies
@@ -144,10 +144,10 @@ std::string saisirNomJoueur()
 
 bool choisirRelancer(int& nombreDes)
 {
-    std::cout << "Il vous reste " << nombreDes << " dés restants." << std::endl;
+    std::cout << "Il vous reste " << nombreDes << " dés restants" << std::endl;
     if(nombreDes > 0)
     {
-        std::cout << "Voulez-vous relancer des dés? (O/N) ";
+        std::cout << "Voulez-vous relancer les dés ? (O/N) ";
         std::string choix;
         std::cin >> choix;
         if(choix == "O" || choix == "o")

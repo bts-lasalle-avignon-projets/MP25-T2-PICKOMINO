@@ -20,10 +20,6 @@ void afficherVainqueur();
 
 // Affichage de jeu
 
-/*
-void afficherPileJoueurEnCours()
-void afficherDes()
-*/
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
 void afficherJoueurs(Jeu& jeu);
 void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES]);
