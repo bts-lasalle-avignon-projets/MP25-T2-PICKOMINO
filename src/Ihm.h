@@ -32,10 +32,12 @@ bool afficherPileJoueurEnCours(Joueur& joueur);
 unsigned int saisirNbJoueurs();
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
+int          saisirValeurARetenir();
 
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 void afficherSeparation();
+int  convertirValeur(std::string valeur);
 
 #endif // IHM_H

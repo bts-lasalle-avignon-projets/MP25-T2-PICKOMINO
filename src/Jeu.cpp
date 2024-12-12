@@ -46,10 +46,13 @@ void creerJoueurs(Jeu& jeu)
 
 void jouerTour(Jeu& jeu, int nbJoueur)
 {
-    int scoreTour;
+    int  scoreTour;
+    bool tourFini  = false;
+    bool lancerNul = false;
+
     debuterTour(jeu, scoreTour);
 
-    while(lancerPossible(jeu.plateau.nombreDesRestant))
+    while(!tourFini)
     {
         lancerDes(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
         afficherDesLances(jeu.plateau.nombreDesRestant, jeu.plateau.desLances);
@@ -60,29 +63,39 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         {
             afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues !");
             scoreTour = 0;
-            break;
+            lancerNul = true;
         }
-
-        afficherMessage(
-          "Quels dés souhaitez-vous retenir ? (Entrez un nombre ou 'V' pour retenir les vers)");
-        retenirDes(jeu.plateau.nombreDesRestant, jeu.plateau.desLances, jeu.plateau.desRetenus);
-
-        afficherDesRetenus(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-
-        scoreTour = calculerScoreTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-        afficherScore(scoreTour);
-
-        if(!choisirRelancer(jeu.plateau.nombreDesRestant) || jeu.plateau.nombreDesRestant <= 0)
+        else
         {
-            scoreTour =
-              calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-            afficherMessage("Votre score est de " + std::to_string(scoreTour) + " points !");
-            prendrePickomino(jeu, scoreTour);
-            afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
-            afficherSeparation();
-            afficherBrochette(jeu.plateau.brochette);
-            break;
+            retenirDes(jeu.plateau);
+            afficherDesRetenus(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
+
+            scoreTour = calculerScoreTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
+            afficherScore(scoreTour);
+
+            if(!choisirRelancer(jeu.plateau.nombreDesRestant))
+            {
+                scoreTour =
+                  calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
+                afficherMessage("Votre score est de " + std::to_string(scoreTour) + " points !");
+                lancerNul = !prendrePickomino(jeu, scoreTour);
+            }
         }
+        if(lancerNul)
+        {
+            // @todo Gérer un lancer nul
+            afficherMessage("Lancer nul !");
+            tourFini = true;
+        }
+
+        if(!lancerPossible(jeu.plateau.nombreDesRestant))
+        {
+            tourFini = true;
+        }
+
+        afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
+        afficherSeparation();
+        afficherBrochette(jeu.plateau.brochette);
     }
 }
 

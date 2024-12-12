@@ -67,7 +67,7 @@ void afficherJoueurs(Jeu& jeu)
 
 void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
 {
-    std::cout << "Nombre de dés restants : " << nombreDes << " : ";
+    std::cout << "Lancer des " << nombreDes << " dé" << (nombreDes > 1 ? "s" : "") << " : ";
     for(int i = 0; i < nombreDes; ++i)
     {
         if(desLances[i] == 6)
@@ -112,6 +112,8 @@ bool afficherPileJoueurEnCours(Joueur& joueur)
     {
         std::cout << joueur.pile[i].valeur << std::endl;
     }
+    if(joueur.sommet == 0)
+        std::cout << "vide" << std::endl;
     return true;
 }
 
@@ -147,7 +149,7 @@ bool choisirRelancer(int& nombreDes)
     std::cout << "Il vous reste " << nombreDes << " dés" << std::endl;
     if(nombreDes > 0)
     {
-        std::cout << "Voulez-vous relancer les dés ? (O/N) ";
+        std::cout << "Voulez-vous relancer les dés (O/N) ? ";
         std::string choix;
         std::cin >> choix;
         if(choix == "O" || choix == "o")
@@ -163,6 +165,28 @@ bool choisirRelancer(int& nombreDes)
     return false;
 }
 
+int saisirValeurARetenir()
+{
+    std::string valeur;
+    bool        saisieValide = false;
+
+    do
+    {
+        std::cin >> valeur;
+        if(valeur == "V" || valeur == "v")
+            saisieValide = true;
+        else
+            saisieValide =
+              (convertirValeur(valeur) >= Face::UN && convertirValeur(valeur) <= Face::CINQ);
+        if(!saisieValide)
+            std::cout << "Valeur invalide !" << std::endl;
+    } while(!saisieValide);
+
+    int valeurDesARetenir = convertirValeur(valeur);
+
+    return valeurDesARetenir;
+}
+
 // Utilitaires
 
 void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
@@ -174,4 +198,12 @@ void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
 void afficherSeparation()
 {
     std::cout << "\n==============================" << std::endl;
+}
+
+int convertirValeur(std::string valeur)
+{
+    if(valeur == "V" || valeur == "v")
+        return Face::VER;
+    else
+        return std::stoi(valeur);
 }
