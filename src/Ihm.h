@@ -8,6 +8,8 @@
 #include "Joueur.h"
 #include "Jeu.h"
 
+const int AUCUN_VAINQUEUR = -1;
+
 // Affichage des dialogues
 
 /*

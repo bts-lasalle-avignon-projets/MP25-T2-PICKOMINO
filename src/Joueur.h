@@ -26,4 +26,4 @@ void retournerDernierPickomino(Pickomino (&brochette)[NB_PICKOMINOS]);
 void retournerPickomino(Pickomino& pickomino);
 void perdreTour(Jeu& jeu);
 
-#endif
+#endif // JOUEUR_H

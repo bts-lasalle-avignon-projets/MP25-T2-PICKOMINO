@@ -29,4 +29,4 @@ bool verifierDesLances(int& nombreDes,
                        const int (&deslances)[NB_DES],
                        const int (&desRetenus)[NB_DES]);
 
-#endif
+#endif  // PLATEAU_H

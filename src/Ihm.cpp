@@ -29,16 +29,9 @@ void afficherScores(const Jeu& jeu)
 void afficherVainqueur(const Jeu& jeu, int indexVainqueur)
 {
     afficherSeparation();
-    if(indexVainqueur == -1)
-    {
-        afficherMessage("Il n'y a aucun vainqueur !");
-    }
-    else
-    {
-        afficherMessage("Le grand gagnant est : ");
-        afficherMessage(jeu.joueurs[indexVainqueur].nom + " avec " +
-                        std::to_string(jeu.joueurs[indexVainqueur].score) + " ver(s)");
-    }
+    afficherMessage("Le grand gagnant est : ");
+    afficherMessage(jeu.joueurs[indexVainqueur].nom + " avec " +
+                    std::to_string(jeu.joueurs[indexVainqueur].score) + " ver(s)");
 }
 
 // Affichage de jeu

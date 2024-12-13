@@ -24,4 +24,4 @@ int  determinerVainqueur(Jeu& jeu);
 int  trouverMaxValeurPickomino(const Joueur& joueur);
 void calculerVers(Jeu& jeu);
 
-#endif
+#endif // JEU_H

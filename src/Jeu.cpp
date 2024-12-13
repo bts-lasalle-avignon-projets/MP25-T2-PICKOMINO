@@ -8,7 +8,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))
+    for(int i = 0; i < 1; i++)
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -129,19 +129,19 @@ void terminerPartie(Jeu& jeu)
 
 int determinerVainqueur(Jeu& jeu)
 {
-    int scoreMax           = 0;
-    int indexVainqueur     = -1;
-    int maxValeurPickomino = 0;
+    int scoreLePlusEleve   = jeu.joueurs[0].score;
+    int indexVainqueur     = AUCUN_VAINQUEUR;
+    int maxValeurPickomino = trouverMaxValeurPickomino(jeu.joueurs[0]);
 
-    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+    for(unsigned int i = 1; i < jeu.nbJoueurs; ++i)
     {
-        if(jeu.joueurs[i].score > scoreMax)
+        if(jeu.joueurs[i].score > scoreLePlusEleve)
         {
-            scoreMax           = jeu.joueurs[i].score;
+            scoreLePlusEleve   = jeu.joueurs[i].score;
             indexVainqueur     = i;
             maxValeurPickomino = trouverMaxValeurPickomino(jeu.joueurs[i]);
         }
-        else if(jeu.joueurs[i].score == scoreMax)
+        else if(jeu.joueurs[i].score == scoreLePlusEleve)
         {
             int valeurMaxCourante = trouverMaxValeurPickomino(jeu.joueurs[i]);
             if(valeurMaxCourante > maxValeurPickomino)
