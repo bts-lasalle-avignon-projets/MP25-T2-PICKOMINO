@@ -5,6 +5,10 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
+//#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
+
+#define AUCUN_VAINQUEUR -1
+
 struct Jeu
 {
     unsigned int nbJoueurs;

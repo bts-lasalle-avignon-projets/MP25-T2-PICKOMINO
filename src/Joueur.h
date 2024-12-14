@@ -1,8 +1,9 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#include "Donnees.h"
 #include <string>
+
+#include "Donnees.h"
 
 struct Jeu;
 

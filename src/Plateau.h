@@ -1,8 +1,9 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#include "Donnees.h"
 #include <string>
+
+#include "Donnees.h"
 
 struct Plateau
 {

@@ -3,6 +3,10 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
+#ifdef DEBUG_JEU
+#include <iostream>
+#endif
+
 void jouerPickomino()
 {
     Jeu jeu;
@@ -106,6 +110,7 @@ void debuterTour(Jeu& jeu, int& scoreTour)
                     true);
 }
 
+// @fixme À déplacer dans Plateau
 void initialiserPlateau(Jeu& jeu, bool initialisationBrochette /*= false*/)
 {
     jeu.plateau.nombreDesRestant = NB_DES;
@@ -151,6 +156,11 @@ int determinerVainqueur(Jeu& jeu)
             }
         }
     }
+
+#ifdef DEBUG_JEU
+    std::cout << "[" << __FILE__ << ":" << __PRETTY_FUNCTION__ << ":" << __LINE__ << "] ";
+    std::cout << "indexVainqueur = " << indexVainqueur << std::endl;
+#endif
 
     return indexVainqueur;
 }
