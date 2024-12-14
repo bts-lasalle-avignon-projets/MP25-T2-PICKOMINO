@@ -15,6 +15,40 @@ void afficherOptionsDeJeu()
 
 }
 */
+void afficherBienvenue() {
+    std::string asciiArt = R"(
+______ _____ _____  _   __________  ________ _   _ _____ 
+| ___ \_   _/  __ \| | / /  _  |  \/  |_   _| \ | |  _  |
+| |_/ / | | | /  \/| |/ /| | | | .  . | | | |  \| | | | |
+|  __/  | | | |    |    \| | | | |\/| | | | | . ` | | | |
+| |    _| |_| \__/\| |\  \ \_/ / |  | |_| |_| |\  \ \_/ /
+\_|    \___/ \____/\_| \_/\___/\_|  |_/\___/\_| \_/\___/ )";
+    
+    std::string version = "Version : V1.0";
+    std::string releaseDate = "Release : 15/12/2024";
+    std::string equipeDev = "RAFFIN Louis & CLEMENT Aymeric";
+
+    int largeur = 60;
+    std::cout << std::string(largeur, '*');
+    std::cout << asciiArt << std::endl;
+    std::cout << std::string(largeur, '-') << std::endl;
+
+    int espacesVersion = (largeur - version.size()) / 2;
+    int espacesReleaseDate = (largeur - releaseDate.size()) / 2;
+    int espacesEquipeDev = (largeur - equipeDev.size()) / 2;
+
+    std::cout << std::string(espacesVersion, ' ') << version << std::endl;
+    std::cout << std::string(espacesReleaseDate, ' ') << releaseDate << std::endl;
+    std::cout << std::string(espacesEquipeDev, ' ') << equipeDev << std::endl;
+
+    std::string message = "Bienvenue dans cette partie de PICKOMINO !";
+    int espacesMessage = (largeur - message.size()) / 2;
+
+    std::cout << std::string(largeur, '-') << std::endl;
+    std::cout << std::string(espacesMessage, ' ') << message << std::endl;
+    std::cout << std::string(largeur, '*') << std::endl;
+}
+
 void afficherScores(const Jeu& jeu)
 {
     afficherSeparation();

@@ -12,7 +12,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))
+for(int i = 0; i < 1; i++)
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -25,6 +25,7 @@ void jouerPickomino()
 
 void initialiserJeu(Jeu& jeu)
 {
+    afficherBienvenue();
     creerJoueurs(jeu);
     // afficherJoueurs(jeu);
 

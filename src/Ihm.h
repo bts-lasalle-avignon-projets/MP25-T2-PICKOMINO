@@ -14,6 +14,7 @@
 void afficherInstructions();
 void afficherOptionsDeJeu();
 */
+void afficherBienvenue();
 void afficherScores(const Jeu& jeu);
 void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 
