@@ -12,7 +12,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-for(int i = 0; i < 1; i++)
+    while(!estPartieFinie(jeu))
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
