@@ -13,6 +13,7 @@
     - [Itération 2](#itération-2)
     - [Itération 3](#itération-3)
   - [Changelog](#changelog)
+    - [Version 1.0](#version-10)
   - [TODO](#todo)
   - [Défauts constatés non corrigés](#défauts-constatés-non-corrigés)
   - [Équipe de développement](#équipe-de-développement)
@@ -23,6 +24,7 @@
 
 - Nom du mini-projet : Pickomino
 - Date de début : 30 Septembre 2024
+- Numéro de version du jeu : 1.0
 
 ## Le jeu du Pickomino
 
@@ -82,6 +84,13 @@ $  ./pickomino.out
 - **Voir le classement** : Visualiser un classement des joueurs.
 
 ## Changelog
+
+Le programme permet de jouer une partie de Pickomino de 2 à 7 joueurs.
+
+### Version 1.0
+
+- [x] Saisie du nom des joueurs
+- [x] Jouer une partie
 
 ## TODO
 
