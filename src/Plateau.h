@@ -1,8 +1,9 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#include "Donnees.h"
 #include <string>
+
+#include "Donnees.h"
 
 struct Plateau
 {
@@ -29,4 +30,4 @@ bool verifierDesLances(int& nombreDes,
                        const int (&deslances)[NB_DES],
                        const int (&desRetenus)[NB_DES]);
 
-#endif
+#endif // PLATEAU_H

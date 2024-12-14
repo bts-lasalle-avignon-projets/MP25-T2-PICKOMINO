@@ -33,4 +33,4 @@ struct Pickomino
     } etat;
 };
 
-#endif
+#endif // DONNEES_H

@@ -13,10 +13,9 @@
 /*
 void afficherInstructions();
 void afficherOptionsDeJeu();
-void afficherTourJoueur(Joueur joueur);
-void afficherScores();
-void afficherVainqueur();
 */
+void afficherScores(const Jeu& jeu);
+void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 
 // Affichage de jeu
 

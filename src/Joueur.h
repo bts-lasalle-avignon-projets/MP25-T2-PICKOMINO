@@ -1,8 +1,9 @@
 #ifndef JOUEUR_H
 #define JOUEUR_H
 
-#include "Donnees.h"
 #include <string>
+
+#include "Donnees.h"
 
 struct Jeu;
 
@@ -12,6 +13,7 @@ struct Joueur
     int         numero;
     Pickomino   pile[NB_PICKOMINOS];
     int         sommet;
+    int         score;
 };
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero);
@@ -25,4 +27,4 @@ void retournerDernierPickomino(Pickomino (&brochette)[NB_PICKOMINOS]);
 void retournerPickomino(Pickomino& pickomino);
 void perdreTour(Jeu& jeu);
 
-#endif
+#endif // JOUEUR_H
