@@ -7,7 +7,7 @@
 
 //#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
-#define AUCUN_VAINQUEUR -1
+#define JOUEUR_PAR_DEFAUT 0
 
 struct Jeu
 {

@@ -134,9 +134,9 @@ void terminerPartie(Jeu& jeu)
 
 int determinerVainqueur(Jeu& jeu)
 {
-    int scoreLePlusEleve   = jeu.joueurs[0].score;
-    int indexVainqueur     = AUCUN_VAINQUEUR;
-    int maxValeurPickomino = trouverMaxValeurPickomino(jeu.joueurs[0]);
+    int scoreLePlusEleve   = jeu.joueurs[JOUEUR_PAR_DEFAUT].score;
+    int indexVainqueur     = JOUEUR_PAR_DEFAUT;
+    int maxValeurPickomino = trouverMaxValeurPickomino(jeu.joueurs[JOUEUR_PAR_DEFAUT]);
 
     for(unsigned int i = 1; i < jeu.nbJoueurs; ++i)
     {
