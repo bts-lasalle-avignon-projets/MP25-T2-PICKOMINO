@@ -5,6 +5,8 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
+#define VERSION "1.0"
+
 //#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define AUCUN_VAINQUEUR -1
@@ -21,7 +23,6 @@ void initialiserJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
-void initialiserPlateau(Jeu& jeu, bool initialisationBrochette = false);
 bool estPartieFinie(const Jeu& jeu);
 void terminerPartie(Jeu& jeu);
 int  determinerVainqueur(Jeu& jeu);

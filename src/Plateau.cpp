@@ -22,6 +22,14 @@ void initialiserBrochette(Pickomino (&brochette)[NB_PICKOMINOS])
     }
 }
 
+void initialiserPlateau(Plateau& plateau, bool initialisationBrochette /*= false*/)
+{
+    plateau.nombreDesRestant = NB_DES;
+    if(initialisationBrochette)
+        initialiserBrochette(plateau.brochette);
+    initialiserTableauDes(plateau.desRetenus);
+}
+
 void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur)
 {
     if(valeur >= VALEUR_PICKOMINO_MIN && valeur <= VALEUR_PICKOMINO_MAX)

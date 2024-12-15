@@ -29,7 +29,7 @@ void initialiserJeu(Jeu& jeu)
     creerJoueurs(jeu);
     // afficherJoueurs(jeu);
 
-    initialiserPlateau(jeu, true);
+    initialiserPlateau(jeu.plateau, true);
     afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
 }
@@ -104,20 +104,11 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
-    initialiserPlateau(jeu);
+    initialiserPlateau(jeu.plateau);
     afficherSeparation();
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
                       " : " + jeu.joueurs[jeu.plateau.joueurActuel].nom,
                     true);
-}
-
-// @fixme À déplacer dans Plateau
-void initialiserPlateau(Jeu& jeu, bool initialisationBrochette /*= false*/)
-{
-    jeu.plateau.nombreDesRestant = NB_DES;
-    if(initialisationBrochette)
-        initialiserBrochette(jeu.plateau.brochette);
-    initialiserTableauDes(jeu.plateau.desRetenus);
 }
 
 bool estPartieFinie(const Jeu& jeu)
