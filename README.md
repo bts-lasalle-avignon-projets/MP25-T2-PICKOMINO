@@ -69,8 +69,8 @@ $  ./pickomino.out
 
 ### Itération 1
 
-- **Démarrer une partie** : On peut entrer les paramètres de la partie (nombre de joueurs, ...) et la démarrer
-- **Saisir informations joueurs** : Possibilité pour les joueurs de saisir leurs noms
+- **Démarrer une partie** : On peut entrer les paramètres de la partie (nombre de joueurs, noms des joueurs) et la démarrer
+- **Jouer une partie** : On peut jouer une partie en suivant les règles du jeu
 
 ### Itération 2
 
