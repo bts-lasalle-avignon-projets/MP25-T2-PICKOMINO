@@ -14,8 +14,9 @@ struct Plateau
     int          nombreDesRestant;
 };
 
-void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
 void initialiserBrochette(Pickomino (&brochette)[NB_PICKOMINOS]);
+void initialiserPlateau(Plateau& plateau, bool initialisationBrochette = false);
+void retournerPickomino(Pickomino (&brochette)[NB_PICKOMINOS], int valeur);
 bool verifierPresencePickomino(const Plateau& plateau);
 void lancerDes(int& nombreDes, int (&desLances)[NB_DES]);
 void initialiserTableauDes(int (&tableauDes)[NB_DES]);

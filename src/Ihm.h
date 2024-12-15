@@ -8,23 +8,26 @@
 #include "Joueur.h"
 #include "Jeu.h"
 
+#define LARGEUR_MAX 60
+
 // Affichage des dialogues
 
 /*
 void afficherInstructions();
 void afficherOptionsDeJeu();
 */
+void afficherBienvenue();
 void afficherScores(const Jeu& jeu);
 void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 
 // Affichage de jeu
 
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
-void afficherJoueurs(Jeu& jeu);
-void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES]);
-void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES]);
-void afficherScore(int& score);
-bool afficherPileJoueurEnCours(Joueur& joueur);
+void afficherJoueurs(const Jeu& jeu);
+void afficherDesLances(const int& nombreDes, const int (&desLances)[NB_DES]);
+void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES]);
+void afficherScore(const int& score);
+bool afficherPileJoueurEnCours(const Joueur& joueur);
 
 // Saisies
 

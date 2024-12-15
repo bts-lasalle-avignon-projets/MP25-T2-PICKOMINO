@@ -15,6 +15,41 @@ void afficherOptionsDeJeu()
 
 }
 */
+
+void afficherBienvenue()
+{
+    std::string asciiArt = R"(
+______ _____ _____  _   __________  ________ _   _ _____
+| ___ \_   _/  __ \| | / /  _  |  \/  |_   _| \ | |  _  |
+| |_/ / | | | /  \/| |/ /| | | | .  . | | | |  \| | | | |
+|  __/  | | | |    |    \| | | | |\/| | | | | . ` | | | |
+| |    _| |_| \__/\| |\  \ \_/ / |  | |_| |_| |\  \ \_/ /
+\_|    \___/ \____/\_| \_/\___/\_|  |_/\___/\_| \_/\___/ )";
+
+    std::string version = std::string("Version : V") + std::string(VERSION);
+    std::string releaseDate = "Release : 15/12/2024";
+    std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
+
+    int largeur = LARGEUR_MAX;
+    std::cout << std::string(largeur, '*');
+    std::cout << asciiArt << std::endl;
+    std::cout << std::string(largeur, '-') << std::endl;
+
+    int espacesVersion     = (largeur - version.size()) / 2;
+    int espacesReleaseDate = (largeur - releaseDate.size()) / 2;
+    int espacesEquipeDev   = (largeur - equipeDev.size()) / 2;
+
+    std::cout << std::string(espacesVersion, ' ') << version << std::endl;
+    std::cout << std::string(espacesReleaseDate, ' ') << releaseDate << std::endl;
+    std::cout << std::string(espacesEquipeDev, ' ') << equipeDev << std::endl;
+
+    std::string message        = "Bienvenue dans cette partie de PICKOMINO !";
+    int         espacesMessage = (largeur - message.size()) / 2;
+
+    std::cout << std::string(largeur, '-') << std::endl;
+    std::cout << std::string(espacesMessage, ' ') << message << std::endl;
+}
+
 void afficherScores(const Jeu& jeu)
 {
     afficherSeparation();
@@ -60,7 +95,7 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     std::cout << ligneNombreDeVers << std::endl;
 }
 
-void afficherJoueurs(Jeu& jeu)
+void afficherJoueurs(const Jeu& jeu)
 {
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
     {
@@ -68,7 +103,7 @@ void afficherJoueurs(Jeu& jeu)
     }
 }
 
-void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
+void afficherDesLances(const int& nombreDes, const int (&desLances)[NB_DES])
 {
     std::cout << "Lancer des " << nombreDes << " dé" << (nombreDes > 1 ? "s" : "") << " : ";
     for(int i = 0; i < nombreDes; ++i)
@@ -85,7 +120,7 @@ void afficherDesLances(int& nombreDes, const int (&desLances)[NB_DES])
     std::cout << std::endl;
 }
 
-void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
+void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES])
 {
     int nombreDesRetenus = NB_DES - nombreDes;
     std::cout << "\nDés retenus : ";
@@ -103,12 +138,12 @@ void afficherDesRetenus(int& nombreDes, const int (&desRetenus)[NB_DES])
     std::cout << std::endl;
 }
 
-void afficherScore(int& score)
+void afficherScore(const int& score)
 {
     std::cout << "La somme des valeurs des dés vous donne : " << score << std::endl;
 }
 
-bool afficherPileJoueurEnCours(Joueur& joueur)
+bool afficherPileJoueurEnCours(const Joueur& joueur)
 {
     std::cout << "Votre pile de pickomino" << (joueur.sommet > 1 ? "s : " : " : ") << std::endl;
     for(int i = joueur.sommet - 1; i >= 0; i--)
