@@ -13,6 +13,7 @@
     - [Itération 2](#itération-2)
     - [Itération 3](#itération-3)
   - [Changelog](#changelog)
+    - [Version 1.0](#version-10)
   - [TODO](#todo)
   - [Défauts constatés non corrigés](#défauts-constatés-non-corrigés)
   - [Équipe de développement](#équipe-de-développement)
@@ -23,6 +24,7 @@
 
 - Nom du mini-projet : Pickomino
 - Date de début : 30 Septembre 2024
+- Numéro de version du jeu : 1.0
 
 ## Le jeu du Pickomino
 
@@ -67,21 +69,28 @@ $  ./pickomino.out
 
 ### Itération 1
 
-- **Démarrer une partie** : Le joueur peut entrer les paramètres de la partie (nombre de joueurs, ...) et la lancer.
-- **Jouer des parties** : Possibilité pour le joueur de jouer une ou plusieurs parties.
+- **Démarrer une partie** : On peut entrer les paramètres de la partie (nombre de joueurs, ...) et la démarrer
+- **Saisir informations joueurs** : Possibilité pour les joueurs de saisir leurs noms
 
 ### Itération 2
 
-- **Saisir informations joueurs** : Possibilité pour les joueurs de saisir leurs noms.
-- **Jouer contre la machine** : Possibilité pour les joueurs de jouer contre une/plusieurs machines.
+- **Jouer des parties** : On peut jouer une ou plusieurs parties
+- **Jouer contre la machine** : On peut jouer contre une ou plusieurs machines
+- **Voir l'historique** : Visualiser un historique des parties jouées
 
 ### Itération 3
 
-- **Jouer en réseau** : Jouer une partie en réseau.
-- **Voir l'historique** : Visualiser un historique des parties jouées.
-- **Voir le classement** : Visualiser un classement des joueurs.
+- **Jouer en réseau** : Jouer une partie en réseau
+- **Voir le classement** : Visualiser un classement des joueurs
 
 ## Changelog
+
+Le programme permet de jouer une partie de Pickomino de 2 à 7 joueurs.
+
+### Version 1.0
+
+- [x] Saisir le nombre de joueurs ainsi que leur nom
+- [x] Jouer une partie
 
 ## TODO
 
