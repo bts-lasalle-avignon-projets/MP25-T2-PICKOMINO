@@ -7,7 +7,7 @@
 
 #define VERSION "1.0"
 
-//#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
+// #define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define JOUEUR_PAR_DEFAUT 0
 

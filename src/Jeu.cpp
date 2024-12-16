@@ -25,6 +25,7 @@ void jouerPickomino()
 
 void initialiserJeu(Jeu& jeu)
 {
+    clearAffichage();
     afficherBienvenue();
     creerJoueurs(jeu);
     // afficherJoueurs(jeu);

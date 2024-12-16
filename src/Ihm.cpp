@@ -238,6 +238,11 @@ void afficherSeparation()
     std::cout << "\n==============================" << std::endl;
 }
 
+void clearAffichage()
+{
+    system("clear");
+}
+
 int convertirValeur(std::string valeur)
 {
     if(valeur == "V" || valeur == "v")
