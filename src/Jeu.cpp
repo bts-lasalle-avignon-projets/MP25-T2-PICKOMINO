@@ -105,7 +105,9 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
+    clearAffichage();
     initialiserPlateau(jeu.plateau);
+    afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
                       " : " + jeu.joueurs[jeu.plateau.joueurActuel].nom,

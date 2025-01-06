@@ -151,7 +151,7 @@ bool afficherPileJoueurEnCours(const Joueur& joueur)
         std::cout << joueur.pile[i].valeur << std::endl;
     }
     if(joueur.sommet == 0)
-        std::cout << "vide" << std::endl;
+        std::cout << RED << "vide" << RESET << std::endl;
     return true;
 }
 
