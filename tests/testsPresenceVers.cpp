@@ -1,7 +1,7 @@
 #include "doctest.h"
 #include "../src/Plateau.h"
 
-TEST_CASE("Valide : VER PRESENT")
+TEST_CASE("Valide : Ver présent")
 {
     SUBCASE("TEST 1.1 : 8 Dés - Ver présent")
     {
@@ -28,9 +28,9 @@ TEST_CASE("Valide : VER PRESENT")
     }
 }
 
-TEST_CASE("Invalide : AUCUN VERS")
+TEST_CASE("Invalide : Aucun vers")
 {
-    SUBCASE("TEST 1.4 : 8 Dés - Ver présent")
+    SUBCASE("TEST 1.4 : 8 Dés - Pas de vers")
     {
         int desRetenus1[NB_DES] = { 3, 1, 1, 2, 4, 1, 2, 5 };
         int nombreDes1          = 8;
@@ -38,7 +38,7 @@ TEST_CASE("Invalide : AUCUN VERS")
         REQUIRE(verifierPresenceVers(nombreDes1, desRetenus1) == false);
     }
 
-    SUBCASE("TEST 1.5 : 4 Dés - Ver présent")
+    SUBCASE("TEST 1.5 : 4 Dés - Pas de vers")
     {
         int desRetenus1[NB_DES] = { 4, 5, 2, 3 };
         int nombreDes1          = 4;
