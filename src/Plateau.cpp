@@ -118,7 +118,8 @@ bool estDejaChoisie(const int& nombreDes, const int& valeurARetenir, int (&desRe
 int calculerScoreTour(int& nombreDes, int (&desRetenus)[NB_DES])
 {
     int scoreTotal = 0;
-    for(int i = 0; i < NB_DES - nombreDes; i++)
+
+    for(int i = 0; i < NB_DES; i++)
     {
         if(desRetenus[i] == VER)
             scoreTotal += CINQ;

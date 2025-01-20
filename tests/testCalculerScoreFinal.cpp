@@ -1,24 +1,50 @@
 #include "doctest.h"
 #include "../src/Plateau.h"
 
-TEST_CASE("Test de calculerScoreFinalTour")
+TEST_CASE("Valide : Score avec ver(s)")
 {
-    // Cas avec "vers"
-    int desRetenus1[NB_DES] = { 1, 2, 3, 4, VER }; // Le dernier dé est un "vers"
-    int nombreDes1          = 5;
+    SUBCASE("TEST 2.1 : 8 Dés - 2 ver")
+    {
+        int desRetenus1[NB_DES] = { 6, 5, 4, 6, 3, 2, 4, 1 };
+        int nombreDes1          = 8;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 29);
+    }
 
-    // Le score sera la somme de tous les dés + la valeur du "vers"
-    // 1 + 2 + 3 + 4 + 5 (le "vers") = 15
-    int score1 = calculerScoreFinalTour(nombreDes1, desRetenus1);
+    SUBCASE("TEST 2.2 : 4 Dés - 1 ver")
+    {
+        int desRetenus1[NB_DES] = { 5, 4, 3, 6 };
+        int nombreDes1          = 4;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 17);
+    }
 
-    CHECK(score1 == 15); // Vérifie que le score est bien de 15
+    SUBCASE("TEST 2.3 : 1 Dé - 1 Ver")
+    {
+        int desRetenus1[NB_DES] = { 6 };
+        int nombreDes1          = 0;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 5);
+    }
+}
 
-    // Cas sans "vers"
-    int desRetenus2[NB_DES] = { 1, 2, 3, 4, 6 }; // Pas de "vers" ici
-    int nombreDes2          = 5;
+TEST_CASE("Invalide : Score sans ver")
+{
+    SUBCASE("TEST 2.4 : 8 Dés sans ver")
+    {
+        int desRetenus1[NB_DES] = { 3, 1, 1, 2, 4, 1, 2, 5 };
+        int nombreDes1          = 8;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 0);
+    }
 
-    // Ici, il n'y a pas de "vers", donc le score doit être 0
-    int score2 = calculerScoreFinalTour(nombreDes2, desRetenus2);
+    SUBCASE("TEST 2.5 : 4 Dés sans ver")
+    {
+        int desRetenus1[NB_DES] = { 4, 5, 2, 3 };
+        int nombreDes1          = 4;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 0);
+    }
 
-    CHECK(score2 == 0); // Vérifie que le score est de 0
+    SUBCASE("TEST 2.6 : Tableau vide")
+    {
+        int desRetenus1[NB_DES] = {};
+        int nombreDes1          = 0;
+        REQUIRE(calculerScoreFinalTour(nombreDes1, desRetenus1) == 0);
+    }
 }

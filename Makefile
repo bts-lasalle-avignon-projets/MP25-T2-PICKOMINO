@@ -30,9 +30,11 @@ $(TARGET): $(OBJ)
 
 clean:
 	$(RM) $(DOSSIER_SRC)/*.o $(DOSSIER_SRC)/*.*~
+	$(RM) $(DOSSIER_TESTS)/*.o $(DOSSIER_TESTS)/*.out $(DOSSIER_TESTS)/*.*~
 
 cleanall:
 	$(RM) $(DOSSIER_SRC)/*.o $(DOSSIER_SRC)/*.*~ $(TARGET)
+	$(RM) $(DOSSIER_TESTS)/*.o $(DOSSIER_TESTS)/*.out $(DOSSIER_TESTS)/*.*~ $(TARGET)
 
 format:
 	clang-format -i $(SRC) $(HEADERS)
