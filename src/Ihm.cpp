@@ -9,29 +9,50 @@ void afficherInstructions()
 {
 
 }
+*/
+
+#include <iostream>
 
 void afficherOptionsDeJeu()
 {
+    int choix;
 
+    std::cout << "\nMenu Options du Jeu :\n";
+    std::cout << "1. Jouer\n";
+    std::cout << "2. Choisir le mode de jeu\n";
+    std::cout << "3. Règles du jeu\n";
+    std::cout << "4. Quitter\n";
+    std::cout << "Entrez votre choix (1-4) : ";
+
+    std::cin >> choix;
+
+    switch(choix)
+    {
+        case 1:
+            break;
+        case 2:
+
+            break;
+        case 3:
+
+            break;
+        case 4:
+            std::cout << "Au revoir !\n";
+            exit(0);
+        default:
+            std::cout << "Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n";
+            break;
+    }
 }
-*/
 
-void afficherBienvenue()
+void afficherMenu(const std::string& texte, int largeur)
 {
-    std::string asciiArt = R"(
- ____    ___    ____   _  __   ___    __  __   ___   _   _    ___  
-|  _ \  |_ _|  / ___| | |/ /  / _ \  |  \/  | |_ _| | \ | |  / _ \
-| |_) |  | |  | |     | ' /  | | | | | |\/| |  | |  |  \| | | | | |
-|  __/   | |  | |___  | . \  | |_| | | |  | |  | |  | |\  | | |_| |
-|_|     |___|  \____| |_|\_\  \___/  |_|  |_| |___| |_| \_|  \___/
-                                                                   )";
+    int espaces = (largeur - texte.size()) / 2;
+    std::cout << std::string(espaces, ' ') << texte << std::endl;
+}
 
-    std::string version = std::string("Version : V") + std::string(VERSION);
-    std::string releaseDate = "Release : 15/12/2024";
-    std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
-
-    int largeur = LARGEUR_MAX;
-
+void afficherTitre(const std::string& asciiArt, int largeur)
+{
     size_t maxLength = 0;
     size_t debut     = 0;
     while(debut < asciiArt.size())
@@ -46,7 +67,7 @@ void afficherBienvenue()
     }
 
     int espacesAscii = (largeur - maxLength) / 2;
-    std::cout << std::string(largeur, '-');
+    std::cout << std::string(largeur, '-') << std::endl;
 
     debut = 0;
     while(debut < asciiArt.size())
@@ -62,20 +83,27 @@ void afficherBienvenue()
     }
 
     std::cout << std::string(largeur, '-') << std::endl;
+}
 
-    int espacesVersion     = (largeur - version.size()) / 2;
-    int espacesReleaseDate = (largeur - releaseDate.size()) / 2;
-    int espacesEquipeDev   = (largeur - equipeDev.size()) / 2;
+void afficherBienvenue()
+{
+    std::string asciiArt = R"(
+ ____    ___    ____   _  __   ___    __  __   ___   _   _    ___  
+|  _ \  |_ _|  / ___| | |/ /  / _ \  |  \/  | |_ _| | \ | |  / _ \
+| |_) |  | |  | |     | ' /  | | | | | |\/| |  | |  |  \| | | | | |
+|  __/   | |  | |___  | . \  | |_| | | |  | |  | |  | |\  | | |_| |
+|_|     |___|  \____| |_|\_\  \___/  |_|  |_| |___| |_| \_|  \___/
+                                                                   )";
 
-    std::cout << std::string(espacesVersion, ' ') << version << std::endl;
-    std::cout << std::string(espacesReleaseDate, ' ') << releaseDate << std::endl;
-    std::cout << std::string(espacesEquipeDev, ' ') << equipeDev << std::endl;
+    std::string version = "Version : V" + std::string(VERSION);
+    std::string releaseDate = "Release : 15/12/2024";
+    std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
-    std::string message        = "Bienvenue dans cette partie de PICKOMINO !\n";
-    int         espacesMessage = (largeur - message.size()) / 2;
-
-    std::cout << std::string(largeur, '-') << std::endl;
-    std::cout << std::string(espacesMessage, ' ') << message << std::endl;
+    afficherTitre(asciiArt, LARGEUR_MAX);
+    afficherMenu(version, LARGEUR_MAX);
+    afficherMenu(releaseDate, LARGEUR_MAX);
+    afficherMenu(equipeDev, LARGEUR_MAX);
+    afficherMenu("Bienvenue dans cette partie de PICKOMINO !", LARGEUR_MAX);
 }
 
 void afficherScores(const Jeu& jeu)
@@ -285,7 +313,9 @@ void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
 }
 void afficherSeparation()
 {
-    std::cout << "\n==============================" << std::endl;
+    std::cout << "\n===================================================================="
+                 "============\n"
+              << std::endl;
 }
 
 void clearAffichage()

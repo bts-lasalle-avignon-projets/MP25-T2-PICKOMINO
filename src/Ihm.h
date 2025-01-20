@@ -31,6 +31,8 @@ void afficherInstructions();
 void afficherOptionsDeJeu();
 */
 void afficherBienvenue();
+void afficherMenu(const std::string& texte, int largeur);
+void afficherTitre(const std::string& asciiArt, int largeur);
 void afficherScores(const Jeu& jeu);
 void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 
