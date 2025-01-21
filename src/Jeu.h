@@ -7,7 +7,7 @@
 
 #define VERSION "1.0"
 
-//#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
+// #define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define JOUEUR_PAR_DEFAUT 0
 
@@ -28,5 +28,6 @@ void terminerPartie(Jeu& jeu);
 int  determinerVainqueur(Jeu& jeu);
 int  trouverMaxValeurPickomino(const Joueur& joueur);
 void calculerVers(Jeu& jeu);
+void enregistrerScore(const Jeu& jeu, int indexVainqueur);
 
 #endif // JEU_H
