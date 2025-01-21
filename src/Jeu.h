@@ -30,5 +30,6 @@ void terminerPartie(Jeu& jeu);
 int  determinerVainqueur(Jeu& jeu);
 int  trouverMaxValeurPickomino(const Joueur& joueur);
 void calculerVers(Jeu& jeu);
+void enregistrerScore(const Jeu& jeu, int indexVainqueur);
 
 #endif // JEU_H

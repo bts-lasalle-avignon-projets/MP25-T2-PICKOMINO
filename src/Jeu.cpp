@@ -2,6 +2,8 @@
 #include "Ihm.h"
 #include "Plateau.h"
 #include "Joueur.h"
+#include <fstream>
+#include <ctime>
 
 #ifdef DEBUG_JEU
 #include <iostream>
@@ -174,6 +176,7 @@ void terminerPartie(Jeu& jeu)
     int indexVainqueur = determinerVainqueur(jeu);
     afficherScores(jeu);
     afficherVainqueur(jeu, indexVainqueur);
+    enregistrerScore(jeu, indexVainqueur);
 }
 
 int determinerVainqueur(Jeu& jeu)
@@ -234,4 +237,22 @@ void calculerVers(Jeu& jeu)
             jeu.joueurs[i].score += jeu.joueurs[i].pile[j].nombreDeVers;
         }
     }
+}
+
+void enregistrerScore(const Jeu& jeu, int indexVainqueur)
+{
+    std::ofstream fichier("docs/scores.txt", std::ios::app);
+    if(!fichier)
+    {
+        afficherMessage("Impossible d'entrer le score dans le fichier");
+        return;
+    }
+
+    std::time_t actuel = std::time(nullptr);
+    char        dateHeure[100];
+    std::strftime(dateHeure, sizeof(dateHeure), "%d-%m-%Y à %H:%M", std::localtime(&actuel));
+    fichier << "Partie du : " << dateHeure << " - Gagnant : " << jeu.joueurs[indexVainqueur].nom
+            << " avec " << jeu.joueurs[indexVainqueur].score << " vers !" << std::endl;
+    fichier.close();
+    afficherMessage("Score enregistré dans le fichier !");
 }
