@@ -2,6 +2,8 @@
 #include "Donnees.h"
 
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 // Affichage des dialogues
 
@@ -105,10 +107,46 @@ void afficherBienvenue()
     afficherMenu("Bienvenue dans cette partie de PICKOMINO !", LARGEUR_MAX);
 }
 
+void traiterTrame(const std::string &trame) 
+{
+    size_t debutTrame = 0;
+
+    while ((debutTrame = trame.find('[', debutTrame)) != std::string::npos)
+    {
+        size_t finTrame = trame.find(']', debutTrame);
+        std::string contenu = trame.substr(debutTrame + 1, finTrame - debutTrame - 1);
+        size_t position1 = contenu.find(';');
+        size_t position2 = contenu.find(';', position1 + 1);
+
+        std::string date = contenu.substr(0, position1);
+        std::string nom = contenu.substr(position1 + 1, position2 - position1 - 1);
+        std::string score = contenu.substr(position2 + 1);
+
+        std::cout << "Date : " << date << std::endl;
+        std::cout << "Nom du joueur : " << nom << std::endl;
+        std::cout << "Score : " << score << " vers" << std::endl;
+        std::cout << "---------------------------" << std::endl;
+
+        debutTrame = finTrame + 1;
+    }
+}
+
 void afficherHistorique() 
 {
     afficherSeparation();
     afficherMessage("Historique des parties :");
+    std::ifstream fichier("docs/scores.txt", std::ios::app);
+    if(!fichier)
+    {
+        afficherMessage("Impossible d'afficher l'historique des parties");
+        return;
+    }
+    std::string ligne;
+    while(std::getline(fichier, ligne))
+    {
+        traiterTrame(ligne);
+    }
+    fichier.close();
 }
 
 void afficherScores(const Jeu& jeu)
