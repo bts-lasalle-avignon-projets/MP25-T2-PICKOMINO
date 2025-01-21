@@ -1,4 +1,5 @@
 #include "Ihm.h"
+#include "Donnees.h"
 
 #include <iostream>
 
@@ -102,6 +103,12 @@ void afficherBienvenue()
     afficherMenu(releaseDate, LARGEUR_MAX);
     afficherMenu(equipeDev, LARGEUR_MAX);
     afficherMenu("Bienvenue dans cette partie de PICKOMINO !", LARGEUR_MAX);
+}
+
+void afficherHistorique() 
+{
+    afficherSeparation();
+    afficherMessage("Historique des parties :");
 }
 
 void afficherScores(const Jeu& jeu)

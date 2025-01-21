@@ -14,7 +14,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))
+    while(!estPartieFinie(jeu))    
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -250,9 +250,11 @@ void enregistrerScore(const Jeu& jeu, int indexVainqueur)
 
     std::time_t actuel = std::time(nullptr);
     char        dateHeure[100];
-    std::strftime(dateHeure, sizeof(dateHeure), "%d-%m-%Y à %H:%M", std::localtime(&actuel));
-    fichier << "Partie du : " << dateHeure << " - Gagnant : " << jeu.joueurs[indexVainqueur].nom
-            << " avec " << jeu.joueurs[indexVainqueur].score << " vers !" << std::endl;
+    std::strftime(dateHeure, sizeof(dateHeure), "%d-%m-%Y %Hh%M", std::localtime(&actuel));
+    fichier << "[" << dateHeure << ";" 
+            << jeu.joueurs[indexVainqueur].nom << ";" 
+            << jeu.joueurs[indexVainqueur].score << "]" 
+            << std::endl;
     fichier.close();
     afficherMessage("Score enregistré dans le fichier !");
 }
