@@ -1,4 +1,5 @@
 #include "Ihm.h"
+#include "Donnees.h"
 
 #include <iostream>
 
@@ -48,6 +49,12 @@ ______ _____ _____  _   __________  ________ _   _ _____
 
     std::cout << std::string(largeur, '-') << std::endl;
     std::cout << std::string(espacesMessage, ' ') << message << std::endl;
+}
+
+void afficherHistorique() 
+{
+    afficherSeparation();
+    afficherMessage("Historique des parties :");
 }
 
 void afficherScores(const Jeu& jeu)
