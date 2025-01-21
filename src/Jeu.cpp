@@ -28,11 +28,7 @@ void initialiserJeu(Jeu& jeu)
     clearAffichage();
     afficherBienvenue();
     creerJoueurs(jeu);
-    // afficherJoueurs(jeu);
-
     initialiserPlateau(jeu.plateau, true);
-    afficherSeparation();
-    afficherBrochette(jeu.plateau.brochette);
 }
 
 void creerJoueurs(Jeu& jeu)
@@ -97,9 +93,12 @@ void jouerTour(Jeu& jeu, int nbJoueur)
             tourFini = true;
         }
 
-        afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
+        clearAffichage();
         afficherSeparation();
         afficherBrochette(jeu.plateau.brochette);
+        afficherSeparation();
+        afficherDesRetenus(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
+        afficherPileJoueurEnCours(jeu.joueurs[nbJoueur]);
     }
 }
 
@@ -112,6 +111,7 @@ void debuterTour(Jeu& jeu, int& scoreTour)
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
                       " : " + jeu.joueurs[jeu.plateau.joueurActuel].nom,
                     true);
+    afficherPileJoueurEnCours(jeu.joueurs[jeu.plateau.joueurActuel]);
 }
 
 bool estPartieFinie(const Jeu& jeu)
