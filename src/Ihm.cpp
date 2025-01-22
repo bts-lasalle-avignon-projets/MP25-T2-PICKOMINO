@@ -81,7 +81,7 @@ void afficherBienvenue()
                                                                    )";
 
     std::string version = "Version : V" + std::string(VERSION);
-    std::string releaseDate = "Release : 15/12/2024";
+    std::string releaseDate = "Release : 22/01/2025";
     std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
     afficherTitre(asciiArt, LARGEUR_MAX);

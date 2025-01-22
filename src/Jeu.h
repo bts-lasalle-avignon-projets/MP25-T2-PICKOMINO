@@ -8,7 +8,7 @@
 #include <fstream>
 #include <ctime>
 
-#define VERSION "1.0"
+#define VERSION "1.1"
 
 // #define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
