@@ -29,6 +29,7 @@
 /*
 void afficherInstructions();
 */
+void afficherReglesDeJeu();
 int  selectionnerOptionsDeJeu();
 int  selectionnerModeDeJeu();
 void afficherBienvenue();

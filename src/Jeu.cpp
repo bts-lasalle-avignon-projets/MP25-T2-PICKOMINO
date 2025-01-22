@@ -14,7 +14,7 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))    
+    while(!estPartieFinie(jeu))
     {
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
@@ -244,17 +244,15 @@ void enregistrerScore(const Jeu& jeu, int indexVainqueur)
     std::ofstream fichier("docs/scores.txt", std::ios::app);
     if(!fichier)
     {
-        afficherMessage("Impossible d'entrer le score dans le fichier");
+        afficherMessage("Impossible d'ouvrir le fichier");
         return;
     }
 
     std::time_t actuel = std::time(nullptr);
     char        dateHeure[100];
     std::strftime(dateHeure, sizeof(dateHeure), "%d-%m-%Y %Hh%M", std::localtime(&actuel));
-    fichier << "[" << dateHeure << ";" 
-            << jeu.joueurs[indexVainqueur].nom << ";" 
-            << jeu.joueurs[indexVainqueur].score << "]" 
-            << std::endl;
+    fichier << "[" << dateHeure << ";" << jeu.joueurs[indexVainqueur].nom << ";"
+            << jeu.joueurs[indexVainqueur].score << "]" << std::endl;
     fichier.close();
     afficherMessage("Score enregistré dans le fichier !");
 }
