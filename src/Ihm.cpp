@@ -9,45 +9,99 @@ void afficherInstructions()
 {
 
 }
-
-void afficherOptionsDeJeu()
-{
-
-}
 */
+
+#include <iostream>
+
+int selectionnerOptionsDeJeu()
+{
+    int choix;
+
+    std::cout << "\nQue souhaitez vous faire ?\n";
+    std::cout << "1. Jouer\n";
+    std::cout << "2. Afficher l'historique des parties\n";
+    std::cout << "3. Règles du jeu\n";
+    std::cout << "4. Quitter\n";
+    std::cout << "Entrez votre choix (1-4) : ";
+
+    std::cin >> choix;
+    return choix;
+}
+
+int selectionnerModeDeJeu()
+{
+    int choix;
+
+    std::cout << "\nChoisissez votre mode de jeu :\n";
+    std::cout << "1. Joueur contre joueur\n";
+    std::cout << "2. Joueur contre IA\n";
+    std::cout << "3. IA contre IA\n";
+    std::cout << "4. Quitter\n";
+    std::cout << "Entrez votre choix (1-4) : ";
+
+    std::cin >> choix;
+    return choix;
+}
+
+void afficherMenu(const std::string& texte, int largeur)
+{
+    int espaces = (largeur - texte.size()) / 2;
+    std::cout << std::string(espaces, ' ') << texte << std::endl;
+}
+
+void afficherTitre(const std::string& asciiArt, int largeur)
+{
+    size_t maxLength = 0;
+    size_t debut     = 0;
+    while(debut < asciiArt.size())
+    {
+        size_t fin = asciiArt.find('\n', debut);
+        if(fin == std::string::npos)
+        {
+            fin = asciiArt.size();
+        }
+        maxLength = std::max(maxLength, fin - debut);
+        debut     = fin + 1;
+    }
+
+    int espacesAscii = (largeur - maxLength) / 2;
+    std::cout << std::string(largeur, '-') << std::endl;
+
+    debut = 0;
+    while(debut < asciiArt.size())
+    {
+        size_t fin = asciiArt.find('\n', debut);
+        if(fin == std::string::npos)
+        {
+            fin = asciiArt.size();
+        }
+        std::cout << std::string(espacesAscii, ' ') << asciiArt.substr(debut, fin - debut)
+                  << std::endl;
+        debut = fin + 1;
+    }
+
+    std::cout << std::string(largeur, '-') << std::endl;
+}
 
 void afficherBienvenue()
 {
     std::string asciiArt = R"(
-______ _____ _____  _   __________  ________ _   _ _____
-| ___ \_   _/  __ \| | / /  _  |  \/  |_   _| \ | |  _  |
-| |_/ / | | | /  \/| |/ /| | | | .  . | | | |  \| | | | |
-|  __/  | | | |    |    \| | | | |\/| | | | | . ` | | | |
-| |    _| |_| \__/\| |\  \ \_/ / |  | |_| |_| |\  \ \_/ /
-\_|    \___/ \____/\_| \_/\___/\_|  |_/\___/\_| \_/\___/ )";
+ ____    ___    ____   _  __   ___    __  __   ___   _   _    ___  
+|  _ \  |_ _|  / ___| | |/ /  / _ \  |  \/  | |_ _| | \ | |  / _ \
+| |_) |  | |  | |     | ' /  | | | | | |\/| |  | |  |  \| | | | | |
+|  __/   | |  | |___  | . \  | |_| | | |  | |  | |  | |\  | | |_| |
+|_|     |___|  \____| |_|\_\  \___/  |_|  |_| |___| |_| \_|  \___/
+                                                                   )";
 
-    std::string version = std::string("Version : V") + std::string(VERSION);
+    std::string version = "Version : V" + std::string(VERSION);
     std::string releaseDate = "Release : 15/12/2024";
     std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
-    int largeur = LARGEUR_MAX;
-    std::cout << std::string(largeur, '*');
-    std::cout << asciiArt << std::endl;
-    std::cout << std::string(largeur, '-') << std::endl;
-
-    int espacesVersion     = (largeur - version.size()) / 2;
-    int espacesReleaseDate = (largeur - releaseDate.size()) / 2;
-    int espacesEquipeDev   = (largeur - equipeDev.size()) / 2;
-
-    std::cout << std::string(espacesVersion, ' ') << version << std::endl;
-    std::cout << std::string(espacesReleaseDate, ' ') << releaseDate << std::endl;
-    std::cout << std::string(espacesEquipeDev, ' ') << equipeDev << std::endl;
-
-    std::string message        = "Bienvenue dans cette partie de PICKOMINO !";
-    int         espacesMessage = (largeur - message.size()) / 2;
-
-    std::cout << std::string(largeur, '-') << std::endl;
-    std::cout << std::string(espacesMessage, ' ') << message << std::endl;
+    afficherTitre(asciiArt, LARGEUR_MAX);
+    afficherMenu(version, LARGEUR_MAX);
+    afficherMenu(releaseDate, LARGEUR_MAX);
+    afficherMenu(equipeDev, LARGEUR_MAX);
+    afficherMenu("Bienvenue dans cette partie de PICKOMINO !", LARGEUR_MAX);
 }
 
 void afficherScores(const Jeu& jeu)
@@ -73,26 +127,48 @@ void afficherVainqueur(const Jeu& jeu, int indexVainqueur)
 
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
 {
+    int largeur = LARGEUR_MAX;
+
+    std::string titreBrochette = "Brochette :";
+
+    int espacesTitre = (largeur - (titreBrochette.size())) / 2;
+    std::cout << std::string(espacesTitre, ' ') << titreBrochette << std::endl;
+    std::cout << std::string(largeur, '-') << std::endl;
+
     std::string ligneValeur;
     std::string ligneNombreDeVers;
 
-    std::cout << "Brochette : " << std::endl;
     for(int i = 0; i < NB_PICKOMINOS; ++i)
     {
+        std::string valeurAffichee;
+        std::string versAffiche;
+
         if(brochette[i].etat == Pickomino::VISIBLE)
         {
-            ligneValeur += std::to_string(brochette[i].valeur) + " ";
-            ligneNombreDeVers += std::to_string(brochette[i].nombreDeVers) + "  ";
+            valeurAffichee = std::to_string(brochette[i].valeur);
+            versAffiche    = std::to_string(brochette[i].nombreDeVers);
         }
         else if(brochette[i].etat == Pickomino::RETOURNE)
         {
-            ligneValeur += "X  ";
-            ligneNombreDeVers += "X  ";
+            valeurAffichee = "X";
+            versAffiche    = "X";
         }
+
+        ligneValeur += valeurAffichee + std::string(4 - valeurAffichee.size(), ' ');
+        ligneNombreDeVers += versAffiche + std::string(4 - versAffiche.size(), ' ');
     }
 
-    std::cout << ligneValeur << std::endl;
-    std::cout << ligneNombreDeVers << std::endl;
+    int espacesLigneValeur = (largeur - (ligneValeur.size())) / 2;
+    int espacesLigneVers   = (largeur - (ligneNombreDeVers.size())) / 2;
+
+    if(espacesLigneValeur < 0)
+        espacesLigneValeur = 0;
+    if(espacesLigneVers < 0)
+        espacesLigneVers = 0;
+
+    std::cout << std::string(espacesLigneValeur, ' ') << ligneValeur << std::endl;
+    std::cout << std::string(espacesLigneVers, ' ') << ligneNombreDeVers << std::endl;
+    std::cout << std::string(largeur, '-') << std::endl;
 }
 
 void afficherJoueurs(const Jeu& jeu)
@@ -151,7 +227,7 @@ bool afficherPileJoueurEnCours(const Joueur& joueur)
         std::cout << joueur.pile[i].valeur << std::endl;
     }
     if(joueur.sommet == 0)
-        std::cout << "vide" << std::endl;
+        std::cout << RED << "vide" << RESET << std::endl;
     return true;
 }
 
@@ -235,7 +311,14 @@ void afficherMessage(const std::string& message, bool nouvelleLigne /*= true*/)
 }
 void afficherSeparation()
 {
-    std::cout << "\n==============================" << std::endl;
+    std::cout << "\n===================================================================="
+                 "============\n"
+              << std::endl;
+}
+
+void clearAffichage()
+{
+    system("clear");
 }
 
 int convertirValeur(std::string valeur)

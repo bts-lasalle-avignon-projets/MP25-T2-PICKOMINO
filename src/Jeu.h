@@ -7,7 +7,7 @@
 
 #define VERSION "1.0"
 
-//#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
+// #define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define JOUEUR_PAR_DEFAUT 0
 
@@ -20,7 +20,9 @@ struct Jeu
 
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
+void choisirOptionJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
+void choisirModeDeJeu(Jeu& jeu);
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
 bool estPartieFinie(const Jeu& jeu);
