@@ -20,7 +20,9 @@ struct Jeu
 
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
+void choisirOptionJeu(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
+void choisirModeDeJeu(Jeu& jeu);
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
 bool estPartieFinie(const Jeu& jeu);

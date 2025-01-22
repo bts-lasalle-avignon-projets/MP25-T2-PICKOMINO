@@ -13,36 +13,34 @@ void afficherInstructions()
 
 #include <iostream>
 
-void afficherOptionsDeJeu()
+int selectionnerOptionsDeJeu()
 {
     int choix;
 
-    std::cout << "\nMenu Options du Jeu :\n";
+    std::cout << "\nQue souhaitez vous faire ?\n";
     std::cout << "1. Jouer\n";
-    std::cout << "2. Choisir le mode de jeu\n";
+    std::cout << "2. Afficher l'historique des parties\n";
     std::cout << "3. Règles du jeu\n";
     std::cout << "4. Quitter\n";
     std::cout << "Entrez votre choix (1-4) : ";
 
     std::cin >> choix;
+    return choix;
+}
 
-    switch(choix)
-    {
-        case 1:
-            break;
-        case 2:
+int selectionnerModeDeJeu()
+{
+    int choix;
 
-            break;
-        case 3:
+    std::cout << "\nChoisissez votre mode de jeu :\n";
+    std::cout << "1. Joueur contre joueur\n";
+    std::cout << "2. Joueur contre IA\n";
+    std::cout << "3. IA contre IA\n";
+    std::cout << "4. Quitter\n";
+    std::cout << "Entrez votre choix (1-4) : ";
 
-            break;
-        case 4:
-            std::cout << "Au revoir !\n";
-            exit(0);
-        default:
-            std::cout << "Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n";
-            break;
-    }
+    std::cin >> choix;
+    return choix;
 }
 
 void afficherMenu(const std::string& texte, int largeur)

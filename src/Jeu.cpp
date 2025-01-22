@@ -27,12 +27,59 @@ void initialiserJeu(Jeu& jeu)
 {
     clearAffichage();
     afficherBienvenue();
-    creerJoueurs(jeu);
+    choisirOptionJeu(jeu);
     initialiserPlateau(jeu.plateau, true);
+}
+
+void choisirOptionJeu(Jeu& jeu)
+{
+    switch(selectionnerOptionsDeJeu())
+    {
+        case 1: // Mode de jeu
+            choisirModeDeJeu(jeu);
+            break;
+        case 2: // Historique
+            afficherMessage("Coming soon ...");
+            choisirOptionJeu(jeu);
+            break;
+        case 3: // Règles
+            afficherMessage("Coming soon ...");
+            choisirOptionJeu(jeu);
+            break;
+        case 4: // Quitter
+            exit(0);
+        default:
+            afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            break;
+    }
+}
+
+void choisirModeDeJeu(Jeu& jeu)
+{
+    clearAffichage();
+    switch(selectionnerModeDeJeu())
+    {
+        case 1:
+            creerJoueurs(jeu);
+            break;
+        case 2:
+            afficherMessage("Coming soon ...");
+            break;
+        case 3:
+            afficherMessage("Coming soon ...");
+            break;
+        case 4:
+            choisirOptionJeu(jeu);
+            break;
+        default:
+            afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            break;
+    }
 }
 
 void creerJoueurs(Jeu& jeu)
 {
+    clearAffichage();
     jeu.nbJoueurs = saisirNbJoueurs();
 
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
@@ -104,7 +151,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
-    clearAffichage();
+    // clearAffichage();
     initialiserPlateau(jeu.plateau);
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
