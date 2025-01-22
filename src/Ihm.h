@@ -16,9 +16,11 @@
 void afficherInstructions();
 void afficherOptionsDeJeu();
 */
+void afficherReglesDeJeu();
 void afficherBienvenue();
 void afficherHistorique();
-void traiterTrame(const std::string &trame);
+void effacerHistorique();
+void traiterTrame(const std::string& trame);
 void afficherScores(const Jeu& jeu);
 void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 
