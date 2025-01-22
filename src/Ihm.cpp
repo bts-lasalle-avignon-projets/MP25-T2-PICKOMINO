@@ -167,11 +167,12 @@ void traiterTrame(const std::string& trame)
 void afficherHistorique()
 {
     clearAffichage();
-    afficherMessage("Historique des parties :\n");
+    std::cout << BOLD << "Historique des parties :\n" << RESET << std::endl;
     std::ifstream fichier("docs/scores.txt", std::ios::app);
     if(!fichier)
     {
-        afficherMessage("Impossible d'afficher l'historique des parties");
+        std::cout << BOLD << RED << "ERREUR : Impossible d'afficher l'historique des parties !"
+                  << RESET << std::endl;
         return;
     }
     std::string ligne;
@@ -188,7 +189,8 @@ void effacerHistorique()
     std::ofstream fichier("docs/scores.txt", std::ios::trunc);
     if(!fichier)
     {
-        afficherMessage("Impossible d'effacer l'historique des parties");
+        std::cout << BOLD << RED << "ERREUR : Impossible d'effacer l'historique des parties !"
+                  << RESET << std::endl;
         return;
     }
 

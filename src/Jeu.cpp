@@ -155,7 +155,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
-    // clearAffichage();
+    clearAffichage();
     initialiserPlateau(jeu.plateau);
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
@@ -244,7 +244,7 @@ void enregistrerScore(const Jeu& jeu, int indexVainqueur)
     std::ofstream fichier("docs/scores.txt", std::ios::app);
     if(!fichier)
     {
-        afficherMessage("Impossible d'ouvrir le fichier");
+        afficherMessage("Impossible d'enregistrer le score");
         return;
     }
 
