@@ -64,9 +64,11 @@ void choisirModeDeJeu(Jeu& jeu)
             break;
         case 2:
             afficherMessage("Coming soon ...");
+            choisirModeDeJeu(jeu);
             break;
         case 3:
             afficherMessage("Coming soon ...");
+            choisirModeDeJeu(jeu);
             break;
         case 4:
             choisirOptionJeu(jeu);
