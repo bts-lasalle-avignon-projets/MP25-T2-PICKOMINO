@@ -39,11 +39,11 @@ void choisirOptionJeu(Jeu& jeu)
             choisirModeDeJeu(jeu);
             break;
         case 2: // Historique
-            afficherMessage("Coming soon ...");
+            afficherHistorique();
             choisirOptionJeu(jeu);
             break;
         case 3: // Règles
-            afficherMessage("Coming soon ...");
+            afficherReglesDeJeu();
             choisirOptionJeu(jeu);
             break;
         case 4: // Quitter
@@ -153,7 +153,7 @@ void jouerTour(Jeu& jeu, int nbJoueur)
 
 void debuterTour(Jeu& jeu, int& scoreTour)
 {
-    // clearAffichage();
+    clearAffichage();
     initialiserPlateau(jeu.plateau);
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
@@ -174,6 +174,7 @@ void terminerPartie(Jeu& jeu)
     int indexVainqueur = determinerVainqueur(jeu);
     afficherScores(jeu);
     afficherVainqueur(jeu, indexVainqueur);
+    enregistrerScore(jeu, indexVainqueur);
 }
 
 int determinerVainqueur(Jeu& jeu)
@@ -234,4 +235,22 @@ void calculerVers(Jeu& jeu)
             jeu.joueurs[i].score += jeu.joueurs[i].pile[j].nombreDeVers;
         }
     }
+}
+
+void enregistrerScore(const Jeu& jeu, int indexVainqueur)
+{
+    std::ofstream fichier("docs/scores.txt", std::ios::app);
+    if(!fichier)
+    {
+        afficherMessage("Impossible d'enregistrer le score");
+        return;
+    }
+
+    std::time_t actuel = std::time(nullptr);
+    char        dateHeure[100];
+    std::strftime(dateHeure, sizeof(dateHeure), "%d-%m-%Y %Hh%M", std::localtime(&actuel));
+    fichier << "[" << dateHeure << ";" << jeu.joueurs[indexVainqueur].nom << ";"
+            << jeu.joueurs[indexVainqueur].score << "]" << std::endl;
+    fichier.close();
+    afficherMessage("Score enregistré dans le fichier !");
 }

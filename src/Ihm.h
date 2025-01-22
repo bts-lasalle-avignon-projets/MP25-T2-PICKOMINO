@@ -2,6 +2,9 @@
 #define IHM_H
 
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "Donnees.h"
 #include "Plateau.h"
@@ -29,9 +32,12 @@
 /*
 void afficherInstructions();
 */
+void afficherReglesDeJeu();
 int  selectionnerOptionsDeJeu();
 int  selectionnerModeDeJeu();
 void afficherBienvenue();
+void afficherHistorique();
+void traiterTrame(const std::string& trame);
 void afficherMenu(const std::string& texte, int largeur);
 void afficherTitre(const std::string& asciiArt, int largeur);
 void afficherScores(const Jeu& jeu);
