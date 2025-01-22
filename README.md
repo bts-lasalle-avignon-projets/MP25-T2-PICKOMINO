@@ -24,7 +24,7 @@
 
 - Nom du mini-projet : Pickomino
 - Date de début : 30 Septembre 2024
-- Numéro de version du jeu : 1.0
+- Numéro de version du jeu : 1.1
 
 ## Le jeu du Pickomino
 
@@ -91,6 +91,11 @@ Le programme permet de jouer une partie de Pickomino de 2 à 7 joueurs.
 
 - [x] Saisir le nombre de joueurs ainsi que leur nom
 - [x] Jouer une partie
+
+### Version 1.1
+  - [x] Ajout d'un menu
+  - [x] Refonte de l'affichage
+  - [x] Afficher l'historique des parties jouées
 
 ## TODO
 
