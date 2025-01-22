@@ -5,6 +5,9 @@
 #include "Plateau.h"
 #include "Joueur.h"
 
+#include <fstream>
+#include <ctime>
+
 #define VERSION "1.0"
 
 // #define DEBUG_JEU // ou -DDEBUG_JEU dans g++

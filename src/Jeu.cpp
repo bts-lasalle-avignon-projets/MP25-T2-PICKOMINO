@@ -2,8 +2,6 @@
 #include "Ihm.h"
 #include "Plateau.h"
 #include "Joueur.h"
-#include <fstream>
-#include <ctime>
 
 #ifdef DEBUG_JEU
 #include <iostream>

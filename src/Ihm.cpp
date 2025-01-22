@@ -1,20 +1,4 @@
 #include "Ihm.h"
-#include "Donnees.h"
-
-#include <iostream>
-#include <fstream>
-#include <sstream>
-
-// Affichage des dialogues
-
-/*
-void afficherInstructions()
-{
-
-}
-*/
-
-#include <iostream>
 
 int selectionnerOptionsDeJeu()
 {

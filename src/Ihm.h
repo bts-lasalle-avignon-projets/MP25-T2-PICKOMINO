@@ -2,6 +2,9 @@
 #define IHM_H
 
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 #include "Donnees.h"
 #include "Plateau.h"
