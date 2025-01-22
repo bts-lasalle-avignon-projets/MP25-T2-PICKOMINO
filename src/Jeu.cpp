@@ -113,6 +113,55 @@ void jouerTour(Jeu& jeu, int nbJoueur)
         {
             afficherMessage("Toutes les valeurs des dés lancés sont déjà retenues !");
             scoreTour = 0;
+        }
+
+        void choisirOptionJeu(Jeu & jeu)
+        {
+            switch(selectionnerOptionsDeJeu())
+            {
+                case 1: // Mode de jeu
+                    choisirModeDeJeu(jeu);
+                    break;
+                case 2: // Historique
+                    afficherMessage("Coming soon ...");
+                    choisirOptionJeu(jeu);
+                    break;
+                case 3: // Règles
+                    afficherMessage("Coming soon ...");
+                    choisirOptionJeu(jeu);
+                    break;
+                case 4: // Quitter
+                    exit(0);
+                default:
+                    afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+                    break;
+            }
+        }
+
+        void choisirModeDeJeu(Jeu & jeu)
+        {
+            clearAffichage();
+            switch(selectionnerModeDeJeu())
+            {
+                case 1:
+                    creerJoueurs(jeu);
+                    break;
+                case 2:
+                    afficherMessage("Coming soon ...");
+                    choisirModeDeJeu(jeu);
+                    break;
+                case 3:
+                    afficherMessage("Coming soon ...");
+                    choisirModeDeJeu(jeu);
+                    break;
+                case 4:
+                    choisirOptionJeu(jeu);
+                    break;
+                default:
+                    afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+                    break;
+            }
+
             lancerNul = true;
         }
         else
