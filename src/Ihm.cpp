@@ -109,7 +109,7 @@ void afficherBienvenue()
 
 void afficherReglesDeJeu()
 {
-    afficherSeparation();
+    clearAffichage();
     std::cout << "Règles du jeu :\n" << std::endl;
     std::cout << "Lancez les 8 dés, choisissez une valeur de dés à mettre de côté, puis décidez de "
                  "relancer ou pas."
@@ -137,6 +137,7 @@ void afficherReglesDeJeu()
     std::cout << "Le joueur ayant le plus de vers à remporté la partie." << std::endl;
 
     std::cout << "En cas d'égalité, le joueur ayant le Pickomino le plus élevé gagne." << std::endl;
+    afficherSeparation();
 }
 
 void traiterTrame(const std::string& trame)
@@ -165,7 +166,7 @@ void traiterTrame(const std::string& trame)
 
 void afficherHistorique()
 {
-    afficherSeparation();
+    clearAffichage();
     afficherMessage("Historique des parties :\n");
     std::ifstream fichier("docs/scores.txt", std::ios::app);
     if(!fichier)
@@ -179,92 +180,7 @@ void afficherHistorique()
         traiterTrame(ligne);
     }
     fichier.close();
-}
-
-void effacerHistorique()
-{
-    std::ofstream fichier("docs/scores.txt", std::ios::trunc);
-    if(!fichier)
-    {
-        afficherMessage("Impossible d'effacer l'historique des parties");
-        return;
-    }
-
-    fichier.close();
-}
-
-void afficherReglesDeJeu()
-{
     afficherSeparation();
-    std::cout << "Règles du jeu :\n" << std::endl;
-    std::cout << "Lancez les 8 dés, choisissez une valeur de dés à mettre de côté, puis décidez de "
-                 "relancer ou pas."
-              << std::endl;
-
-    std::cout << "Vous pouvez relancer les dés restants autant de fois que vous le souhaitez, à "
-                 "condition de toujours pouvoir retenir une valeur de dés différente.\n"
-              << std::endl;
-
-    std::cout << "Si vous êtes dans l'incapacité de le faire alors vous devrez rendre un de vos "
-                 "précieux Pickomino et passer votre tour !\n"
-              << std::endl;
-
-    std::cout
-      << "Lorsque votre tour est fini, faites l’addition pour savoir quel Pickomino prendre au "
-         "centre de la table (la brochette) ou même dans la main de vos adversaires !\n"
-      << std::endl;
-
-    std::cout
-      << "La partie prend fin lorsqu'il ne reste plus aucun Pickomino visible sur la brochette."
-      << std::endl;
-
-    std::cout << "Chaque joueur va alors compter le nombre de vers qu'il possède." << std::endl;
-
-    std::cout << "Le joueur ayant le plus de vers à remporté la partie." << std::endl;
-
-    std::cout << "En cas d'égalité, le joueur ayant le Pickomino le plus élevé gagne." << std::endl;
-}
-
-void traiterTrame(const std::string& trame)
-{
-    size_t debutTrame = 0;
-
-    while((debutTrame = trame.find('[', debutTrame)) != std::string::npos)
-    {
-        size_t      finTrame  = trame.find(']', debutTrame);
-        std::string contenu   = trame.substr(debutTrame + 1, finTrame - debutTrame - 1);
-        size_t      position1 = contenu.find(';');
-        size_t      position2 = contenu.find(';', position1 + 1);
-
-        std::string date  = contenu.substr(0, position1);
-        std::string nom   = contenu.substr(position1 + 1, position2 - position1 - 1);
-        std::string score = contenu.substr(position2 + 1);
-
-        std::cout << "Date : " << date << std::endl;
-        std::cout << "Nom du vainqueur : " << nom << std::endl;
-        std::cout << "Score : " << score << " vers" << std::endl;
-        std::cout << "---------------------------" << std::endl;
-
-        debutTrame = finTrame + 1;
-    }
-}
-
-void afficherHistorique()
-{
-    afficherSeparation();
-    afficherMessage("Historique des parties :\n");
-    std::ifstream fichier("docs/scores.txt", std::ios::app);
-    if(!fichier)
-    {
-        afficherMessage("Impossible d'afficher l'historique des parties");
-        return;
-    }
-    std::string ligne;
-    while(std::getline(fichier, ligne))
-    {
-        traiterTrame(ligne);
-    }
-    fichier.close();
 }
 
 void effacerHistorique()
