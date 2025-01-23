@@ -239,7 +239,7 @@ void calculerVers(Jeu& jeu)
 
 void enregistrerScore(const Jeu& jeu, int indexVainqueur)
 {
-    std::ofstream fichier("docs/scores.txt", std::ios::app);
+    std::ofstream fichier(FICHIER_SCORE, std::ios::app);
     if(!fichier)
     {
         afficherMessage("Impossible d'enregistrer le score");

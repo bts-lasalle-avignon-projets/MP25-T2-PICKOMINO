@@ -37,7 +37,7 @@ int  selectionnerOptionsDeJeu();
 int  selectionnerModeDeJeu();
 void afficherBienvenue();
 void afficherHistorique();
-void traiterTrame(const std::string& trame);
+void traiterLigne(const std::string& trame);
 void afficherMenu(const std::string& texte, int largeur);
 void afficherTitre(const std::string& asciiArt, int largeur);
 void afficherScores(const Jeu& jeu);

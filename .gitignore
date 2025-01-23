@@ -35,4 +35,4 @@
 *.vscode
 
 # Scores
-docs/scores.txt
+*.txt
