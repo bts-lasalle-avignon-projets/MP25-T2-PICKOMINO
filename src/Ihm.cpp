@@ -81,7 +81,7 @@ void afficherBienvenue()
                                                                    )";
 
     std::string version = "Version : V" + std::string(VERSION);
-    std::string releaseDate = "Release : 15/12/2024";
+    std::string releaseDate = "Release : 22/01/2025";
     std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
     afficherTitre(asciiArt, LARGEUR_MAX);
@@ -124,7 +124,7 @@ void afficherReglesDeJeu()
     afficherSeparation();
 }
 
-void traiterTrame(const std::string& trame)
+void traiterLigne(const std::string& trame)
 {
     size_t debutTrame = 0;
 
@@ -152,7 +152,7 @@ void afficherHistorique()
 {
     clearAffichage();
     std::cout << BOLD << "Historique des parties :\n" << RESET << std::endl;
-    std::ifstream fichier("docs/scores.txt", std::ios::app);
+    std::ifstream fichier(FICHIER_SCORE, std::ios::app);
     if(!fichier)
     {
         std::cout << BOLD << RED << "ERREUR : Impossible d'afficher l'historique des parties !"
@@ -162,7 +162,7 @@ void afficherHistorique()
     std::string ligne;
     while(std::getline(fichier, ligne))
     {
-        traiterTrame(ligne);
+        traiterLigne(ligne);
     }
     fichier.close();
     afficherSeparation();
