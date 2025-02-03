@@ -61,6 +61,7 @@ unsigned int saisirNbIa();
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();
+bool         relancerPartie();
 
 // Utilitaires
 
