@@ -405,3 +405,19 @@ int convertirValeur(std::string valeur)
     else
         return std::stoi(valeur);
 }
+
+bool relancerPartie()
+{
+    char choix;
+    std::cout << "Voulez vous rejouer ? O/N";
+    std::cin >> choix;
+    if(choix == 'o' || choix == 'O')
+        return (true);
+    if(choix == 'n' || choix == 'N')
+        return (false);
+    else
+    {
+        std::cout << "Veuillez saisir O ou N." << std::endl;
+        return relancerPartie();
+    }
+}

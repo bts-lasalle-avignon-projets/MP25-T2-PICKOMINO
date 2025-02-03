@@ -175,6 +175,10 @@ void terminerPartie(Jeu& jeu)
     afficherScores(jeu);
     afficherVainqueur(jeu, indexVainqueur);
     enregistrerScore(jeu, indexVainqueur);
+    if(relancerPartie())
+        jouerPickomino();
+    else
+        exit;
 }
 
 int determinerVainqueur(Jeu& jeu)
