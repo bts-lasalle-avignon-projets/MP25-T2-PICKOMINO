@@ -1,11 +1,12 @@
 #include "Joueur.h"
 #include "Ihm.h"
 
-void assignerJoueur(Joueur& joueur, std::string nom, int numero)
+void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa)
 {
     joueur.nom    = nom;
     joueur.numero = numero;
     joueur.sommet = 0;
+    joueur.estIa  = estIa;
 }
 
 bool prendrePickomino(Jeu& jeu, int scoreJoueur)

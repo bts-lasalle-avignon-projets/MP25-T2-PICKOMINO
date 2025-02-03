@@ -4,6 +4,7 @@
 #include "Donnees.h"
 #include "Plateau.h"
 #include "Joueur.h"
+#include "Ia.h"
 
 #include <fstream>
 #include <ctime>
@@ -18,6 +19,8 @@
 struct Jeu
 {
     unsigned int nbJoueurs;
+    unsigned int nbIa;
+    int          niveauIa;
     Joueur       joueurs[NB_JOUEURS_MAX];
     Plateau      plateau;
 };
@@ -25,7 +28,10 @@ struct Jeu
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void choisirOptionJeu(Jeu& jeu);
+void choisirNiveauIa(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
+void creerJoueurSolo(Jeu& jeu);
+void creerIA(Jeu& jeu);
 void choisirModeDeJeu(Jeu& jeu);
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
