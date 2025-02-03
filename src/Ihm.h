@@ -58,6 +58,7 @@ unsigned int saisirNbJoueurs();
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();
+bool         relancerPartie();
 
 // Utilitaires
 
