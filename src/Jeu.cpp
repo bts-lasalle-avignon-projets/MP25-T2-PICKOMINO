@@ -17,7 +17,14 @@ void jouerPickomino()
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
         {
-            jouerTour(jeu, jeu.plateau.joueurActuel);
+            if(!jeu.joueurs[jeu.plateau.joueurActuel].estIa)
+            {
+                jouerTour(jeu, jeu.plateau.joueurActuel);
+            }
+            else
+            {
+                jouerTourIa(jeu, jeu.plateau.joueurActuel);
+            }
         }
     }
     terminerPartie(jeu);
@@ -129,7 +136,7 @@ void creerIA(Jeu& jeu)
     for(unsigned int i = 1; i <= jeu.nbIa; ++i)
     {
         std::string nomIa = "IA " + std::to_string(i);
-        assignerJoueur(jeu.joueurs[i], nomIa, i + 1, true);
+        assignerJoueur(jeu.joueurs[i], nomIa, i, true);
     }
 
     jeu.nbJoueurs = jeu.nbIa + 1;

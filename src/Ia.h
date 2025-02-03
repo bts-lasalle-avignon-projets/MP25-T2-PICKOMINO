@@ -16,10 +16,12 @@ enum Difficulte_Ia
     DIFFICILE,
 };
 
-void jouerPickominoIa();
-void initialiserJeuIa(Jeu& jeu);
-bool parcourirBrochetteIa(Plateau& plateau);
-int  choisirFaceIa(Jeu& jeu);
-int  choisirFaceAleatoireIa(Plateau& plateau);
+void jouerTourIa(Jeu& jeu, int numIa);
+void debuterTourIa(Jeu& jeu, int& scoreTour);
+int  choisirFaceDifficulteIA(Jeu& jeu);
+void retenirDesIa(Jeu& jeu);
+int  choisirFaceAleatoireIa(Jeu& jeu);
+int  trouverValeurMax(Jeu& jeu);
+int  verifierMinPickomino(Jeu& jeu);
 
 #endif
