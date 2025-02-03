@@ -30,12 +30,10 @@ bool prendrePickomino(Jeu& jeu, int scoreJoueur)
         return true;
     }
 
-    else if(jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::PRIS)
+    if(jeu.plateau.brochette[scoreJoueur - VALEUR_PICKOMINO_MIN].etat == Pickomino::PRIS)
     {
         for(unsigned int i = 0; i < jeu.nbJoueurs; i++)
         {
-            if(jeu.plateau.joueurActuel == i)
-                i++;
             if(estAuSommet(jeu.joueurs[i], scoreJoueur))
             {
                 picorer(jeu, jeu.joueurs[i], scoreJoueur);
