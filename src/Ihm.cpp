@@ -30,6 +30,20 @@ int selectionnerModeDeJeu()
     return choix;
 }
 
+int selectionnerNiveauIa()
+{
+    int choix;
+
+    std::cout << "\nChoisissez le niveau de difficulté de l'IA:\n";
+    std::cout << "1. Niveau facile\n";
+    std::cout << "2. Niveau moyen\n";
+    std::cout << "3. Niveau difficile\n";
+    std::cout << "Entrez votre choix (1-3) : ";
+
+    std::cin >> choix;
+    return choix;
+}
+
 void afficherMenu(const std::string& texte, int largeur)
 {
     int espaces = (largeur - texte.size()) / 2;
@@ -80,7 +94,7 @@ void afficherBienvenue()
 |_|     |___|  \____| |_|\_\  \___/  |_|  |_| |___| |_| \_|  \___/
                                                                    )";
 
-    std::string version = "Version : V" + std::string(VERSION);
+    std::string version     = "Version : V" + std::string(VERSION);
     std::string releaseDate = "Release : 22/01/2025";
     std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
@@ -321,6 +335,19 @@ unsigned int saisirNbJoueurs()
     } while(nbJoueurs < NB_JOUEURS_MIN || nbJoueurs > NB_JOUEURS_MAX);
 
     return nbJoueurs;
+}
+
+unsigned int saisirNbIa()
+{
+    unsigned int nbIa = 0;
+
+    do
+    {
+        afficherMessage("Entrez le nombre d'IA : ", false);
+        std::cin >> nbIa;
+    } while(nbIa < NB_IA_MIN || nbIa > NB_IA_MAX);
+
+    return nbIa;
 }
 
 std::string saisirNomJoueur()
