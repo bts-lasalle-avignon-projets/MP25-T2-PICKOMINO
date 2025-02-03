@@ -10,6 +10,7 @@
 #include "Plateau.h"
 #include "Joueur.h"
 #include "Jeu.h"
+#include "Ia.h"
 
 // Mise en page
 #define LARGEUR_MAX 80
@@ -35,6 +36,7 @@ void afficherInstructions();
 void afficherReglesDeJeu();
 int  selectionnerOptionsDeJeu();
 int  selectionnerModeDeJeu();
+int  selectionnerNiveauIa();
 void afficherBienvenue();
 void afficherHistorique();
 void traiterLigne(const std::string& trame);
@@ -55,6 +57,7 @@ bool afficherPileJoueurEnCours(const Joueur& joueur);
 // Saisies
 
 unsigned int saisirNbJoueurs();
+unsigned int saisirNbIa();
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();

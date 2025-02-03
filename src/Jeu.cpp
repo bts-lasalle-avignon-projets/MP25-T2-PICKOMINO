@@ -59,22 +59,42 @@ void choisirModeDeJeu(Jeu& jeu)
     clearAffichage();
     switch(selectionnerModeDeJeu())
     {
-        case 1:
+        case 1: // Joueur VS Joueur
             creerJoueurs(jeu);
             break;
-        case 2:
+        case 2: // Joueur VS IA
+            creerIA(jeu);
+            break;
+        case 3: // IA VS IA
             afficherMessage("Coming soon ...");
             choisirModeDeJeu(jeu);
             break;
-        case 3:
-            afficherMessage("Coming soon ...");
-            choisirModeDeJeu(jeu);
-            break;
-        case 4:
+        case 4: // Quitter
             choisirOptionJeu(jeu);
             break;
         default:
             afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 4.\n");
+            break;
+    }
+}
+
+void choisirNiveauIa(Jeu& jeu)
+{
+    switch(selectionnerNiveauIa())
+    {
+        case 1: // Version facile
+            jeu.niveauIa = FACILE;
+            break;
+        case 2: // Version normale
+            afficherMessage("Coming soon ...");
+            choisirNiveauIa(jeu);
+            break;
+        case 3: // Version difficile
+            afficherMessage("Coming soon ...");
+            choisirNiveauIa(jeu);
+            break;
+        default:
+            afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
             break;
     }
 }
@@ -88,8 +108,33 @@ void creerJoueurs(Jeu& jeu)
     {
         afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
         std::string nomJoueur = saisirNomJoueur();
-        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1);
+        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1, false);
     }
+}
+
+void creerJoueurSolo(Jeu& jeu)
+{
+    clearAffichage();
+    afficherMessage("Entrez le nom du joueur : ", false);
+    std::string nomJoueur = saisirNomJoueur();
+    assignerJoueur(jeu.joueurs[0], nomJoueur, 0, false);
+}
+
+void creerIA(Jeu& jeu)
+{
+    clearAffichage();
+    creerJoueurSolo(jeu);
+    jeu.nbIa = saisirNbIa();
+
+    for(unsigned int i = 1; i <= jeu.nbIa; ++i)
+    {
+        std::string nomIa = "IA " + std::to_string(i);
+        assignerJoueur(jeu.joueurs[i], nomIa, i + 1, true);
+    }
+
+    jeu.nbJoueurs = jeu.nbIa + 1;
+
+    choisirNiveauIa(jeu);
 }
 
 void jouerTour(Jeu& jeu, int nbJoueur)
