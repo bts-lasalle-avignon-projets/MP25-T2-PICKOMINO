@@ -35,10 +35,13 @@ void choisirModeDeJeu(Jeu& jeu);
 void choisirNiveauIa(Jeu& jeu);
 void creerPartieJoueurs(Jeu& jeu);
 void creerPartieIA(Jeu& jeu);
-void creerPartieIaVsIa(Jeu& jeu);
+void creerPartieIaVsIa(Jeu & jeu);
+void creerJoueurs(Jeu& jeu);
 void creerIA(Jeu& jeu);
-void initialiserNbJoueurs(Jeu& jeu);
-void choisirModeDeJeu(Jeu& jeu);
+void initialiserDonnees(Jeu& jeu);
+
+// Fonctions de partie
+
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
 void calculerVers(Jeu& jeu);

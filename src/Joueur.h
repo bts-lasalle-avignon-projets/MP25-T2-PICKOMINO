@@ -20,9 +20,10 @@ struct Joueur
 
 // Fonctions avant partie
 
+// Fonctions avant partie
+
 void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa);
-void assignerAge(Joueur& joueur);
-int trouverPlusJeune(Jeu& jeu);
+void assignerAge(Joueur& joueur, int age);
 
 // Fonctions de partie
 
@@ -31,6 +32,7 @@ bool prendrePickomino(Jeu& jeu, int scoreJoueur);
 bool estAuSommet(Joueur& joueur, int valeurPickomino);
 bool picorer(Jeu& jeu, Joueur& cible, int valeurPickomino);
 bool aDejaPickomino(Joueur& joueur, int valeurPickomino);
+
 
 void rendrePickomino(Jeu& jeu);
 void retournerDernierPickomino(Pickomino (&brochette)[NB_PICKOMINOS]);
