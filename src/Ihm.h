@@ -30,13 +30,7 @@
 
 // Affichage des dialogues
 
-/*
-void afficherInstructions();
-*/
 void afficherReglesDeJeu();
-int  selectionnerOptionsDeJeu();
-int  selectionnerModeDeJeu();
-int  selectionnerNiveauIa();
 void afficherBienvenue();
 void afficherHistorique();
 void traiterLigne(const std::string& trame);
@@ -54,13 +48,19 @@ void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 void afficherScore(const int& score);
 bool afficherPileJoueurEnCours(const Joueur& joueur);
 
+// Sélection
+
+int  selectionnerOptionsDeJeu();
+int  selectionnerModeDeJeu();
+int  selectionnerNiveauIa();
+
 // Saisies
 
 unsigned int saisirNbJoueurs(bool partieIa);
 unsigned int saisirNbIa(Jeu& Jeu, bool partieJoueur);
 std::string  saisirNomJoueur();
-bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();
+bool         choisirRelancer(int& nombreDes);
 bool         relancerPartie();
 
 // Utilitaires

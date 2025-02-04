@@ -16,12 +16,14 @@ enum Difficulte_Ia
     DIFFICILE,
 };
 
-void jouerTourIa(Jeu& jeu, int numIa);
+// Fonctions de partie
+
 void debuterTourIa(Jeu& jeu, int& scoreTour);
+void jouerTourIa(Jeu& jeu, int numIa);
 int  choisirFaceDifficulteIA(Jeu& jeu);
 void retenirDesIa(Jeu& jeu);
 int  choisirFaceAleatoireIa(Jeu& jeu);
 int  trouverValeurMax(Jeu& jeu);
 int  verifierMinPickomino(Jeu& jeu);
 
-#endif
+#endif // DONNEES_H
