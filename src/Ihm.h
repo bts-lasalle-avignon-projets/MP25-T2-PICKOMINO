@@ -57,8 +57,9 @@ int  selectionnerNiveauIa();
 // Saisies
 
 unsigned int saisirNbJoueurs(bool partieIa);
-unsigned int saisirNbIa(Jeu& Jeu, bool partieJoueur);
+unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur);
 std::string  saisirNomJoueur();
+unsigned int saisirAge();
 int          saisirValeurARetenir();
 bool         choisirRelancer(int& nombreDes);
 bool         relancerPartie();

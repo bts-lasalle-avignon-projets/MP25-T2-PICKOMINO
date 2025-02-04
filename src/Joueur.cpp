@@ -7,6 +7,15 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa)
     joueur.numero = numero;
     joueur.sommet = 0;
     joueur.estIa  = estIa;
+    assignerAge(joueur);
+}
+
+void assignerAge(Joueur& joueur)
+{
+    if(joueur.estIa == true)
+        joueur.age = 1;
+    else
+        joueur.age = saisirAge();
 }
 
 bool prendrePickomino(Jeu& jeu, int scoreJoueur)

@@ -10,6 +10,7 @@ struct Jeu;
 struct Joueur
 {
     std::string nom;
+    int         age;
     int         numero;
     Pickomino   pile[NB_PICKOMINOS];
     int         sommet;
@@ -20,7 +21,7 @@ struct Joueur
 // Fonctions avant partie
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa);
-void assignerAge(Joueur& joueur, int age);
+void assignerAge(Joueur& joueur);
 
 // Fonctions de partie
 

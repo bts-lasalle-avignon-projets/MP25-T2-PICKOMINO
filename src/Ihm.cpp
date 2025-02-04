@@ -364,6 +364,19 @@ std::string saisirNomJoueur()
     return nomJoueur;
 }
 
+unsigned int saisirAge()
+{
+    unsigned int ageJoueur;
+
+    do
+    {
+        afficherMessage("Entrez votre age : ", false);
+        std::cin >> ageJoueur;
+    } while(ageJoueur < 8 || ageJoueur > 100);
+
+    return ageJoueur;
+}
+
 bool choisirRelancer(int& nombreDes)
 {
     std::cout << "Il vous reste " << nombreDes << " dés" << std::endl;
