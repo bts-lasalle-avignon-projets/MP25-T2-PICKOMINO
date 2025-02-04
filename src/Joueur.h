@@ -22,6 +22,7 @@ struct Joueur
 
 void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa);
 void assignerAge(Joueur& joueur);
+int trouverPlusJeune(Jeu& jeu);
 
 // Fonctions de partie
 

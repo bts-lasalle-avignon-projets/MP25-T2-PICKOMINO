@@ -43,23 +43,14 @@ check:
 	clang-tidy $(SRC) --quiet -- -std=c++11 -I $(DOSSIER_INCLUDE)
 
 # Tests unitaires
-testScoreFinal: $(DOSSIER_TESTS)/testCalculerScoreFinal.out
-	./$(DOSSIER_TESTS)/testCalculerScoreFinal.out
+TESTS = testsCalculerScoreFinal testsPresenceVers testsTrouverPlusJeune
 
-testPresenceVers: $(DOSSIER_TESTS)/testsPresenceVers.out
-	./$(DOSSIER_TESTS)/testsPresenceVers.out
+.PHONY: $(TESTS)
+$(TESTS): %: $(DOSSIER_TESTS)/%.out
+	./$<
 
-$(DOSSIER_TESTS)/testCalculerScoreFinal.out: $(DOSSIER_TESTS)/testsUnitaires.o $(DOSSIER_TESTS)/testCalculerScoreFinal.o $(OBJ_SANS_MAIN)
+$(DOSSIER_TESTS)/%.out: $(DOSSIER_TESTS)/testsUnitaires.o $(DOSSIER_TESTS)/%.o $(OBJ_SANS_MAIN)
 	$(LD) $@ $(LDFLAGS) $^
 
-$(DOSSIER_TESTS)/testCalculerScoreFinal.o: $(DOSSIER_TESTS)/testCalculerScoreFinal.cpp $(HEADERS)
-	$(CXX) $(CFLAGS) -o $@ $<
-
-$(DOSSIER_TESTS)/testsPresenceVers.out: $(DOSSIER_TESTS)/testsUnitaires.o $(DOSSIER_TESTS)/testsPresenceVers.o $(OBJ_SANS_MAIN)
-	$(LD) $@ $(LDFLAGS) $^
-
-$(DOSSIER_TESTS)/testsPresenceVers.o: $(DOSSIER_TESTS)/testsPresenceVers.cpp $(HEADERS)
-	$(CXX) $(CFLAGS) -o $@ $<
-
-$(DOSSIER_TESTS)/testsUnitaires.o: $(DOSSIER_TESTS)/testsUnitaires.cpp $(HEADERS)
+$(DOSSIER_TESTS)/%.o: $(DOSSIER_TESTS)/%.cpp $(HEADERS)
 	$(CXX) $(CFLAGS) -o $@ $<

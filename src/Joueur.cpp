@@ -18,6 +18,23 @@ void assignerAge(Joueur& joueur)
         joueur.age = saisirAge();
 }
 
+int trouverPlusJeune(Jeu& jeu)
+{
+    int joueurPlusJeune = 0;
+    int agePlusJeune   = jeu.joueurs[0].age;
+
+    for(unsigned int i = 1; i < jeu.nbJoueurs; i++)
+    {
+        if(jeu.joueurs[i].age < agePlusJeune)
+        {
+            joueurPlusJeune = i;
+            agePlusJeune   = jeu.joueurs[i].age;
+        }
+    }
+
+    return joueurPlusJeune;
+}
+
 bool prendrePickomino(Jeu& jeu, int scoreJoueur)
 {
     if(scoreJoueur < VALEUR_PICKOMINO_MIN || scoreJoueur > VALEUR_PICKOMINO_MAX)

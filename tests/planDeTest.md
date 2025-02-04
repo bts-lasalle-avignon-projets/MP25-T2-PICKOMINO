@@ -19,3 +19,15 @@ Plan de test de la fonction calculerScoreFinalTour :
 | *Test 2.4*     | 8 Dés sans vers                  | *8, {3,1,1,2,4,1,2,5}* |      `0`         |
 | *Test 2.5*     | 4 Dés sans vers                  | *4, {4,5,2,3}*         |      `0`         |
 | *Test 2.6*     | Tableau vide                     | *0, {}*                |      `0`         |
+
+Plan de test de la fonction trouverPlusJeune :
+
+| Numéro du test | Description                      |         Entrée         | Résultat attendu |
+|     :---:      |         -----------------        |         :---:          |      :---:       |
+| *Test 3.1*     | 2 Joueurs - 2 réels - 0 IA       |                        |                  |
+| *Test 3.2*     | 4 Joueurs - 4 réels - 0 IA       |                        |                  |
+| *Test 3.2*     | 7 Joueurs - 7 réels - 0 IA       |                        |                  |
+| *Test 3.3*     | 2 Joueurs - 1 réel - 1 IA        |                        |                  |
+| *Test 3.4*     | 4 Joueurs - 2 réels - 2 IA       |                        |                  |
+| *Test 3.5*     | 2 Joueurs - 0 réel - 2 IA        |                        |                  |
+| *Test 3.6*     | 6 Joueurs - 4 réels - 2 IA       |                        |                  |
