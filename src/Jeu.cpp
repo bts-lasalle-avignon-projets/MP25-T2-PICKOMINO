@@ -67,14 +67,13 @@ void choisirModeDeJeu(Jeu& jeu)
     switch(selectionnerModeDeJeu())
     {
         case 1: // Joueur VS Joueur
-            creerJoueurs(jeu);
+            creerPartieJoueurs(jeu);
             break;
         case 2: // Joueur VS IA
-            creerIA(jeu);
+            creerPartieIA(jeu);
             break;
         case 3: // IA VS IA
-            afficherMessage("Coming soon ...");
-            choisirModeDeJeu(jeu);
+            creerPartieIaVsIa(jeu);
             break;
         case 4: // Quitter
             choisirOptionJeu(jeu);
@@ -106,12 +105,42 @@ void choisirNiveauIa(Jeu& jeu)
     }
 }
 
-void creerJoueurs(Jeu& jeu)
+void creerPartieJoueurs(Jeu& jeu)
 {
     clearAffichage();
-    jeu.nbJoueurs = saisirNbJoueurs();
+    jeu.nbIa = JOUEUR_PAR_DEFAUT;
+    jeu.nbJrsReels = saisirNbJoueurs(false);
+    creerJoueurs(jeu);
+    initialiserDonnees(jeu);
+}
 
-    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+void creerPartieIA(Jeu& jeu)
+{
+    clearAffichage();
+    jeu.nbJrsReels = saisirNbJoueurs(true);
+    creerJoueurs(jeu);
+    jeu.nbIa = saisirNbIa(jeu, true);
+    creerIA(jeu);
+    initialiserDonnees(jeu);
+}
+
+void creerPartieIaVsIa(Jeu & jeu)
+{
+    clearAffichage();
+    jeu.nbJrsReels = JOUEUR_PAR_DEFAUT;
+    jeu.nbIa = saisirNbIa(jeu, false);
+    creerIA(jeu);
+    initialiserDonnees(jeu);
+}
+
+void initialiserDonnees(Jeu& jeu)
+{
+    jeu.nbJoueurs = jeu.nbJrsReels + jeu.nbIa;
+}
+
+void creerJoueurs(Jeu& jeu)
+{
+    for(unsigned int i = 0; i < jeu.nbJrsReels; ++i)
     {
         afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
         std::string nomJoueur = saisirNomJoueur();
@@ -119,27 +148,13 @@ void creerJoueurs(Jeu& jeu)
     }
 }
 
-void creerJoueurSolo(Jeu& jeu)
-{
-    clearAffichage();
-    afficherMessage("Entrez le nom du joueur : ", false);
-    std::string nomJoueur = saisirNomJoueur();
-    assignerJoueur(jeu.joueurs[0], nomJoueur, 0, false);
-}
-
 void creerIA(Jeu& jeu)
 {
-    clearAffichage();
-    creerJoueurSolo(jeu);
-    jeu.nbIa = saisirNbIa();
-
-    for(unsigned int i = 1; i <= jeu.nbIa; ++i)
+    for(unsigned int i = jeu.nbJrsReels; i <= jeu.nbIa; ++i)
     {
-        std::string nomIa = "IA " + std::to_string(i);
-        assignerJoueur(jeu.joueurs[i], nomIa, i, true);
+        std::string nomIa = "IA " + std::to_string(i + 1);
+        assignerJoueur(jeu.joueurs[i], nomIa, i + 1, true);
     }
-
-    jeu.nbJoueurs = jeu.nbIa + 1;
 
     choisirNiveauIa(jeu);
 }
