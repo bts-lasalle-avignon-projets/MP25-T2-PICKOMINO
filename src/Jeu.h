@@ -20,6 +20,7 @@ struct Jeu
 {
     unsigned int nbJoueurs;
     unsigned int nbIa;
+    unsigned int nbJrsReels;
     int          niveauIa;
     Joueur       joueurs[NB_JOUEURS_MAX];
     Plateau      plateau;
@@ -29,9 +30,12 @@ void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void choisirOptionJeu(Jeu& jeu);
 void choisirNiveauIa(Jeu& jeu);
+void creerPartieJoueurs(Jeu& jeu);
 void creerJoueurs(Jeu& jeu);
-void creerJoueurSolo(Jeu& jeu);
+void creerPartieIA(Jeu& jeu);
+void creerPartieIaVsIa(Jeu & jeu);
 void creerIA(Jeu& jeu);
+void initialiserDonnees(Jeu& jeu);
 void choisirModeDeJeu(Jeu& jeu);
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);

@@ -56,8 +56,8 @@ bool afficherPileJoueurEnCours(const Joueur& joueur);
 
 // Saisies
 
-unsigned int saisirNbJoueurs();
-unsigned int saisirNbIa();
+unsigned int saisirNbJoueurs(bool partieIa);
+unsigned int saisirNbIa(Jeu& Jeu, bool partieJoueur);
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();

@@ -324,28 +324,30 @@ bool afficherPileJoueurEnCours(const Joueur& joueur)
 
 // Saisies
 
-unsigned int saisirNbJoueurs()
+unsigned int saisirNbJoueurs(bool partieIa)
 {
     unsigned int nbJoueurs = 0;
+    unsigned int minJoueurs = partieIa ? 1 : NB_JOUEURS_MIN;
 
     do
     {
         afficherMessage("Entrez le nombre de joueurs : ", false);
         std::cin >> nbJoueurs;
-    } while(nbJoueurs < NB_JOUEURS_MIN || nbJoueurs > NB_JOUEURS_MAX);
+    } while(nbJoueurs < minJoueurs || nbJoueurs > NB_JOUEURS_MAX);
 
     return nbJoueurs;
 }
 
-unsigned int saisirNbIa()
+unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur)
 {
     unsigned int nbIa = 0;
+    unsigned int maxIa = partieJoueur ? (NB_JOUEURS_MAX - jeu.nbJrsReels) : NB_IA_MAX;
 
     do
     {
         afficherMessage("Entrez le nombre d'IA : ", false);
         std::cin >> nbIa;
-    } while(nbIa < NB_IA_MIN || nbIa > NB_IA_MAX);
+    } while(nbIa < NB_IA_MIN || nbIa > maxIa);
 
     return nbIa;
 }
