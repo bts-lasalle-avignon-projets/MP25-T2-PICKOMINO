@@ -9,7 +9,7 @@
 #include <fstream>
 #include <ctime>
 
-#define VERSION       "1.1"
+#define VERSION       "1.2"
 #define FICHIER_SCORE ".scores.txt"
 
 // #define DEBUG_JEU // ou -DDEBUG_JEU dans g++
