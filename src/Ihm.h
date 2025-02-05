@@ -48,7 +48,7 @@ void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 // Affichage de jeu
 
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
-void afficherJoueurs(const Jeu& jeu);
+void afficherJoueurs(const Jeu& jeu, bool vuePile = false);
 void afficherDesLances(const int& nombreDes, const int (&desLances)[NB_DES]);
 void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 void afficherScore(const int& score);
@@ -69,5 +69,6 @@ void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 void afficherSeparation();
 void clearAffichage();
 int  convertirValeur(std::string valeur);
+void attendre(int millisecondes);
 
 #endif // IHM_H

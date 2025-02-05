@@ -1,4 +1,6 @@
 #include "Ihm.h"
+#include <thread>
+#include <chrono>
 
 int selectionnerOptionsDeJeu()
 {
@@ -262,11 +264,13 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     std::cout << std::string(largeur, '-') << std::endl;
 }
 
-void afficherJoueurs(const Jeu& jeu)
+void afficherJoueurs(const Jeu& jeu, bool vuePile /*= false*/)
 {
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
     {
-        std::cout << "Joueur " << jeu.joueurs[i].numero << " : " << jeu.joueurs[i].nom << std::endl;
+        std::cout << "Joueur : " << jeu.joueurs[i].nom << std::endl;
+        if(vuePile)
+            afficherPileJoueurEnCours(jeu.joueurs[i]);
     }
 }
 
@@ -326,7 +330,7 @@ bool afficherPileJoueurEnCours(const Joueur& joueur)
 
 unsigned int saisirNbJoueurs(bool partieIa)
 {
-    unsigned int nbJoueurs = 0;
+    unsigned int nbJoueurs  = 0;
     unsigned int minJoueurs = partieIa ? 1 : NB_JOUEURS_MIN;
 
     do
@@ -340,7 +344,7 @@ unsigned int saisirNbJoueurs(bool partieIa)
 
 unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur)
 {
-    unsigned int nbIa = 0;
+    unsigned int nbIa  = 0;
     unsigned int maxIa = partieJoueur ? (NB_JOUEURS_MAX - jeu.nbJrsReels) : NB_IA_MAX;
 
     do
@@ -449,4 +453,9 @@ bool relancerPartie()
         std::cout << "Veuillez saisir O ou N." << std::endl;
         return relancerPartie();
     }
+}
+
+void attendre(int millisecondes)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(millisecondes));
 }

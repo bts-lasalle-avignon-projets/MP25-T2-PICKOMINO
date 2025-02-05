@@ -8,6 +8,8 @@ void debuterTourIa(Jeu& jeu, int& scoreTour)
 {
     clearAffichage();
     initialiserPlateau(jeu.plateau);
+    afficherJoueurs(jeu, true);
+    afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
     afficherMessage("C'est au tour de l'IA " + std::to_string(jeu.plateau.joueurActuel) + " : " +
@@ -66,7 +68,7 @@ void jouerTourIa(Jeu& jeu, int numIa)
             tourFini = true;
         }
 
-        system("sleep 2");
+        attendre(ATTENTE_IA);
         clearAffichage();
         afficherSeparation();
         afficherBrochette(jeu.plateau.brochette);

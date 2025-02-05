@@ -108,10 +108,10 @@ void choisirNiveauIa(Jeu& jeu)
 void creerPartieJoueurs(Jeu& jeu)
 {
     clearAffichage();
-    jeu.nbIa = JOUEUR_PAR_DEFAUT;
+    jeu.nbIa       = JOUEUR_PAR_DEFAUT;
     jeu.nbJrsReels = saisirNbJoueurs(false);
     creerJoueurs(jeu);
-    initialiserDonnees(jeu);
+    initialiserNbJoueurs(jeu);
 }
 
 void creerPartieIA(Jeu& jeu)
@@ -121,19 +121,19 @@ void creerPartieIA(Jeu& jeu)
     creerJoueurs(jeu);
     jeu.nbIa = saisirNbIa(jeu, true);
     creerIA(jeu);
-    initialiserDonnees(jeu);
+    initialiserNbJoueurs(jeu);
 }
 
-void creerPartieIaVsIa(Jeu & jeu)
+void creerPartieIaVsIa(Jeu& jeu)
 {
     clearAffichage();
     jeu.nbJrsReels = JOUEUR_PAR_DEFAUT;
-    jeu.nbIa = saisirNbIa(jeu, false);
+    jeu.nbIa       = saisirNbIa(jeu, false);
     creerIA(jeu);
-    initialiserDonnees(jeu);
+    initialiserNbJoueurs(jeu);
 }
 
-void initialiserDonnees(Jeu& jeu)
+void initialiserNbJoueurs(Jeu& jeu)
 {
     jeu.nbJoueurs = jeu.nbJrsReels + jeu.nbIa;
 }
@@ -150,10 +150,10 @@ void creerJoueurs(Jeu& jeu)
 
 void creerIA(Jeu& jeu)
 {
-    for(unsigned int i = jeu.nbJrsReels; i <= jeu.nbIa; ++i)
+    for(unsigned int i = jeu.nbJrsReels, j = 0; i <= jeu.nbIa; ++i, ++j)
     {
-        std::string nomIa = "IA " + std::to_string(i + 1);
-        assignerJoueur(jeu.joueurs[i], nomIa, i + 1, true);
+        std::string nomIa = "IA " + std::to_string(j + 1);
+        assignerJoueur(jeu.joueurs[i], nomIa, j + 1, true);
     }
 
     choisirNiveauIa(jeu);
@@ -222,6 +222,8 @@ void debuterTour(Jeu& jeu, int& scoreTour)
 {
     clearAffichage();
     initialiserPlateau(jeu.plateau);
+    afficherJoueurs(jeu, true);
+    afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
