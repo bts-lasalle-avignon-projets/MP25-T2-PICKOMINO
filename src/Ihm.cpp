@@ -1,4 +1,6 @@
 #include "Ihm.h"
+#include <thread>
+#include <chrono>
 
 int selectionnerOptionsDeJeu()
 {
@@ -25,6 +27,20 @@ int selectionnerModeDeJeu()
     std::cout << "3. IA contre IA\n";
     std::cout << "4. Quitter\n";
     std::cout << "Entrez votre choix (1-4) : ";
+
+    std::cin >> choix;
+    return choix;
+}
+
+int selectionnerNiveauIa()
+{
+    int choix;
+
+    std::cout << "\nChoisissez le niveau de difficulté de l'IA:\n";
+    std::cout << "1. Niveau facile\n";
+    std::cout << "2. Niveau moyen\n";
+    std::cout << "3. Niveau difficile\n";
+    std::cout << "Entrez votre choix (1-3) : ";
 
     std::cin >> choix;
     return choix;
@@ -80,8 +96,8 @@ void afficherBienvenue()
 |_|     |___|  \____| |_|\_\  \___/  |_|  |_| |___| |_| \_|  \___/
                                                                    )";
 
-    std::string version = "Version : V" + std::string(VERSION);
-    std::string releaseDate = "Release : 22/01/2025";
+    std::string version     = "Version : V" + std::string(VERSION);
+    std::string releaseDate = "Release : 04/02/2025";
     std::string equipeDev   = "RAFFIN Louis & CLEMENT Aymeric";
 
     afficherTitre(asciiArt, LARGEUR_MAX);
@@ -248,11 +264,13 @@ void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS])
     std::cout << std::string(largeur, '-') << std::endl;
 }
 
-void afficherJoueurs(const Jeu& jeu)
+void afficherJoueurs(const Jeu& jeu, bool vuePile /*= false*/)
 {
     for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
     {
-        std::cout << "Joueur " << jeu.joueurs[i].numero << " : " << jeu.joueurs[i].nom << std::endl;
+        std::cout << "Joueur : " << jeu.joueurs[i].nom << std::endl;
+        if(vuePile)
+            afficherPileJoueurEnCours(jeu.joueurs[i]);
     }
 }
 
@@ -310,17 +328,32 @@ bool afficherPileJoueurEnCours(const Joueur& joueur)
 
 // Saisies
 
-unsigned int saisirNbJoueurs()
+unsigned int saisirNbJoueurs(bool partieIa)
 {
-    unsigned int nbJoueurs = 0;
+    unsigned int nbJoueurs  = 0;
+    unsigned int minJoueurs = partieIa ? 1 : NB_JOUEURS_MIN;
 
     do
     {
         afficherMessage("Entrez le nombre de joueurs : ", false);
         std::cin >> nbJoueurs;
-    } while(nbJoueurs < NB_JOUEURS_MIN || nbJoueurs > NB_JOUEURS_MAX);
+    } while(nbJoueurs < minJoueurs || nbJoueurs > NB_JOUEURS_MAX);
 
     return nbJoueurs;
+}
+
+unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur)
+{
+    unsigned int nbIa  = 0;
+    unsigned int maxIa = partieJoueur ? (NB_JOUEURS_MAX - jeu.nbJrsReels) : NB_IA_MAX;
+
+    do
+    {
+        afficherMessage("Entrez le nombre d'IA : ", false);
+        std::cin >> nbIa;
+    } while(nbIa < NB_IA_MIN || nbIa > maxIa);
+
+    return nbIa;
 }
 
 std::string saisirNomJoueur()
@@ -404,4 +437,25 @@ int convertirValeur(std::string valeur)
         return Face::VER;
     else
         return std::stoi(valeur);
+}
+
+bool relancerPartie()
+{
+    char choix;
+    std::cout << "Voulez vous rejouer ? O/N";
+    std::cin >> choix;
+    if(choix == 'o' || choix == 'O')
+        return (true);
+    if(choix == 'n' || choix == 'N')
+        return (false);
+    else
+    {
+        std::cout << "Veuillez saisir O ou N." << std::endl;
+        return relancerPartie();
+    }
+}
+
+void attendre(int millisecondes)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(millisecondes));
 }

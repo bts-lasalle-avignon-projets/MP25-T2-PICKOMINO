@@ -17,7 +17,14 @@ void jouerPickomino()
         for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
             jeu.plateau.joueurActuel++)
         {
-            jouerTour(jeu, jeu.plateau.joueurActuel);
+            if(!jeu.joueurs[jeu.plateau.joueurActuel].estIa)
+            {
+                jouerTour(jeu, jeu.plateau.joueurActuel);
+            }
+            else
+            {
+                jouerTourIa(jeu, jeu.plateau.joueurActuel);
+            }
         }
     }
     terminerPartie(jeu);
@@ -59,18 +66,16 @@ void choisirModeDeJeu(Jeu& jeu)
     clearAffichage();
     switch(selectionnerModeDeJeu())
     {
-        case 1:
-            creerJoueurs(jeu);
+        case 1: // Joueur VS Joueur
+            creerPartieJoueurs(jeu);
             break;
-        case 2:
-            afficherMessage("Coming soon ...");
-            choisirModeDeJeu(jeu);
+        case 2: // Joueur VS IA
+            creerPartieIA(jeu);
             break;
-        case 3:
-            afficherMessage("Coming soon ...");
-            choisirModeDeJeu(jeu);
+        case 3: // IA VS IA
+            creerPartieIaVsIa(jeu);
             break;
-        case 4:
+        case 4: // Quitter
             choisirOptionJeu(jeu);
             break;
         default:
@@ -79,17 +84,79 @@ void choisirModeDeJeu(Jeu& jeu)
     }
 }
 
-void creerJoueurs(Jeu& jeu)
+void choisirNiveauIa(Jeu& jeu)
+{
+    switch(selectionnerNiveauIa())
+    {
+        case 1: // Version facile
+            jeu.niveauIa = FACILE;
+            break;
+        case 2: // Version normale
+            afficherMessage("Coming soon ...");
+            choisirNiveauIa(jeu);
+            break;
+        case 3: // Version difficile
+            afficherMessage("Coming soon ...");
+            choisirNiveauIa(jeu);
+            break;
+        default:
+            afficherMessage("Choix invalide. Veuillez entrer un nombre entre 1 et 3.\n");
+            break;
+    }
+}
+
+void creerPartieJoueurs(Jeu& jeu)
 {
     clearAffichage();
-    jeu.nbJoueurs = saisirNbJoueurs();
+    jeu.nbIa       = JOUEUR_PAR_DEFAUT;
+    jeu.nbJrsReels = saisirNbJoueurs(false);
+    creerJoueurs(jeu);
+    initialiserNbJoueurs(jeu);
+}
 
-    for(unsigned int i = 0; i < jeu.nbJoueurs; ++i)
+void creerPartieIA(Jeu& jeu)
+{
+    clearAffichage();
+    jeu.nbJrsReels = saisirNbJoueurs(true);
+    creerJoueurs(jeu);
+    jeu.nbIa = saisirNbIa(jeu, true);
+    creerIA(jeu);
+    initialiserNbJoueurs(jeu);
+}
+
+void creerPartieIaVsIa(Jeu& jeu)
+{
+    clearAffichage();
+    jeu.nbJrsReels = JOUEUR_PAR_DEFAUT;
+    jeu.nbIa       = saisirNbIa(jeu, false);
+    creerIA(jeu);
+    initialiserNbJoueurs(jeu);
+}
+
+void initialiserNbJoueurs(Jeu& jeu)
+{
+    jeu.nbJoueurs = jeu.nbJrsReels + jeu.nbIa;
+}
+
+void creerJoueurs(Jeu& jeu)
+{
+    for(unsigned int i = 0; i < jeu.nbJrsReels; ++i)
     {
         afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
         std::string nomJoueur = saisirNomJoueur();
-        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1);
+        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1, false);
     }
+}
+
+void creerIA(Jeu& jeu)
+{
+    for(unsigned int i = jeu.nbJrsReels, j = 0; i <= jeu.nbIa; ++i, ++j)
+    {
+        std::string nomIa = "IA " + std::to_string(j + 1);
+        assignerJoueur(jeu.joueurs[i], nomIa, j + 1, true);
+    }
+
+    choisirNiveauIa(jeu);
 }
 
 void jouerTour(Jeu& jeu, int nbJoueur)
@@ -155,6 +222,8 @@ void debuterTour(Jeu& jeu, int& scoreTour)
 {
     clearAffichage();
     initialiserPlateau(jeu.plateau);
+    afficherJoueurs(jeu, true);
+    afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
     afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) +
@@ -175,6 +244,10 @@ void terminerPartie(Jeu& jeu)
     afficherScores(jeu);
     afficherVainqueur(jeu, indexVainqueur);
     enregistrerScore(jeu, indexVainqueur);
+    if(relancerPartie())
+        jouerPickomino();
+    else
+        exit(0);
 }
 
 int determinerVainqueur(Jeu& jeu)

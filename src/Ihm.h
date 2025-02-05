@@ -10,6 +10,7 @@
 #include "Plateau.h"
 #include "Joueur.h"
 #include "Jeu.h"
+#include "Ia.h"
 
 // Mise en page
 #define LARGEUR_MAX 80
@@ -35,6 +36,7 @@ void afficherInstructions();
 void afficherReglesDeJeu();
 int  selectionnerOptionsDeJeu();
 int  selectionnerModeDeJeu();
+int  selectionnerNiveauIa();
 void afficherBienvenue();
 void afficherHistorique();
 void traiterLigne(const std::string& trame);
@@ -46,7 +48,7 @@ void afficherVainqueur(const Jeu& jeu, int indexVainqueur);
 // Affichage de jeu
 
 void afficherBrochette(const Pickomino (&brochette)[NB_PICKOMINOS]);
-void afficherJoueurs(const Jeu& jeu);
+void afficherJoueurs(const Jeu& jeu, bool vuePile = false);
 void afficherDesLances(const int& nombreDes, const int (&desLances)[NB_DES]);
 void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 void afficherScore(const int& score);
@@ -54,10 +56,12 @@ bool afficherPileJoueurEnCours(const Joueur& joueur);
 
 // Saisies
 
-unsigned int saisirNbJoueurs();
+unsigned int saisirNbJoueurs(bool partieIa);
+unsigned int saisirNbIa(Jeu& Jeu, bool partieJoueur);
 std::string  saisirNomJoueur();
 bool         choisirRelancer(int& nombreDes);
 int          saisirValeurARetenir();
+bool         relancerPartie();
 
 // Utilitaires
 
@@ -65,5 +69,6 @@ void afficherMessage(const std::string& message, bool nouvelleLigne = true);
 void afficherSeparation();
 void clearAffichage();
 int  convertirValeur(std::string valeur);
+void attendre(int millisecondes);
 
 #endif // IHM_H

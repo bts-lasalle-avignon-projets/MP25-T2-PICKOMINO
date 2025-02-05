@@ -14,9 +14,10 @@ struct Joueur
     Pickomino   pile[NB_PICKOMINOS];
     int         sommet;
     int         score;
+    bool        estIa;
 };
 
-void assignerJoueur(Joueur& joueur, std::string nom, int numero);
+void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa);
 bool prendrePickominoBrochette(Jeu& jeu, int valeurPickomino);
 bool prendrePickomino(Jeu& jeu, int scoreJoueur);
 bool estAuSommet(Joueur& joueur, int valeurPickomino);
