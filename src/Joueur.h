@@ -22,7 +22,7 @@ struct Joueur
 
 // Fonctions avant partie
 
-void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa);
+void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa, bool consentementAge);
 void assignerAge(Joueur& joueur);
 
 // Fonctions de partie

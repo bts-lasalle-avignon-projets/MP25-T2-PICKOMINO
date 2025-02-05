@@ -58,6 +58,7 @@ int  selectionnerNiveauIa();
 
 unsigned int saisirNbJoueurs(bool partieIa);
 unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur);
+void demanderConsentementAge(Jeu& jeu);
 std::string  saisirNomJoueur();
 unsigned int saisirAge();
 int          saisirValeurARetenir();
@@ -71,5 +72,6 @@ void afficherSeparation();
 void clearAffichage();
 int  convertirValeur(std::string valeur);
 void attendre(int millisecondes);
+bool obtenirReponseOuiNon(const std::string& message);
 
 #endif // IHM_H

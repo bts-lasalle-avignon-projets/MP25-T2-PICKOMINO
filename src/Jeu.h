@@ -24,6 +24,7 @@ struct Jeu
     int          niveauIa;
     Joueur       joueurs[NB_JOUEURS_MAX];
     Plateau      plateau;
+    bool         consentementAge;
 };
 
 // Fonctions avannt partie
@@ -38,7 +39,7 @@ void creerPartieIA(Jeu& jeu);
 void creerPartieIaVsIa(Jeu & jeu);
 void creerJoueurs(Jeu& jeu);
 void creerIA(Jeu& jeu);
-void initialiserDonnees(Jeu& jeu);
+void initialiserNbJoueurs(Jeu& jeu);
 
 // Fonctions de partie
 

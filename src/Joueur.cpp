@@ -1,13 +1,16 @@
 #include "Joueur.h"
 #include "Ihm.h"
 
-void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa)
+void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa, bool consentementAge)
 {
     joueur.nom    = nom;
     joueur.numero = numero;
     joueur.sommet = 0;
     joueur.estIa  = estIa;
-    assignerAge(joueur);
+    if(consentementAge)
+        assignerAge(joueur);
+    else
+        joueur.age = 0;
 }
 
 void assignerAge(Joueur& joueur)

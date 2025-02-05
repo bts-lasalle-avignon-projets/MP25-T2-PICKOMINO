@@ -108,6 +108,7 @@ void choisirNiveauIa(Jeu& jeu)
 void creerPartieJoueurs(Jeu& jeu)
 {
     clearAffichage();
+    demanderConsentementAge(jeu);
     jeu.nbIa       = JOUEUR_PAR_DEFAUT;
     jeu.nbJrsReels = saisirNbJoueurs(false);
     creerJoueurs(jeu);
@@ -117,6 +118,7 @@ void creerPartieJoueurs(Jeu& jeu)
 void creerPartieIA(Jeu& jeu)
 {
     clearAffichage();
+    demanderConsentementAge(jeu);
     jeu.nbJrsReels = saisirNbJoueurs(true);
     creerJoueurs(jeu);
     jeu.nbIa = saisirNbIa(jeu, true);
@@ -144,7 +146,7 @@ void creerJoueurs(Jeu& jeu)
     {
         afficherMessage("Entrez le nom du joueur " + std::to_string(i + 1) + " : ", false);
         std::string nomJoueur = saisirNomJoueur();
-        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1, false);
+        assignerJoueur(jeu.joueurs[i], nomJoueur, i + 1, false, jeu.consentementAge);
     }
 }
 
@@ -153,7 +155,7 @@ void creerIA(Jeu& jeu)
     for(unsigned int i = jeu.nbJrsReels, j = 0; i <= jeu.nbIa; ++i, ++j)
     {
         std::string nomIa = "IA " + std::to_string(j + 1);
-        assignerJoueur(jeu.joueurs[i], nomIa, j + 1, true);
+        assignerJoueur(jeu.joueurs[i], nomIa, j + 1, true, jeu.consentementAge);
     }
 
     choisirNiveauIa(jeu);
