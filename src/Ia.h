@@ -8,6 +8,8 @@
 #define NB_IA_MIN 1
 #define NB_IA_MAX 6
 
+#define ATTENTE_IA 4000
+
 enum Difficulte_Ia
 {
     AUCUNE = 0,

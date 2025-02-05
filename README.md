@@ -24,9 +24,9 @@
     - [Itération 2](#itération-2)
     - [Itération 3](#itération-3)
   - [Changelog](#changelog)
+    - [Version 1.2](#version-12)
+    - [Version 1.1](#version-11)
     - [Version 1.0](#version-10)
-        - [Version 1.1](#version-11)
-        - [Version 1.2](#version-12)
   - [TODO](#todo)
   - [Défauts constatés non corrigés](#défauts-constatés-non-corrigés)
   - [Équipe de développement](#équipe-de-développement)
@@ -40,6 +40,8 @@
 - Numéro de version du jeu : 1.2
 
 ## Le jeu du Pickomino
+
+Le programme permet de jouer une partie de Pickomino de 2 à 7 joueurs.
 
 ![](./images/logo-pickomino.jpg)
 
@@ -98,25 +100,26 @@ $  ./pickomino.out
 
 ## Changelog
 
-Le programme permet de jouer une partie de Pickomino de 2 à 7 joueurs.
-
-### Version 1.0
-
-- [x] Saisir le nombre de joueurs ainsi que leur nom
-- [x] Jouer une partie
-
-### Version 1.1
-  - [x] Ajout d'un menu
-  - [x] Refonte de l'affichage
-  - [x] Afficher l'historique des parties jouées
-
 ### Version 1.2
   - [x] Ajout du mode de jeu "Joueur VS IA"
   - [x] Ajout du mode de jeu "IA VS IA"
   - [x] Retourner au menu après la partie
   - [x] Correction de bug
 
+### Version 1.1
+  - [x] Ajout d'un menu
+  - [x] Refonte de l'affichage
+  - [x] Afficher l'historique des parties jouées
+
+### Version 1.0
+
+- [x] Saisir le nombre de joueurs ainsi que leur nom
+- [x] Jouer une partie
+
 ## TODO
+
+- **Jouer en réseau** : Jouer une partie en réseau
+- **Voir le classement** : Visualiser un classement des joueurs
 
 ## Défauts constatés non corrigés
 
