@@ -457,11 +457,6 @@ int convertirValeur(std::string valeur)
         return std::stoi(valeur);
 }
 
-void attendre(int millisecondes)
-{
-    std::this_thread::sleep_for(std::chrono::milliseconds(millisecondes));
-}
-
 bool obtenirReponseOuiNon(const std::string& message)
 {
     std::string choix;
