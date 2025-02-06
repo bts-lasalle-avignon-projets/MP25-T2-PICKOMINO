@@ -162,7 +162,7 @@ void creerJoueurs(Jeu& jeu)
 
 void creerIA(Jeu& jeu)
 {
-    for(unsigned int i = jeu.nbJrsReels, j = 0; i <= jeu.nbIa; ++i, ++j)
+    for(unsigned int i = jeu.nbJrsReels, j = 0; j < jeu.nbIa; ++i, ++j)
     {
         std::string nomIa = "IA " + std::to_string(j + 1);
         assignerJoueur(jeu.joueurs[i], nomIa, j + 1, true, jeu.consentementAge);

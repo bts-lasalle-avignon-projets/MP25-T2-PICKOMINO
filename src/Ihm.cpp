@@ -335,7 +335,7 @@ unsigned int saisirNbJoueurs(bool partieIa)
 
     do
     {
-        afficherMessage("Entrez le nombre de joueurs : ", false);
+        afficherMessage("Entrez le nombre de joueurs réels : ", false);
         std::cin >> nbJoueurs;
     } while(nbJoueurs < minJoueurs || nbJoueurs > NB_JOUEURS_MAX);
 
