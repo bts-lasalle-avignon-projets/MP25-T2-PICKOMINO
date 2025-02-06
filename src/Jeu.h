@@ -15,6 +15,7 @@
 //#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define JOUEUR_PAR_DEFAUT 0
+#define FALSE false;
 
 struct Jeu
 {
@@ -24,26 +25,32 @@ struct Jeu
     int          niveauIa;
     Joueur       joueurs[NB_JOUEURS_MAX];
     Plateau      plateau;
+    bool         consentementAge;
 };
+
+// Fonctions avannt partie
 
 void jouerPickomino();
 void initialiserJeu(Jeu& jeu);
 void choisirOptionJeu(Jeu& jeu);
+void choisirModeDeJeu(Jeu& jeu);
 void choisirNiveauIa(Jeu& jeu);
 void creerPartieJoueurs(Jeu& jeu);
-void creerJoueurs(Jeu& jeu);
 void creerPartieIA(Jeu& jeu);
-void creerPartieIaVsIa(Jeu& jeu);
+void creerPartieIaVsIa(Jeu & jeu);
+void creerJoueurs(Jeu& jeu);
 void creerIA(Jeu& jeu);
 void initialiserNbJoueurs(Jeu& jeu);
-void choisirModeDeJeu(Jeu& jeu);
+
+// Fonctions de partie
+
 void jouerTour(Jeu& jeu, int nbJoueur);
 void debuterTour(Jeu& jeu, int& scoreTour);
+void calculerVers(Jeu& jeu);
+int  trouverMaxValeurPickomino(const Joueur& joueur);
+int  determinerVainqueur(Jeu& jeu);
 bool estPartieFinie(const Jeu& jeu);
 void terminerPartie(Jeu& jeu);
-int  determinerVainqueur(Jeu& jeu);
-int  trouverMaxValeurPickomino(const Joueur& joueur);
-void calculerVers(Jeu& jeu);
 void enregistrerScore(const Jeu& jeu, int indexVainqueur);
 
 #endif // JEU_H

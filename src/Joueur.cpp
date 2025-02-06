@@ -1,12 +1,41 @@
 #include "Joueur.h"
 #include "Ihm.h"
 
-void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa)
+void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa, bool consentementAge)
 {
     joueur.nom    = nom;
     joueur.numero = numero;
     joueur.sommet = 0;
     joueur.estIa  = estIa;
+    if(consentementAge)
+        assignerAge(joueur);
+    else
+        joueur.age = 0;
+}
+
+void assignerAge(Joueur& joueur)
+{
+    if(joueur.estIa == true)
+        joueur.age = 100;
+    else
+        joueur.age = saisirAge();
+}
+
+int trouverPlusJeune(Jeu& jeu)
+{
+    int joueurPlusJeune = 0;
+    int agePlusJeune   = jeu.joueurs[0].age;
+
+    for(unsigned int i = 1; i < jeu.nbJoueurs; i++)
+    {
+        if(jeu.joueurs[i].age < agePlusJeune)
+        {
+            joueurPlusJeune = i;
+            agePlusJeune   = jeu.joueurs[i].age;
+        }
+    }
+
+    return joueurPlusJeune;
 }
 
 bool prendrePickomino(Jeu& jeu, int scoreJoueur)

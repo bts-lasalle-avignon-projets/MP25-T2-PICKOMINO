@@ -356,6 +356,18 @@ unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur)
     return nbIa;
 }
 
+void demanderConsentementAge(Jeu& jeu)
+{
+    std::cout << ITALIC << "Nous allons vous demander votre consentement pour entrer votre âge." << std::endl;
+    std::cout << "L'âge servira uniquement à déterminer le premier joueur qui va jouer." << std::endl;
+    std::cout << "Il ne sera utilisé à aucun autre moment et sera effacé dès le jeu quitté" << std::endl;
+    std::cout << "Si vous refusez, le premier joueur sera simplement celui qui entrera son nom en premier." << RESET << std::endl;
+    if (obtenirReponseOuiNon("Voulez-vous entrer votre âge ?"))
+        jeu.consentementAge = true;
+    else
+        jeu.consentementAge = false;
+}
+
 std::string saisirNomJoueur()
 {
     std::string nomJoueur;
@@ -368,25 +380,31 @@ std::string saisirNomJoueur()
     return nomJoueur;
 }
 
+unsigned int saisirAge()
+{
+    unsigned int ageJoueur;
+
+    do
+    {
+        afficherMessage("Entrez votre age : ", false);
+        std::cin >> ageJoueur;
+    } while(ageJoueur < 8 || ageJoueur > 100);
+
+    return ageJoueur;
+}
+
 bool choisirRelancer(int& nombreDes)
 {
-    std::cout << "Il vous reste " << nombreDes << " dés" << std::endl;
-    if(nombreDes > 0)
-    {
-        std::cout << "Voulez-vous relancer les dés (O/N) ? ";
-        std::string choix;
-        std::cin >> choix;
-        if(choix == "O" || choix == "o")
-            return true;
-        else if(choix == "N" || choix == "n")
-            return false;
-        else
-        {
-            std::cout << "Veuillez saisir O ou N." << std::endl;
-            return choisirRelancer(nombreDes);
-        }
-    }
+    std::cout << "Il vous reste " << nombreDes << " dés." << std::endl;
+    if (nombreDes > 0)
+        return obtenirReponseOuiNon("Voulez-vous relancer les dés ?");
+    
     return false;
+}
+
+bool relancerPartie()
+{
+    return obtenirReponseOuiNon("Voulez-vous rejouer ?");
 }
 
 int saisirValeurARetenir()
@@ -439,19 +457,20 @@ int convertirValeur(std::string valeur)
         return std::stoi(valeur);
 }
 
-bool relancerPartie()
+bool obtenirReponseOuiNon(const std::string& message)
 {
-    char choix;
-    std::cout << "Voulez vous rejouer ? O/N";
-    std::cin >> choix;
-    if(choix == 'o' || choix == 'O')
-        return (true);
-    if(choix == 'n' || choix == 'N')
-        return (false);
-    else
+    std::string choix;
+    while (true)
     {
-        std::cout << "Veuillez saisir O ou N." << std::endl;
-        return relancerPartie();
+        std::cout << message << " (O/N) : ";
+        std::cin >> choix;
+        
+        if (choix == "O" || choix == "o")
+            return true;
+        if (choix == "N" || choix == "n")
+            return false;
+        
+        std::cout << "Entrée invalide. Veuillez saisir 'O' ou 'N'." << std::endl;
     }
 }
 

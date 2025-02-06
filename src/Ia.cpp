@@ -12,7 +12,7 @@ void debuterTourIa(Jeu& jeu, int& scoreTour)
     afficherSeparation();
     afficherBrochette(jeu.plateau.brochette);
     afficherSeparation();
-    afficherMessage("C'est au tour de l'IA " + std::to_string(jeu.plateau.joueurActuel) + " : " +
+    afficherMessage("C'est au tour du joueur " + std::to_string(jeu.plateau.joueurActuel + 1) + " (IA) : " +
                       jeu.joueurs[jeu.plateau.joueurActuel].nom,
                     true);
     afficherPileJoueurEnCours(jeu.joueurs[jeu.plateau.joueurActuel]);
@@ -24,7 +24,7 @@ void jouerTourIa(Jeu& jeu, int numIa)
     bool tourFini  = false;
     bool lancerNul = false;
 
-    debuterTourIa(jeu, scoreTour);
+    debuterTourIa(jeu, scoreTour); 
 
     while(!tourFini)
     {
@@ -51,7 +51,7 @@ void jouerTourIa(Jeu& jeu, int numIa)
             {
                 scoreTour =
                   calculerScoreFinalTour(jeu.plateau.nombreDesRestant, jeu.plateau.desRetenus);
-                afficherMessage("Votre score est de " + std::to_string(scoreTour) + " points !");
+                afficherMessage("Le score de l'IA est de " + std::to_string(scoreTour) + " points !");
                 lancerNul = !prendrePickomino(jeu, scoreTour);
                 tourFini  = true;
             }

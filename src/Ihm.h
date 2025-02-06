@@ -12,6 +12,8 @@
 #include "Jeu.h"
 #include "Ia.h"
 
+#define ATTENTE_DEBUT_PARTIE 3000
+
 // Mise en page
 #define LARGEUR_MAX 80
 #define RESET       "\033[0m"
@@ -30,13 +32,7 @@
 
 // Affichage des dialogues
 
-/*
-void afficherInstructions();
-*/
 void afficherReglesDeJeu();
-int  selectionnerOptionsDeJeu();
-int  selectionnerModeDeJeu();
-int  selectionnerNiveauIa();
 void afficherBienvenue();
 void afficherHistorique();
 void traiterLigne(const std::string& trame);
@@ -54,13 +50,21 @@ void afficherDesRetenus(const int& nombreDes, const int (&desRetenus)[NB_DES]);
 void afficherScore(const int& score);
 bool afficherPileJoueurEnCours(const Joueur& joueur);
 
+// Sélection
+
+int  selectionnerOptionsDeJeu();
+int  selectionnerModeDeJeu();
+int  selectionnerNiveauIa();
+
 // Saisies
 
 unsigned int saisirNbJoueurs(bool partieIa);
-unsigned int saisirNbIa(Jeu& Jeu, bool partieJoueur);
+unsigned int saisirNbIa(Jeu& jeu, bool partieJoueur);
+void demanderConsentementAge(Jeu& jeu);
 std::string  saisirNomJoueur();
-bool         choisirRelancer(int& nombreDes);
+unsigned int saisirAge();
 int          saisirValeurARetenir();
+bool         choisirRelancer(int& nombreDes);
 bool         relancerPartie();
 
 // Utilitaires
@@ -70,5 +74,6 @@ void afficherSeparation();
 void clearAffichage();
 int  convertirValeur(std::string valeur);
 void attendre(int millisecondes);
+bool obtenirReponseOuiNon(const std::string& message);
 
 #endif // IHM_H
