@@ -478,3 +478,8 @@ bool obtenirReponseOuiNon(const std::string& message)
         std::cout << "Entrée invalide. Veuillez saisir 'O' ou 'N'." << std::endl;
     }
 }
+
+void attendre(int millisecondes)
+{
+    std::this_thread::sleep_for(std::chrono::milliseconds(millisecondes));
+}
