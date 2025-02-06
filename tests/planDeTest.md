@@ -22,12 +22,11 @@ Plan de test de la fonction calculerScoreFinalTour :
 
 Plan de test de la fonction trouverPlusJeune :
 
-| Numéro du test | Description                      |         Entrée         | Résultat attendu |
-|     :---:      |         -----------------        |         :---:          |      :---:       |
-| *Test 3.1*     | 2 Joueurs - 2 réels - 0 IA       |                        |                  |
-| *Test 3.2*     | 4 Joueurs - 4 réels - 0 IA       |                        |                  |
-| *Test 3.2*     | 7 Joueurs - 7 réels - 0 IA       |                        |                  |
-| *Test 3.3*     | 2 Joueurs - 1 réel - 1 IA        |                        |                  |
-| *Test 3.4*     | 4 Joueurs - 2 réels - 2 IA       |                        |                  |
-| *Test 3.5*     | 2 Joueurs - 0 réel - 2 IA        |                        |                  |
-| *Test 3.6*     | 6 Joueurs - 4 réels - 2 IA       |                        |                  |
+| Numéro du test | Description                      |          Entrée          | Résultat attendu |
+|     :---:      |         -----------------        |          :---:           |      :---:       |
+| *Test 3.1*     | 2 Joueurs - 2 réels - 0 IA       |        *{25,20}*         |       `1`        |
+| *Test 3.2*     | 4 Joueurs - 4 réels - 0 IA       |     *{22,20,18,19}*      |       `2`        |
+| *Test 3.3*     | 7 Joueurs - 7 réels - 0 IA       | *{22,20,18,19,17,16,15}* |       `6`        |
+| *Test 3.4*     | 2 Joueurs - 1 réel - 1 IA        |       *{25,100}*         |       `0`        |
+| *Test 3.5*     | 4 Joueurs - 2 réels - 2 IA       |    *{22,20,100,100}*     |       `1`        |
+| *Test 3.6*     | 6 Joueurs - 4 réels - 2 IA       |  *{22,20,18,17,100,100}* |       `3`        |
