@@ -12,21 +12,30 @@ void jouerPickomino()
     Jeu jeu;
     initialiserJeu(jeu);
 
-    while(!estPartieFinie(jeu))
-    {
-        for(jeu.plateau.joueurActuel = 0; jeu.plateau.joueurActuel < jeu.nbJoueurs;
-            jeu.plateau.joueurActuel++)
-        {
-            if(!jeu.joueurs[jeu.plateau.joueurActuel].estIa)
-            {
-                jouerTour(jeu, jeu.plateau.joueurActuel);
-            }
-            else
-            {
-                jouerTourIa(jeu, jeu.plateau.joueurActuel);
-            }
-        }
+    if (jeu.consentementAge) {
+        jeu.plateau.joueurActuel = trouverPlusJeune(jeu);
+        afficherMessage("Le joueur le plus jeune est : " + std::string(BOLD) + std::string(RED) + jeu.joueurs[jeu.plateau.joueurActuel].nom + std::string(RESET) + " ! Il va commencer !");
     }
+    else
+        jeu.plateau.joueurActuel = 0;
+
+    afficherMessage("Lancement de la partie...");
+    attendre(ATTENTE_DEBUT_PARTIE);
+
+    while (!estPartieFinie(jeu))
+    {
+        for (int unsigned i = jeu.plateau.joueurActuel; i < jeu.nbJoueurs; i++)
+        {
+            jeu.plateau.joueurActuel = i;
+            if (!jeu.joueurs[i].estIa)
+                jouerTour(jeu, i);
+            else
+                jouerTourIa(jeu, i);
+        }
+
+        jeu.plateau.joueurActuel = 0;
+    }
+
     terminerPartie(jeu);
 }
 
@@ -130,6 +139,7 @@ void creerPartieIaVsIa(Jeu& jeu)
 {
     clearAffichage();
     jeu.nbJrsReels = JOUEUR_PAR_DEFAUT;
+    jeu.consentementAge = FALSE;
     jeu.nbIa       = saisirNbIa(jeu, false);
     creerIA(jeu);
     initialiserNbJoueurs(jeu);

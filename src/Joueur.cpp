@@ -16,7 +16,7 @@ void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa, boo
 void assignerAge(Joueur& joueur)
 {
     if(joueur.estIa == true)
-        joueur.age = 1;
+        joueur.age = 100;
     else
         joueur.age = saisirAge();
 }

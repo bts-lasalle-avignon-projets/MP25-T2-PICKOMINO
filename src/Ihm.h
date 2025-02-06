@@ -12,6 +12,8 @@
 #include "Jeu.h"
 #include "Ia.h"
 
+#define ATTENTE_DEBUT_PARTIE 3000
+
 // Mise en page
 #define LARGEUR_MAX 80
 #define RESET       "\033[0m"

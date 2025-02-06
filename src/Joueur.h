@@ -20,10 +20,9 @@ struct Joueur
 
 // Fonctions avant partie
 
-// Fonctions avant partie
-
 void assignerJoueur(Joueur& joueur, std::string nom, int numero, bool estIa, bool consentementAge);
 void assignerAge(Joueur& joueur);
+int trouverPlusJeune(Jeu& jeu);
 
 // Fonctions de partie
 

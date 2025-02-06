@@ -15,6 +15,7 @@
 //#define DEBUG_JEU // ou -DDEBUG_JEU dans g++
 
 #define JOUEUR_PAR_DEFAUT 0
+#define FALSE false;
 
 struct Jeu
 {
